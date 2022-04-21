@@ -10,28 +10,24 @@ import java.util.List;
 
 @Dao
 public interface UserListDao {
-
     @Insert
-    void insertUser(UserEntity... users);
+    void insertUserList(UserListEntity... users);
 
     @Update
-    void updateUser(UserEntity... users);
+    void updateUserList(UserListEntity... users);
 
     @Delete
-    void delete(UserEntity... user);
+    void delete(UserListEntity... user);
 
-    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE userId = :userId")
-    UserEntity getUserById(int userId);
+    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE user_list_id = :userListId")
+    UserListEntity getUserListById(int userListId);
 
-    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE username = :username")
-    UserEntity getUserByUsername(String username);
+    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " ORDER BY user_list_id DESC")
+    List<UserListEntity> getAllUserLists();
 
-    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " ORDER BY username DESC")
-    List<UserEntity> getAllUsers();
+    @Query("DELETE FROM " + AppDatabase.USER_LIST_TABLE + " WHERE user_list_id = :userListId")
+    void deleteUserList(int userListId);
 
-    @Query("DELETE FROM " + AppDatabase.USER_LIST_TABLE)
-    void deleteAllUsers();
-
-    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE username = :username)")
-    Boolean userExists(String username);
+    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE user_list_id = :userListId)")
+    Boolean userListExists(int userListId);
 }

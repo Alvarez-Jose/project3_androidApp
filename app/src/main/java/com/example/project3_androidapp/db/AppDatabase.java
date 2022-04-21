@@ -13,12 +13,12 @@ import androidx.room.TypeConverters;
 public abstract class AppDatabase extends RoomDatabase{
 
     public static final String DATABASE_NAME = "AppDatabase.db";
-    public static final String USER_TABLE = "User";
-    public static final String USER_LIST_TABLE = "UserList";
-    public static final String TRANSACTION_TABLE = "Transaction";
-    public static final String TRANSACTION_LIST_TABLE = "TransactionList";
-    public static final String CARD_TABLE = "Card";
-    public static final String CARD_LIST_TABLE = "CardList";
+    public static final String USER_TABLE = "user";
+    public static final String USER_LIST_TABLE = "user_list";
+    public static final String TRANSACTION_TABLE = "transaction";
+    public static final String TRANSACTION_LIST_TABLE = "transaction_list";
+    public static final String CARD_TABLE = "card";
+    public static final String CARD_LIST_TABLE = "card_list";
 
     private static AppDatabase instance;
 
