@@ -1,6 +1,6 @@
-# Project03-Group02-CST438 (web portion) : "OtterBucks"
+# Project03-Group02-CST438 (app portion) : "OtterBucks"
 
-[link to mobile app portion](https://github.com/Alvarez-Jose/project3_androidApp)
+[link to mobile web portion](https://github.com/halHalberstadt/project_3-web_front-group_2)
 
 ## Team Members (CST438 group 2): 
  - [Jose Alvarez (Backend Expert)](https://github.com/Alvarez-Jose)
