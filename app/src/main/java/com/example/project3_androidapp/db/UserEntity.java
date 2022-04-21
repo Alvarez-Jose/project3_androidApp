@@ -1,19 +1,34 @@
-
 package com.example.project3_androidapp.db;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class UserEntity {
 
-    private Integer transactionId;
-    private Integer amount;
-    private String currency;
-    private Integer isFinalized;
-    private Integer sendingId;
-    private Integer receivingId;
-    private String description;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    @SerializedName("user_id")
+    @Expose
+    private Integer userId;
+    @SerializedName("username")
+    @Expose
+    private String username;
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("admin")
+    @Expose
+    private Integer admin;
+    @SerializedName("card_list_id")
+    @Expose
+    private Integer cardListId;
+    @SerializedName("user_list_id")
+    @Expose
+    private Integer userListId;
+    @SerializedName("bank")
+    @Expose
+    private Integer bank;
+    @SerializedName("transaction_list_id")
+    @Expose
+    private Integer transactionListId;
 
     /**
      * No args constructor for use in serialization
@@ -23,171 +38,130 @@ public class UserEntity {
     }
 
     /**
-     * @param amount
-     * @param sendingId
-     * @param description
-     * @param currency
-     * @param transactionId
-     * @param isFinalized
-     * @param receivingId
+     *
+     * @param password
+     * @param bank
+     * @param transactionListId
+     * @param admin
+     * @param userId
+     * @param userListId
+     * @param cardListId
+     * @param username
      */
-    public UserEntity(Integer transactionId, Integer amount, String currency, Integer isFinalized, Integer sendingId, Integer receivingId, String description) {
+    public UserEntity(Integer userId, String username, String password, Integer admin, Integer cardListId, Integer userListId, Integer bank, Integer transactionListId) {
         super();
-        this.transactionId = transactionId;
-        this.amount = amount;
-        this.currency = currency;
-        this.isFinalized = isFinalized;
-        this.sendingId = sendingId;
-        this.receivingId = receivingId;
-        this.description = description;
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.admin = admin;
+        this.cardListId = cardListId;
+        this.userListId = userListId;
+        this.bank = bank;
+        this.transactionListId = transactionListId;
     }
 
-    public Integer getTransactionId() {
-        return transactionId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setTransactionId(Integer transactionId) {
-        this.transactionId = transactionId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public UserEntity withTransactionId(Integer transactionId) {
-        this.transactionId = transactionId;
+    public UserEntity withUserId(Integer userId) {
+        this.userId = userId;
         return this;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public UserEntity withAmount(Integer amount) {
-        this.amount = amount;
+    public UserEntity withUsername(String username) {
+        this.username = username;
         return this;
     }
 
-    public String getCurrency() {
-        return currency;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public UserEntity withCurrency(String currency) {
-        this.currency = currency;
+    public UserEntity withPassword(String password) {
+        this.password = password;
         return this;
     }
 
-    public Integer getIsFinalized() {
-        return isFinalized;
+    public Integer getAdmin() {
+        return admin;
     }
 
-    public void setIsFinalized(Integer isFinalized) {
-        this.isFinalized = isFinalized;
+    public void setAdmin(Integer admin) {
+        this.admin = admin;
     }
 
-    public UserEntity withIsFinalized(Integer isFinalized) {
-        this.isFinalized = isFinalized;
+    public UserEntity withAdmin(Integer admin) {
+        this.admin = admin;
         return this;
     }
 
-    public Integer getSendingId() {
-        return sendingId;
+    public Integer getCardListId() {
+        return cardListId;
     }
 
-    public void setSendingId(Integer sendingId) {
-        this.sendingId = sendingId;
+    public void setCardListId(Integer cardListId) {
+        this.cardListId = cardListId;
     }
 
-    public UserEntity withSendingId(Integer sendingId) {
-        this.sendingId = sendingId;
+    public UserEntity withCardListId(Integer cardListId) {
+        this.cardListId = cardListId;
         return this;
     }
 
-    public Integer getReceivingId() {
-        return receivingId;
+    public Integer getUserListId() {
+        return userListId;
     }
 
-    public void setReceivingId(Integer receivingId) {
-        this.receivingId = receivingId;
+    public void setUserListId(Integer userListId) {
+        this.userListId = userListId;
     }
 
-    public UserEntity withReceivingId(Integer receivingId) {
-        this.receivingId = receivingId;
+    public UserEntity withUserListId(Integer userListId) {
+        this.userListId = userListId;
         return this;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getBank() {
+        return bank;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBank(Integer bank) {
+        this.bank = bank;
     }
 
-    public UserEntity withDescription(String description) {
-        this.description = description;
+    public UserEntity withBank(Integer bank) {
+        this.bank = bank;
         return this;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public Integer getTransactionListId() {
+        return transactionListId;
     }
 
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public void setTransactionListId(Integer transactionListId) {
+        this.transactionListId = transactionListId;
     }
 
-    public UserEntity withAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public UserEntity withTransactionListId(Integer transactionListId) {
+        this.transactionListId = transactionListId;
         return this;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(UserEntity.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("transactionId");
-        sb.append('=');
-        sb.append(((this.transactionId == null)?"<null>":this.transactionId));
-        sb.append(',');
-        sb.append("amount");
-        sb.append('=');
-        sb.append(((this.amount == null)?"<null>":this.amount));
-        sb.append(',');
-        sb.append("currency");
-        sb.append('=');
-        sb.append(((this.currency == null)?"<null>":this.currency));
-        sb.append(',');
-        sb.append("isFinalized");
-        sb.append('=');
-        sb.append(((this.isFinalized == null)?"<null>":this.isFinalized));
-        sb.append(',');
-        sb.append("sendingId");
-        sb.append('=');
-        sb.append(((this.sendingId == null)?"<null>":this.sendingId));
-        sb.append(',');
-        sb.append("receivingId");
-        sb.append('=');
-        sb.append(((this.receivingId == null)?"<null>":this.receivingId));
-        sb.append(',');
-        sb.append("description");
-        sb.append('=');
-        sb.append(((this.description == null)?"<null>":this.description));
-        sb.append(',');
-        sb.append("additionalProperties");
-        sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
     }
 
 }

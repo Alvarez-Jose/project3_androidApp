@@ -3,14 +3,24 @@ package com.example.project3_androidapp.repos;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-public class Repo {
+import com.example.project3_androidapp.apis.SearchService;
+import com.example.project3_androidapp.db.UserEntity;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class UserRepository {
     public static final String SEARCH_SERVICE_BASE_URL = "https://omdbapi.com/";
 
     private SearchService mSearchService;
-    private MutableLiveData<MovieEntity> mResponseLiveData;
+    private MutableLiveData<UserEntity> mResponseLiveData;
 
-    public MovieRepository() {
-        mResponseLiveData = new MutableLiveData<MovieEntity>();
+    public UserRepository() {
+        mResponseLiveData = new MutableLiveData<UserEntity>();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
@@ -25,12 +35,12 @@ public class Repo {
                 .create(SearchService.class);
     }
 
-    // search for movie by imdbId
-    public void searchMovieByIMDB_Id(String imdbId) {
-        mSearchService.searchValuesByIMDB_Id(imdbId)
-                .enqueue(new Callback<MovieEntity>() {
+    // search for user by userId
+    public void searchUserByUser_Id(String userId) {
+        mSearchService.searchUserById(userId)
+                .enqueue(new Callback<UserEntity>() {
                     @Override
-                    public void onResponse(Call<MovieEntity> call, Response<MovieEntity> response) {
+                    public void onResponse(Call<UserEntity> call, Response<UserEntity> response) {
                         if (response.body() != null) {
                             mResponseLiveData.postValue(response.body());
                             System.out.println(response);
@@ -38,14 +48,14 @@ public class Repo {
                     }
 
                     @Override
-                    public void onFailure(Call<MovieEntity> call, Throwable t) {
+                    public void onFailure(Call<UserEntity> call, Throwable t) {
                         mResponseLiveData.postValue(null);
                     }
                 });
     }
 
     // return API response
-    public LiveData<MovieEntity> getResponseLiveData() {
+    public LiveData<UserEntity> getResponseLiveData() {
         return mResponseLiveData;
     }
 }
