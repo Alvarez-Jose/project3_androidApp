@@ -24,10 +24,11 @@ public class TransactionListResultsAdapter extends RecyclerView.Adapter<Transact
     @NonNull
     @Override
     public SearchResultHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.movie_item, parent, false);
-
-        return new SearchResultHolder(itemView);
+//        View itemView = LayoutInflater.from(parent.getContext())
+//                .inflate(R.layout.movie_item, parent, false);
+//
+//        return new SearchResultHolder(itemView);
+        return null;
     }
 
     public TransactionListResultsAdapter(Context context) {

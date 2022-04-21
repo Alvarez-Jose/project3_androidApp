@@ -1,10 +1,15 @@
 package com.example.project3_androidapp.db;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class TransactionListEntity {
 
+    @PrimaryKey
     @SerializedName("transaction_list_id")
     @Expose
     private Integer transactionListId;

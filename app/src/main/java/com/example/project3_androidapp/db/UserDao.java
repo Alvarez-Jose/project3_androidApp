@@ -19,15 +19,15 @@ public interface UserDao {
     @Delete
     void delete(UserEntity... user);
 
-    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE user_id = :userId")
+    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE userId = :userId")
     UserEntity getUserById(int userId);
 
-    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " ORDER BY user_id DESC")
+    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " ORDER BY userId DESC")
     List<UserEntity> getAllUsers();
 
-    @Query("DELETE FROM " + AppDatabase.USER_TABLE + " WHERE user_id = :userId")
+    @Query("DELETE FROM " + AppDatabase.USER_TABLE + " WHERE userId = :userId")
     void deleteUser(int userId);
 
-    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE user_id = :userId)")
+    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE userId = :userId)")
     Boolean userExists(int userId);
 }

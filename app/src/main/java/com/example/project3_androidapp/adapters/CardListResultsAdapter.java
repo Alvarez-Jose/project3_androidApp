@@ -24,10 +24,11 @@ public class CardListResultsAdapter extends RecyclerView.Adapter<CardListResults
     @NonNull
     @Override
     public SearchResultHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.movie_item, parent, false);
+//        View itemView = LayoutInflater.from(parent.getContext())
+//                .inflate(R.layout.movie_item, parent, false);
 
-        return new SearchResultHolder(itemView);
+//        return new SearchResultHolder(itemView);
+        return null;
     }
 
     public CardListResultsAdapter(Context context) {
