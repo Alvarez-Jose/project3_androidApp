@@ -19,15 +19,15 @@ public interface UserListDao {
     @Delete
     void delete(UserListEntity... user);
 
-    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE user_list_id = :userListId")
+    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE ownerId = :userListId")
     UserListEntity getUserListById(int userListId);
 
-    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " ORDER BY user_list_id DESC")
+    @Query("SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " ORDER BY ownerId DESC")
     List<UserListEntity> getAllUserLists();
 
-    @Query("DELETE FROM " + AppDatabase.USER_LIST_TABLE + " WHERE user_list_id = :userListId")
+    @Query("DELETE FROM " + AppDatabase.USER_LIST_TABLE + " WHERE ownerId = :userListId")
     void deleteUserList(int userListId);
 
-    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE user_list_id = :userListId)")
+    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.USER_LIST_TABLE + " WHERE ownerId = :userListId)")
     Boolean userListExists(int userListId);
 }

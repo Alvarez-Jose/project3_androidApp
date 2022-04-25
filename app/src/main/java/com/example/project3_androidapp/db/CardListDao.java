@@ -19,15 +19,15 @@ public interface CardListDao {
     @Delete
     void delete(CardListEntity... cardList);
 
-    @Query("SELECT * FROM " + AppDatabase.CARD_LIST_TABLE + " WHERE card_list_id = :cardListId")
+    @Query("SELECT * FROM " + AppDatabase.CARD_LIST_TABLE + " WHERE cardListId = :cardListId")
     CardListEntity getCardListById(int cardListId);
 
-    @Query("SELECT * FROM " + AppDatabase.CARD_LIST_TABLE + " ORDER BY card_list_id DESC")
+    @Query("SELECT * FROM " + AppDatabase.CARD_LIST_TABLE + " ORDER BY cardListId DESC")
     List<CardListEntity> getAllCardLists();
 
-    @Query("DELETE FROM " + AppDatabase.CARD_LIST_TABLE + " WHERE card_list_id = :cardListId")
+    @Query("DELETE FROM " + AppDatabase.CARD_LIST_TABLE + " WHERE cardListId = :cardListId")
     void deleteCardList(int cardListId);
 
-    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.CARD_LIST_TABLE + " WHERE card_list_id = :cardListId)")
+    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.CARD_LIST_TABLE + " WHERE cardListId = :cardListId)")
     Boolean cardListExists(int cardListId);
 }

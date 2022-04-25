@@ -19,15 +19,15 @@ public interface TransactionListDao {
     @Delete
     void delete(TransactionListEntity... transactionList);
 
-    @Query("SELECT * FROM " + AppDatabase.TRANSACTION_LIST_TABLE + " WHERE transaction_list_id = :transactionListId")
+    @Query("SELECT * FROM " + AppDatabase.TRANSACTION_LIST_TABLE + " WHERE transactionListId = :transactionListId")
     TransactionListEntity getTransactionListById(int transactionListId);
 
-    @Query("SELECT * FROM " + AppDatabase.TRANSACTION_LIST_TABLE + " ORDER BY transaction_list_id DESC")
+    @Query("SELECT * FROM " + AppDatabase.TRANSACTION_LIST_TABLE + " ORDER BY transactionListId DESC")
     List<TransactionListEntity> getAllTransactionLists();
 
-    @Query("DELETE FROM " + AppDatabase.TRANSACTION_LIST_TABLE + " WHERE transaction_list_id = :transactionListId)")
+    @Query("DELETE FROM " + AppDatabase.TRANSACTION_LIST_TABLE + " WHERE transactionListId = :transactionListId")
     void deleteTransactionList(int transactionListId);
 
-    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.TRANSACTION_LIST_TABLE + " WHERE transaction_list_id = :transactionListId)")
+    @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.TRANSACTION_LIST_TABLE + " WHERE transactionListId = :transactionListId)")
     Boolean transactionListExists(int transactionListId);
 }
