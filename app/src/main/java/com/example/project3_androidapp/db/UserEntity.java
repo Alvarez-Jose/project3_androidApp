@@ -1,6 +1,7 @@
 package com.example.project3_androidapp.db;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -39,6 +40,7 @@ public class UserEntity {
      * No args constructor for use in serialization
      *
      */
+    @Ignore
     public UserEntity() {
     }
 

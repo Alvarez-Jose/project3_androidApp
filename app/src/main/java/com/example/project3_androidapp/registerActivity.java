@@ -10,9 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.db.AppDatabase;
+import com.example.project3_androidapp.db.UserDao;
 import com.example.project3_androidapp.db.UserEntity;
 import com.example.project3_androidapp.util.Constants;
+import com.example.project3_androidapp.util.StringAPIRequest;
 import com.google.firebase.firestore.auth.User;
 
 public class registerActivity extends AppCompatActivity {
@@ -29,8 +35,8 @@ public class registerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
-        toMainButton = (Button) findViewById(R.id.registerUser);
-        database = AppDatabase.getInstance(getApplicationContext());
+        getUserDatabase();
+        toMainButton = findViewById(R.id.registerUser);
 
         userName = findViewById(R.id.fullname);
         userEmail = findViewById(R.id.email);
@@ -55,23 +61,34 @@ public class registerActivity extends AppCompatActivity {
                 database.userDao().insertUser(newUser);
 
 
+
+//                StringAPIRequest request = new StringAPIRequest();
+//                request.sendRequest();
+
                 Intent intentMain = new Intent(registerActivity.this,
                         MainActivity.class);
                 Toast.makeText(getApplicationContext(), "Created account successfully", Toast.LENGTH_LONG).show();
-                registerActivity.this.startActivity(intentMain);
                 System.out.println("TO MAIN");
+                registerActivity.this.startActivity(intentMain);
             }
 
         };
 
         toMainButton.setOnClickListener(handler);
     }
+
+    // get instance of database and return user DAO
+    private void getUserDatabase() {
+        AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
+        database = db.getInstance(this);
+    }
+
     private void automaticLogin() {
         if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
             Intent intentMain = new Intent(registerActivity.this,
                     MainActivity.class);
-            registerActivity.this.startActivity(intentMain);
             System.out.println("AUTO LOGIN");
+            registerActivity.this.startActivity(intentMain);
         }
     }
 
