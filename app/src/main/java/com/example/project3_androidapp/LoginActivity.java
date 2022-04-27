@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,41 +27,54 @@ import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView text;
-    Button toMainButton;
+    TextView user;
+    Button toMainButton, loginButton, checkLogin;
     AppDatabase database;
+    EditText username, password;
+    String enteredUsername, enteredPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = URL_BASE + "/retrieve_user/?userId=1";
 
-        text = findViewById(R.id.exampleText);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                text.setText("Response: " + response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError e){
-                text.setText("request error");
-            }
-        });
-
-        queue.add(stringRequest);
-
+        // username = findViewById(R.id.fullname);
+        // password = findViewById(R.id.email);
+        // checkLogin = findViewById(R.id.loginButton);
         toMainButton = findViewById(R.id.loginToMain);
-        System.out.println(toMainButton);
-        toMainButton.setOnClickListener(view -> switchToMain());
+
+        View.OnClickListener handler = v -> {
+
+//            if (v == loginButton) {
+//                enteredUsername = username.getText().toString();
+//                enteredPassword = password.getText().toString();
+//
+//                String url = URL_BASE + "/retrieve_user/?user=&pass";
+//
+//                RequestQueue queue = Volley.newRequestQueue(this);
+//                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
+//                    Toast.makeText(getApplicationContext(), "Logged in!", Toast.LENGTH_LONG).show();
+//                    //Login success path
+//                }, err -> {
+//                    Toast.makeText(getApplicationContext(), "Error logging in.", Toast.LENGTH_LONG).show();
+//                    switchToMain();
+//                });
+//                queue.add(stringRequest);
+//            }
+
+            if(v == toMainButton){
+                switchToMain();
+            }
+
+        };
+
+        toMainButton.setOnClickListener(handler);
+        //loginButton.setOnClickListener(handler);
     }
 
     private void switchToMain() {
-        Intent switchActivityIntent = new Intent(this, MainActivity.class);
+        Intent switchActivityIntent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(switchActivityIntent);
     }
 }
