@@ -20,7 +20,7 @@ public class AddCardsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cards);
 
-//        String url = URL_BASE + "/retrieve_user/?user=&pass";
+//        String url = URL_BASE + "/add_card/?user=&pass";
 //
 //        RequestQueue queue = Volley.newRequestQueue(this);
 //        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
