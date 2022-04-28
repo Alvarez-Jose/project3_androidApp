@@ -12,7 +12,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="109196bf-7998-4d9a-8c2c-c57310e99e73" name="Default Changelist" comment="created outline format and code for all new activities." />
+    <list default="true" id="801c8adf-b426-4e2f-ae04-7fb9981e489a" name="Default Changelist" comment="update to see if unversioned files fix the error">
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -333,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651167029832</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update to see if unversioned files fix the error">
+      <created>1651177726993</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1651177726993</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,6 +384,7 @@
     <MESSAGE value="got it to do api calls, will add to the rest of the pages." />
     <MESSAGE value="added files for other activities but main, login and register are either fully functional or just need the layout files." />
     <MESSAGE value="created outline format and code for all new activities." />
-    <option name="LAST_COMMIT_MESSAGE" value="created outline format and code for all new activities." />
+    <MESSAGE value="update to see if unversioned files fix the error" />
+    <option name="LAST_COMMIT_MESSAGE" value="update to see if unversioned files fix the error" />
   </component>
 </project>
