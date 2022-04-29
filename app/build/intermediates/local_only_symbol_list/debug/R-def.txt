@@ -1,0 +1,30 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable otterlogo3
+id banner
+id email
+id exampleText
+id fullname
+id logIn
+id loginToMain
+id password
+id progressBar
+id registerUser
+id signUp
+id textView
+layout activity_login
+layout activity_main
+layout activity_register_user
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Theme.Project3_androidApp
