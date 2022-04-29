@@ -62,7 +62,7 @@
             android:background="@color/black" />
 
         <Button
-            android:id="@+id/LogIn"
+            android:id="@+id/logIn"
             android:layout_marginTop="20dp"
             android:layout_width="380dp"
             android:layout_height="wrap_content"

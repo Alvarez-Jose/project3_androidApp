@@ -10,7 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project3_androidApp">
         <activity
-            android:name=".activity_register_user"
+            android:name=".activities.FriendsProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddCardsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CreateTransactionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.TransactionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".registerActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

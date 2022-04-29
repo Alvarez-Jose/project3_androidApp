@@ -1,6 +1,7 @@
 package com.example.project3_androidapp.db;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -30,7 +31,7 @@ public class UserEntity {
     private Integer userListId;
     @SerializedName("bank")
     @Expose
-    private Integer bank;
+    private Double bank;
     @SerializedName("transaction_list_id")
     @Expose
     private Integer transactionListId;
@@ -39,6 +40,7 @@ public class UserEntity {
      * No args constructor for use in serialization
      *
      */
+    @Ignore
     public UserEntity() {
     }
 
@@ -53,7 +55,7 @@ public class UserEntity {
      * @param cardListId
      * @param username
      */
-    public UserEntity(Integer userId, String username, String password, Integer admin, Integer cardListId, Integer userListId, Integer bank, Integer transactionListId) {
+    public UserEntity(Integer userId, String username, String password, Integer admin, Integer cardListId, Integer userListId, double bank, Integer transactionListId) {
         super();
         this.userId = userId;
         this.username = username;
@@ -143,15 +145,15 @@ public class UserEntity {
         return this;
     }
 
-    public Integer getBank() {
+    public Double getBank() {
         return bank;
     }
 
-    public void setBank(Integer bank) {
+    public void setBank(Double bank) {
         this.bank = bank;
     }
 
-    public UserEntity withBank(Integer bank) {
+    public UserEntity withBank(Double bank) {
         this.bank = bank;
         return this;
     }
