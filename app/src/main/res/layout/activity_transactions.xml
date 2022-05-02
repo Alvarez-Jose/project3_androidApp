@@ -6,4 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".activities.TransactionsActivity">
 
+    <TextView
+        android:id="@+id/transactionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transactions:"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewTransactions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTransactions"
+        android:layout_width="412dp"
+        android:layout_height="637dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
