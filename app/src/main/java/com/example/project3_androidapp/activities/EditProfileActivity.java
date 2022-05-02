@@ -2,7 +2,9 @@ package com.example.project3_androidapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import com.example.project3_androidapp.LoginActivity;
 import com.example.project3_androidapp.MainActivity;
 import com.example.project3_androidapp.R;
+import com.example.project3_androidapp.util.Constants;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -18,13 +21,18 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText newName, newPass, newBank, added;
     private String nameText, passText;
     private Double bankAmt, addedValue;
+    private int idValue;
 
+    private SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        // get user's shared preferences
+        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 //        submitButton = findViewById(R.id);
 //        backButton = findViewById(R.id);
 //        newName = findViewById(R.id);

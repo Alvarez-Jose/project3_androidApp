@@ -3,19 +3,25 @@ package com.example.project3_androidapp.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.project3_androidapp.MainActivity;
 import com.example.project3_androidapp.R;
+import com.example.project3_androidapp.util.Constants;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private Button backButton, toEditButton;
     private TextView username, bank;
     private RecyclerView friends, cards;
+    private int idValue;
+
+    private SharedPreferences mPrefs;
 
 
     @Override
@@ -23,6 +29,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        // get user's shared preferences
+        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
         // TODO set text values on this activity to reflect user's profile
 
 //        toEditButton = findViewById(R.id);

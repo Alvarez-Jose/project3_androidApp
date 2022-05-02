@@ -2,7 +2,9 @@ package com.example.project3_androidapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import com.example.project3_androidapp.LoginActivity;
 import com.example.project3_androidapp.MainActivity;
 import com.example.project3_androidapp.R;
+import com.example.project3_androidapp.util.Constants;
 
 public class CreateTransactionActivity extends AppCompatActivity {
 
@@ -18,10 +21,16 @@ public class CreateTransactionActivity extends AppCompatActivity {
     private int idValue;
     private double amountValue;
 
+    private SharedPreferences mPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_transaction);
+
+        // get user's shared preferences
+        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 
 //        submitButton = findViewById(R.id);
 //        backButton = findViewById(R.id);
