@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 enteredPassword = password.getText().toString();
 
                 String url = URL_BASE + "/login_account/?u=" + enteredUsername + "&p=" + enteredPassword;
+                // use the api in order to find the account on the database.
 
                 RequestQueue queue = Volley.newRequestQueue(this);
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
@@ -66,22 +67,26 @@ public class LoginActivity extends AppCompatActivity {
                     //Login success path
                     if(response.indexOf(":") != -1) {
                         idValue = Integer.parseInt(response.substring(response.indexOf("id:"),response.indexOf("}")));
-                        SharedPreferences.Editor editor = mSharedPrefs.edit();
-                        editor.putInt(Constants.USER_ID_KEY, idValue);
-                        editor.apply();
 
-                        isSuccessful = true;
+//                        isSuccessful = true;
                     }
                 }, err -> {
                     Toast.makeText(getApplicationContext(), "Error logging in.", Toast.LENGTH_LONG).show();
                     isSuccessful = false;
-                    switchToMain();
                 });
+
                 queue.add(stringRequest);
+
                 if(isSuccessful){
+                    // login success saves the user to persistent login
+                    SharedPreferences.Editor editor = mSharedPrefs.edit();
+                    editor.putInt(Constants.USER_ID_KEY, idValue);
+                    editor.apply();
+
+                    Toast.makeText(getApplicationContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
                     switchToTransactions();
                 } else {
-                    switchToMain();
+                    refreshPage();
                 }
             }
 
@@ -92,7 +97,12 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         toMainButton.setOnClickListener(handler);
-        //loginButton.setOnClickListener(handler);
+        loginButton.setOnClickListener(handler);
+    }
+
+    private void refreshPage() {
+        Intent switchActivityIntent = new Intent(LoginActivity.this, LoginActivity.class);
+        startActivity(switchActivityIntent);
     }
 
     private void switchToTransactions() {
