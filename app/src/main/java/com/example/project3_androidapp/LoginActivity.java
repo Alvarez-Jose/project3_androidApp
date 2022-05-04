@@ -30,12 +30,12 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView user;
-    private Button toMainButton, loginButton, checkLogin;
+    private Button toMainButton, loginButton;
     private AppDatabase database;
     private EditText username, password;
     private String enteredUsername, enteredPassword;
     private boolean isSuccessful;
-    private int idValue;
+    private int idValue = -1;
 
     SharedPreferences mSharedPrefs;
 
@@ -43,13 +43,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        automaticLogin();
+//        automaticLogin();
 
         isSuccessful = false;
 
         username = findViewById(R.id.editTextUsername);
         password = findViewById(R.id.editTextTextPassword);
-        checkLogin = findViewById(R.id.submitLogin);
+        loginButton = findViewById(R.id.submitLogin);
         toMainButton = findViewById(R.id.loginToMain);
 
         View.OnClickListener handler = v -> {
@@ -58,36 +58,31 @@ public class LoginActivity extends AppCompatActivity {
                 enteredUsername = username.getText().toString();
                 enteredPassword = password.getText().toString();
 
-                String url = URL_BASE + "/login_account/?u=" + enteredUsername + "&p=" + enteredPassword;
+                String url = URL_BASE + "/retrieve_user_p/?u=" + enteredUsername + "&p=" + enteredPassword;
                 // use the api in order to find the account on the database.
 
                 RequestQueue queue = Volley.newRequestQueue(this);
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
                     Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
                     //Login success path
-                    if(response.indexOf(":") != -1) {
-                        idValue = Integer.parseInt(response.substring(response.indexOf("id:"),response.indexOf("}")));
+                    idValue = Integer.parseInt(response);
+                    System.out.println(idValue);
+                    if(idValue != -1) {
 
-//                        isSuccessful = true;
+                        // login success saves the user to persistent login
+                        SharedPreferences.Editor editor = mSharedPrefs.edit();
+                        editor.putInt(Constants.USER_ID_KEY, idValue);
+                        editor.apply();
+
+                        Toast.makeText(getApplicationContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
+                        switchToTransactions();
                     }
                 }, err -> {
                     Toast.makeText(getApplicationContext(), "Error logging in.", Toast.LENGTH_LONG).show();
-                    isSuccessful = false;
+                    refreshPage();
                 });
 
                 queue.add(stringRequest);
-
-                if(isSuccessful){
-                    // login success saves the user to persistent login
-                    SharedPreferences.Editor editor = mSharedPrefs.edit();
-                    editor.putInt(Constants.USER_ID_KEY, idValue);
-                    editor.apply();
-
-                    Toast.makeText(getApplicationContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
-                    switchToTransactions();
-                } else {
-                    refreshPage();
-                }
             }
 
             if(v == toMainButton){
@@ -115,12 +110,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(switchActivityIntent);
     }
 
-    private void automaticLogin() {
-        if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
-            Intent intentMain = new Intent(LoginActivity.this,
-                    TransactionsActivity.class);
-            System.out.println("AUTO LOGIN");
-            LoginActivity.this.startActivity(intentMain);
-        }
-    }
+//    private void automaticLogin() {
+//        if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
+//            Intent intentMain = new Intent(LoginActivity.this,
+//                    TransactionsActivity.class);
+//            System.out.println("AUTO LOGIN");
+//            LoginActivity.this.startActivity(intentMain);
+//        }
+//    }
 }

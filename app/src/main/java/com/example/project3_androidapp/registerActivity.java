@@ -63,15 +63,15 @@ public class registerActivity extends AppCompatActivity {
                 userPasswordText = userPassword.getText().toString();
                 getNewId(); // will probably be useless but keeping for now.
                 RequestQueue queue = Volley.newRequestQueue(this); // used to access api
-                String url = URL_BASE + "/retrieve_users";
+                String url = URL_BASE + "/retrieve_users_and";
 
                 Intent intentRepeat = new Intent(registerActivity.this,
                         registerActivity.class); // if the user makes an error on the form.
 
                 StringRequest usersRequest = new StringRequest(Request.Method.GET, url, response -> {
                     // maybe a confirmation message
-                    existingUsers = response.replace("&#34", "\n");
-                    //System.out.println(existingUsers);
+                    existingUsers = response;
+                    System.out.println(existingUsers);
                 }, e -> {
                     Toast.makeText(getApplicationContext(), "Error connecting to database", Toast.LENGTH_LONG).show();
                 });
