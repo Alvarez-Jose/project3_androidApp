@@ -2585,11 +2585,15 @@ id CTRL
 id FUNCTION
 id META
 id NO_DEBUG
+id OtherUserText
+id RecievingUser
+id RecievingUserText
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
+id SendingUser
 id TOP_END
 id TOP_START
 id accelerate
@@ -2650,6 +2654,8 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addCard
+id addFriendButton
 id adjust_height
 id adjust_width
 id alertTitle
@@ -2657,6 +2663,7 @@ id aligned
 id all
 id allStates
 id always
+id amountText
 id animateToEnd
 id animateToStart
 id antiClockwise
@@ -2668,6 +2675,10 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id backButton
+id backButtonTransaction
+id bank
+id bankText
 id banner
 id barrier
 id baseline
@@ -2680,11 +2691,17 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id buttonAccept
+id buttonDecline
 id buttonPanel
 id cache_measures
 id callMeasure
 id cancel_action
 id cancel_button
+id cardExperationEdit
+id cardExpirationText
+id cardNumberEdit
+id cardZip
 id carryVelocity
 id center
 id center_horizontal
@@ -2708,6 +2725,7 @@ id clockwise
 id closest
 id collapseActionView
 id compress
+id confirmButton
 id confirm_button
 id constraint
 id container
@@ -2722,6 +2740,9 @@ id currentState
 id custom
 id customPanel
 id cut
+id cvv
+id cvvEdit
+id cvvText
 id dark
 id date_picker_actions
 id decelerate
@@ -2756,6 +2777,15 @@ id easeIn
 id easeInOut
 id easeOut
 id east
+id editAmount
+id editBankAmount
+id editNewCardCVV
+id editNewCardExp
+id editNewCardNumber
+id editNewCardZip
+id editOtherUser
+id editTextTextPassword
+id editTextUsername
 id edit_query
 id elastic
 id email
@@ -2766,6 +2796,7 @@ id enterAlways
 id enterAlwaysCollapsed
 id exampleText
 id exitUntilCollapsed
+id exp
 id expand_activities_button
 id expanded_menu
 id fade
@@ -2779,6 +2810,8 @@ id flip
 id floating
 id forever
 id fragment_container_view_tag
+id friendName
+id friendsRecyclerView
 id frost
 id fullname
 id ghost_view
@@ -2899,6 +2932,8 @@ id navigation_header_container
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
+id newCardNumber
+id newTransactionButton
 id noScroll
 id noState
 id none
@@ -2907,6 +2942,7 @@ id north
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id numberText
 id off
 id on
 id onInterceptTouchReturnSwipe
@@ -2920,6 +2956,7 @@ id parentPanel
 id parentRelative
 id parent_matrix
 id password
+id passwordTextEnter
 id password_toggle
 id path
 id pathRelative
@@ -2934,6 +2971,8 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id recyclerViewFriendTransaction
+id recyclerViewTransactions
 id registerUser
 id reverseSawtooth
 id right
@@ -2965,6 +3004,7 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id sendAmountText
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -3003,6 +3043,8 @@ id status_bar_latest_event_content
 id stop
 id stretch
 id submenuarrow
+id submitButton
+id submitLogin
 id submit_area
 id supportScrollUp
 id tabMode
@@ -3031,6 +3073,7 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView4
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3048,6 +3091,7 @@ id toggle
 id top
 id topPanel
 id touch_outside
+id transactionText
 id transitionToEnd
 id transitionToStart
 id transition_current_scene
@@ -3061,6 +3105,9 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id userName
+id userNameEnter
+id userNameText
 id vertical_only
 id view_offset_helper
 id view_transition
@@ -3079,6 +3126,8 @@ id wrap_content_constrained
 id x_left
 id x_right
 id zero_corner_chip
+id zipEdit
+id zipText
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -3166,9 +3215,15 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_add_cards
+layout activity_create_transaction
+layout activity_edit_profile
+layout activity_friends_profile
 layout activity_login
 layout activity_main
+layout activity_profile
 layout activity_register_user
+layout activity_transactions
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3265,6 +3320,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+layout transaction_item
 menu example_menu
 menu example_menu2
 mipmap ic_launcher

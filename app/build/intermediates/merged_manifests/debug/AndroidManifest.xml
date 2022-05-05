@@ -27,6 +27,24 @@
         android:testOnly="true"
         android:theme="@style/Theme.Project3_androidApp" >
         <activity
+            android:name="com.example.project3_androidapp.activities.FriendsProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.AddCardsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.CreateTransactionActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.TransactionsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.project3_androidapp.LoginActivity"
             android:exported="false" />
         <activity

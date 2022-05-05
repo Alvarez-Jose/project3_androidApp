@@ -1,32 +1,36 @@
 package com.example.project3_androidapp.activities;
 
+import static com.example.project3_androidapp.util.Constants.URL_BASE;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Transaction;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.project3_androidapp.LoginActivity;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.MainActivity;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.adapters.TransactionResultsAdapter;
 import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.TransactionDao;
 import com.example.project3_androidapp.db.TransactionEntity;
-import com.example.project3_androidapp.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TransactionsActivity extends AppCompatActivity {
 
-    private Button createTransactionButton, backButton;
+    private Button transactionButton, backButton;
     private RecyclerView transactions;
     private static int idValue;
 
@@ -39,37 +43,57 @@ public class TransactionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transactions);
-        getDatabase();
+//        getDatabase();
 
+        checkLogin();
+
+        backButton = findViewById(R.id.backButtonTransaction);
+        transactionButton = findViewById(R.id.newTransactionButton);
+        transactions = findViewById(R.id.recyclerViewTransactions);
+
+        loadTransactions();
         // get user's shared preferences
-        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
-//        createTransactionButton = findViewById(R.id);
-//        backButton = findViewById(R.id);
-//        transactions = findViewById(R.id);
+//        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 
-        // TODO recycler view here
         transactionAdapter = new TransactionResultsAdapter(this);
         refreshList();
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewTransactions);
+        RecyclerView recyclerView = transactions;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(transactionAdapter);
 
-//        View.OnClickListener handler = v -> {
+        View.OnClickListener handler = v -> {
 
-//            if (v == createTransactionButton) {
-//                switchToCreateTransaction();
-//            }
+            if (v == transactionButton) {
+                switchToCreateTransaction();
+            }
 
-//            if(v == backButton){
-//                switchToMain();
-//            }
+            if(v == backButton){
+                logOut();
+            }
 
-//        };
+        };
 
-//        backButton.setOnClickListener(handler);
-//        submitButton.setOnClickListener(handler);
+        backButton.setOnClickListener(handler);
+        transactionButton.setOnClickListener(handler);
+    }
+
+    private void loadTransactions() {
+        AtomicReference<String> responseModified = new AtomicReference<>("");
+        String url = URL_BASE + "/retrieve_transactions_and/?uid=" + idValue;
+        // use the api in order to find the account on the database.
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
+            responseModified.set(response.replaceAll("&#34;", "\""));
+            System.out.println(" Transaction - "+ responseModified);
+        }, err -> {
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+        });
+        queue.add(stringRequest);
+
+        //Toast.makeText(getApplicationContext(), "finished loading transactions", Toast.LENGTH_SHORT).show();
     }
 
     // get instance of database and return user DAO
@@ -87,12 +111,19 @@ public class TransactionsActivity extends AppCompatActivity {
         }
     }
 
+    private void checkLogin() {
+        if(idValue == -1){
+            Intent switchActivityIntent = new Intent(TransactionsActivity.this, MainActivity.class);
+            startActivity(switchActivityIntent);
+        }
+    }
+
     private void switchToCreateTransaction() {
         Intent switchActivityIntent = new Intent(TransactionsActivity.this, CreateTransactionActivity.class);
         startActivity(switchActivityIntent);
     }
 
-    private void switchToMain() {
+    private void logOut() {
         Intent switchActivityIntent = new Intent(TransactionsActivity.this, MainActivity.class);
         startActivity(switchActivityIntent);
     }

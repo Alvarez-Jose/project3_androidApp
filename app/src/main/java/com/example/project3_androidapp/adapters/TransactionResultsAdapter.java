@@ -30,6 +30,7 @@ import java.util.List;
 public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionResultsAdapter.SearchResultHolder> {
     private List<TransactionEntity> searchResults = new ArrayList<>();
     private Context context;
+    private View view;
     private Button acceptTransactionButton, declineTransactionButton;
 
     @NonNull
@@ -37,6 +38,9 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     public SearchResultHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.transaction_item, parent, false);
+
+        acceptTransactionButton = parent.findViewById(R.id.userNameText);
+        declineTransactionButton = parent.findViewById(R.id.bankText);
 
         return new SearchResultHolder(itemView);
 //        return null;
@@ -53,6 +57,7 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     @Override
     public void onBindViewHolder(@NonNull SearchResultHolder holder, int position) {
         TransactionEntity results = searchResults.get(position);
+
 
         if (results.getSendingId() != null) {
             holder.sendingIdText.setText(results.getSendingId());

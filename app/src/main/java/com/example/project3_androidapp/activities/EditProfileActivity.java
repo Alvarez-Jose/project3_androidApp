@@ -30,9 +30,11 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        checkLogin();
+
         // get user's shared preferences
-        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
+//        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 //        submitButton = findViewById(R.id);
 //        backButton = findViewById(R.id);
 //        newName = findViewById(R.id);
@@ -70,6 +72,13 @@ public class EditProfileActivity extends AppCompatActivity {
 
 //        backButton.setOnClickListener(handler);
 //        submitButton.setOnClickListener(handler);
+    }
+
+    private void checkLogin() {
+        if(idValue == -1){
+            Intent switchActivityIntent = new Intent(EditProfileActivity.this, MainActivity.class);
+            startActivity(switchActivityIntent);
+        }
     }
 
     private void addFunds(double amount) {

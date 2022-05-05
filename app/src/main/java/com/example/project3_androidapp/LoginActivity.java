@@ -15,27 +15,20 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.activities.TransactionsActivity;
 import com.example.project3_androidapp.db.AppDatabase;
-import com.example.project3_androidapp.util.Constants;
-import com.google.gson.JsonArray;
-
-import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView user;
+    public int idValue = -1;
+
     private Button toMainButton, loginButton;
     private AppDatabase database;
     private EditText username, password;
     private String enteredUsername, enteredPassword;
     private boolean isSuccessful;
-    private int idValue = -1;
 
     SharedPreferences mSharedPrefs;
 
@@ -44,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 //        automaticLogin();
-
+        idValue = -1;
         isSuccessful = false;
 
         username = findViewById(R.id.editTextUsername);
@@ -66,13 +59,12 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
                     //Login success path
                     idValue = Integer.parseInt(response);
-                    System.out.println(idValue);
+//                    System.out.println(idValue);
                     if(idValue != -1) {
-
                         // login success saves the user to persistent login
-                        SharedPreferences.Editor editor = mSharedPrefs.edit();
-                        editor.putInt(Constants.USER_ID_KEY, idValue);
-                        editor.apply();
+//                        SharedPreferences.Editor editor = mSharedPrefs.edit();
+//                        editor.putInt(Constants.USER_ID_KEY, idValue);
+//                        editor.apply();
 
                         Toast.makeText(getApplicationContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
                         switchToTransactions();

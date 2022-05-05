@@ -952,9 +952,9 @@
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
-                        "startOffsets": "17",
+                        "startOffsets": "16",
                         "endColumns": "56",
-                        "endOffsets": "69"
+                        "endOffsets": "68"
                     },
                     "to": {
                         "startLines": "1611",
