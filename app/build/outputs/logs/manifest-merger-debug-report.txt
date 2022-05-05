@@ -215,24 +215,24 @@ ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidMani
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:29:13-37
 	android:name
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:28:13-55
-activity#com.example.project3_androidapp.LoginActivity
+activity#com.example.project3_androidapp.activities.LoginActivity
 ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:30:9-32:40
 	android:exported
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:32:13-37
 	android:name
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:31:13-42
-activity#com.example.project3_androidapp.registerActivity
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:31:13-53
+activity#com.example.project3_androidapp.activities.registerActivity
 ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:33:9-35:40
 	android:exported
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:35:13-37
 	android:name
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:34:13-45
-activity#com.example.project3_androidapp.MainActivity
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:34:13-56
+activity#com.example.project3_androidapp.activities.MainActivity
 ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:36:9-44:20
 	android:exported
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:38:13-36
 	android:name
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:37:13-41
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:37:13-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:39:13-43:29
 action#android.intent.action.MAIN

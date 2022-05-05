@@ -84,20 +84,20 @@
 46-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:29:13-37
 47        <activity
 47-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:30:9-32:40
-48            android:name="com.example.project3_androidapp.LoginActivity"
-48-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:31:13-42
+48            android:name="com.example.project3_androidapp.activities.LoginActivity"
+48-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:31:13-53
 49            android:exported="false" />
 49-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:32:13-37
 50        <activity
 50-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:33:9-35:40
-51            android:name="com.example.project3_androidapp.registerActivity"
-51-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:34:13-45
+51            android:name="com.example.project3_androidapp.activities.registerActivity"
+51-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:34:13-56
 52            android:exported="false" />
 52-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:35:13-37
 53        <activity
 53-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:36:9-44:20
-54            android:name="com.example.project3_androidapp.MainActivity"
-54-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:37:13-41
+54            android:name="com.example.project3_androidapp.activities.MainActivity"
+54-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:37:13-52
 55            android:exported="true" >
 55-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:38:13-36
 56            <intent-filter>

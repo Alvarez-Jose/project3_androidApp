@@ -1,12 +1,12 @@
 package com.example.project3_androidapp.activities;
 
+import static com.example.project3_androidapp.activities.LoginActivity.idValue;
 import static com.example.project3_androidapp.util.Constants.URL_BASE;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,14 +19,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.project3_androidapp.LoginActivity;
-import com.example.project3_androidapp.MainActivity;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.adapters.TransactionResultsAdapter;
 import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.TransactionDao;
 import com.example.project3_androidapp.db.TransactionEntity;
-import com.example.project3_androidapp.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +35,6 @@ public class ProfileActivity extends AppCompatActivity {
     private static TransactionResultsAdapter transactionsAdapter;
     private static TransactionDao transactionDao;
     private static List<TransactionEntity> transactions = new ArrayList<>();
-    private static int userId;
-    private int idValue;
 
     private SharedPreferences mPrefs;
 
@@ -51,7 +46,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         getDatabase();
         // set this for a static context
-        userId = idValue;
 
         System.out.println("profile");
         checkLogin();
@@ -88,7 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setUp() {
-        String url = URL_BASE + "/retrieve_transactions_and/?uid=" + userId;
+        String url = URL_BASE + "/retrieve_transactions_and/?uid=" + idValue;
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
@@ -98,13 +92,13 @@ public class ProfileActivity extends AppCompatActivity {
             // loop all items in []
             String str = response.toString();
             String obj, val;
-            int i = 0;
-            while (!str.substring(0).equals("]")){
-                // find objects with {}
-                if(str.substring(0,1).equals("{")){
-                    while (!str.substring(0,1).equals("}")){
-                        // get things to import with "":
-                        obj = str.substring(0, str.indexOf('"'));
+            for(int i = 0; i < str.length(); i++){
+                if(str.charAt(i) == '{'){
+                    while(str.charAt(i) != '}'){
+                        obj = str.substring(i+2, str.indexOf(':', i)-1);
+
+                        System.out.println(obj);
+                        i = str.indexOf(':', i)+1;
                             // get substring from end of ':' to ','
                         TransactionEntity t = new TransactionEntity();
                         if(obj.equals("transaction_id")) {
@@ -132,9 +126,13 @@ public class ProfileActivity extends AppCompatActivity {
                         // fill with item after import
                         transactionDao.insertTransaction(t);
                         System.out.println(t);
+
+                        if(i >= str.length() || i < 0)
+                            break;
                     }
                 }
-                str = str.substring(1);
+                if(i >= str.length() || i < 0)
+                    break;
             }
         }, err -> {
             Toast.makeText(getApplicationContext(), "profile error", Toast.LENGTH_LONG).show();
@@ -153,7 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
     public static void refreshList() {
         if (transactions != null && transactionDao != null && transactionsAdapter != null) {
             transactions.clear();
-            transactions = transactionDao.getTransactionById(userId);
+            transactions = transactionDao.getTransactionById(idValue);
             transactionsAdapter.setResults(transactions);
         }
     }

@@ -4,12 +4,12 @@
         "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_otterlogo3.png.flat",
-        "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\drawable-v24\\otterlogo3.png"
-    },
-    {
         "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_otterlogo3.png.flat",
+        "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\drawable-v24\\otterlogo3.png"
     },
     {
         "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_profile.xml.flat",
@@ -28,12 +28,12 @@
         "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\layout\\activity_register_user.xml"
     },
     {
-        "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
-    },
-    {
         "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_transactions.xml.flat",
         "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\layout\\activity_transactions.xml"
+    },
+    {
+        "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
     },
     {
         "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
