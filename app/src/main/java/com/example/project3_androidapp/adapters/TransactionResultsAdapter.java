@@ -31,14 +31,21 @@ import java.util.List;
 public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionResultsAdapter.SearchResultHolder> {
     private List<TransactionEntity> searchResults = new ArrayList<>();
     private Context context;
-    private View view;
     private TransactionDao td;
     private Button acceptTransactionButton, declineTransactionButton;
+
+    public TransactionResultsAdapter(Context context) {
+        this.context = context;
+    }
+
+    public TransactionResultsAdapter(List<TransactionEntity> list){
+        searchResults = list;
+    }
 
     @NonNull
     @Override
     public SearchResultHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(context)
                 .inflate(R.layout.transaction_item, parent, false);
 //        context = parent.getContext();
 
@@ -46,32 +53,34 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         acceptTransactionButton = parent.findViewById(R.id.userNameText);
         declineTransactionButton = parent.findViewById(R.id.bankText);
 
-        return new SearchResultHolder(view);
+        return (new SearchResultHolder(view));
 //        return null;
-    }
-
-    public TransactionResultsAdapter(Context context) {
-        this.context = context;
     }
 
     @Override
     public void onBindViewHolder(@NonNull SearchResultHolder holder, int position) {
         TransactionEntity results = searchResults.get(position);
+        System.out.println(results.getSendingId());
 
+        holder.sendingText.setText("From:");
+        holder.recievingText.setText("To:");
 
-//        if (results.getSendingId() != null) {
-            holder.sendingIdText.setText(results.getSendingId());
-//        }
-//        if (results.getReceivingId() != null) {
-            holder.receivingIdText.setText(results.getReceivingId());
-//        }
-//        if (results.getAmount() != null) {
-            holder.amountText.setText(results.getAmount());
-//        }
+        if (results.getSendingId() != null) {
+            holder.sendingIdText.setText(String.valueOf(results.getSendingId()));
+        }
+        TextView recieveText = holder.receivingIdText;
+        if (results.getReceivingId() != null) {
+            recieveText.setText(String.valueOf(results.getReceivingId()));
+        }
+        TextView amountText = holder.amountText;
+        if (results.getAmount() != null) {
+            amountText.setText(String.valueOf(results.getAmount()));
+        }
 //        if (results.getIsFinalized() != null) {
 //            holder.isFinalizedText.setText(results.getIsFinalized());
 //        }
-
+        acceptTransactionButton = holder.acceptB;
+        declineTransactionButton = holder.declineB;
         View.OnClickListener handler = v -> {
 
             if (v == acceptTransactionButton) {
@@ -115,18 +124,22 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     }
 
     class SearchResultHolder extends RecyclerView.ViewHolder {
-        private TextView sendingIdText;
-        private TextView receivingIdText;
-        private TextView amountText;
+        public TextView sendingIdText, receivingIdText, amountText, sendingText,recievingText;
+        public Button acceptB, declineB;
 //        private TextView isFinalizedText;
 
         public SearchResultHolder(@NonNull View itemView) {
             super(itemView);
 
+            sendingText = itemView.findViewById(R.id.SendingUser);
             sendingIdText = itemView.findViewById(R.id.userNameText);
+            recievingText = itemView.findViewById(R.id.RecievingUser);
             receivingIdText = itemView.findViewById(R.id.RecievingUserText);
             amountText = itemView.findViewById(R.id.amountText);
 //            isFinalizedText = itemView.findViewById(R.id.movie_poster);
+
+            acceptB = itemView.findViewById(R.id.buttonAccept);
+            declineB = itemView.findViewById(R.id.buttonDecline);
         }
     }
 }

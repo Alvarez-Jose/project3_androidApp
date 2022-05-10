@@ -63,12 +63,12 @@ id signUp
 id submitButton
 id submitLogin
 id textView
-id textView2
 id textView4
 id transactionText
 id userName
 id userNameEnter
 id userNameText
+id viewTransactions
 id zipEdit
 id zipText
 layout activity_add_cards

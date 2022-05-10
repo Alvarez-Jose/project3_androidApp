@@ -3073,7 +3073,6 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
-id textView2
 id textView4
 id text_input_end_icon
 id text_input_error_icon
@@ -3110,6 +3109,7 @@ id userName
 id userNameEnter
 id userNameText
 id vertical_only
+id viewTransactions
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner

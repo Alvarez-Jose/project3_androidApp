@@ -47,7 +47,7 @@ public class CreateTransactionActivity extends AppCompatActivity {
 
             if (v == submitButton) {
 
-                String url = URL_BASE + "/retrieve_user/?user=&pass";
+                String url = URL_BASE + "/"; // TODO change url to add necessary fields
 
                 RequestQueue queue = Volley.newRequestQueue(this);
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {

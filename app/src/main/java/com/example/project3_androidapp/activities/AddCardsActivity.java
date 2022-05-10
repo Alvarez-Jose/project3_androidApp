@@ -40,7 +40,7 @@ public class AddCardsActivity extends AppCompatActivity {
         // get user's shared preferences
 //        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 //        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
-        String url = URL_BASE + "/add_card/?user=&pass";
+        String url = URL_BASE + "/"; // TODO change url to add necessary fields
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {

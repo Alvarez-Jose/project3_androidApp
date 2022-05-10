@@ -1,5 +1,7 @@
 package com.example.project3_androidapp.activities;
 
+import static com.example.project3_androidapp.util.Constants.URL_BASE;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -42,7 +44,7 @@ public class EditProfileActivity extends AppCompatActivity {
 //                enteredUsername = username.getText().toString();
 //                enteredPassword = password.getText().toString();
 //
-//                String url = URL_BASE + "/retrieve_user/?user=&pass";
+//                  String url = URL_BASE + "/"; // TODO change url to add necessary fields
 //
 //                RequestQueue queue = Volley.newRequestQueue(this);
 //                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {

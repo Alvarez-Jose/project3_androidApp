@@ -4,6 +4,7 @@ import static com.example.project3_androidapp.util.Constants.URL_BASE;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.UserEntity;
 import com.example.project3_androidapp.util.Constants;
 
-public class registerActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private Button toMainButton;
     private EditText userName, userEmail, userPassword, userRepeatPass;
@@ -35,6 +36,12 @@ public class registerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
+
+        mSharedPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1)
+            logout(mSharedPrefs);
+
         getUserDatabase();
         toMainButton = findViewById(R.id.registerUser);
 
@@ -45,7 +52,6 @@ public class registerActivity extends AppCompatActivity {
 
         mSharedPrefs = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE);
 
-        automaticLogin();
 
         View.OnClickListener handler = v -> {
 
@@ -58,8 +64,8 @@ public class registerActivity extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(this); // used to access api
                 String url = URL_BASE + "/retrieve_users_and";
 
-                Intent intentRepeat = new Intent(registerActivity.this,
-                        registerActivity.class); // if the user makes an error on the form.
+                Intent intentRepeat = new Intent(RegisterActivity.this,
+                        RegisterActivity.class); // if the user makes an error on the form.
 
                 StringRequest usersRequest = new StringRequest(Request.Method.GET, url, response -> {
                     // maybe a confirmation message
@@ -79,7 +85,7 @@ public class registerActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(getApplicationContext(), "Username taken.", Toast.LENGTH_LONG).show();
                     }
-                    registerActivity.this.startActivity(intentRepeat);
+                    RegisterActivity.this.startActivity(intentRepeat);
                 } else { // if the form is filled correctly
 
                     usersRequest = new StringRequest(Request.Method.GET, url, response -> {
@@ -89,7 +95,7 @@ public class registerActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Error connecting to database", Toast.LENGTH_LONG).show();
                     });
 
-                    Intent intentMain = new Intent(registerActivity.this,
+                    Intent intentMain = new Intent(RegisterActivity.this,
                             MainActivity.class);
 
                     url = URL_BASE + "/create_user/?username=" + userNameText + "&password=" + userPasswordText + "&admin=0&cardListId=" + userId + "&userListId=" + userId + "&transactionListId=" + userId + "";
@@ -108,7 +114,7 @@ public class registerActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Created account successfully", Toast.LENGTH_LONG).show();
                     System.out.println("TO MAIN");
-                    registerActivity.this.startActivity(intentMain);
+                    RegisterActivity.this.startActivity(intentMain);
                 }
             }
 
@@ -127,14 +133,6 @@ public class registerActivity extends AppCompatActivity {
         database = db.getInstance(this);
     }
 
-    private void automaticLogin() {
-        if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
-            Intent intentMain = new Intent(registerActivity.this,
-                    MainActivity.class);
-            System.out.println("AUTO LOGIN");
-            registerActivity.this.startActivity(intentMain);
-        }
-    }
 
     private void getNewId(){
         // getting the user ID since it needs to be inserted manually.
@@ -143,5 +141,15 @@ public class registerActivity extends AppCompatActivity {
             if (max > userId)
                 userId = ++max;
         }
+    }
+    public void logout(SharedPreferences sp) {
+        if (sp.getInt(Constants.USER_ID_KEY, -1) != -1) {
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt(Constants.USER_ID_KEY, -1);
+            editor.apply();
+        }
+        Toast.makeText(this, "Logout Successful", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }

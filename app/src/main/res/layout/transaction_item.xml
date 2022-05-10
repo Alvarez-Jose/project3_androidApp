@@ -11,13 +11,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/SendingUser"
             android:layout_width="57dp"
             android:layout_height="20dp"
-            android:text="TextView"
+            android:text="From:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginStart="200dp"
-            android:text="TextView"
+            android:text="To:"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,7 @@
             android:id="@+id/userNameText"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="TextView"
+            android:text="-----"
             app:layout_constraintStart_toEndOf="@+id/SendingUser"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +42,7 @@
             android:id="@+id/RecievingUserText"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="TextView"
+            android:text="-----"
             app:layout_constraintStart_toEndOf="@+id/RecievingUser"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +50,7 @@
             android:id="@+id/amountText"
             android:layout_width="178dp"
             android:layout_height="53dp"
-            android:text="TextView"
+            android:text="0.0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/SendingUser" />
@@ -59,7 +59,7 @@
             android:id="@+id/buttonAccept"
             android:layout_width="52dp"
             android:layout_height="52dp"
-            android:text="Accept"
+            android:text="O"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -69,7 +69,7 @@
             android:id="@+id/buttonDecline"
             android:layout_width="52dp"
             android:layout_height="52dp"
-            android:text="Decline"
+            android:text="X"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/buttonAccept"
             app:layout_constraintHorizontal_bias="1.0"

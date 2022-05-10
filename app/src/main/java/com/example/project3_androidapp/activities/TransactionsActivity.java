@@ -35,7 +35,6 @@ import java.util.concurrent.atomic.AtomicReference;
 public class TransactionsActivity extends AppCompatActivity {
 
     private Button transactionButton, backButton;
-    private TextView text;
     private RecyclerView transactions;
     private static int idValue;
 
@@ -54,8 +53,7 @@ public class TransactionsActivity extends AppCompatActivity {
 
         backButton = findViewById(R.id.backButtonTransaction);
         transactionButton = findViewById(R.id.newTransactionButton);
-//        transactions = findViewById(R.id.viewTransactions);
-        text = findViewById(R.id.textView2);
+        transactions = findViewById(R.id.viewTransactions);
 
         // get user's shared preferences
         mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -65,6 +63,7 @@ public class TransactionsActivity extends AppCompatActivity {
 //        text.setText(transactionDao.getAllTransactions().get(0).getAmount());
 
         transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this);
+        transactionAdapter.setResults(transactionDao.getTransactionById(idValue));
 
         RecyclerView recyclerView = transactions;
         recyclerView.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this));
@@ -102,13 +101,6 @@ public class TransactionsActivity extends AppCompatActivity {
             transactionAdapter.setResults(transactionsList);
         }
     }
-
-//    private void checkLogin() {
-//        if(idValue == -1){
-//            Intent switchActivityIntent = new Intent(TransactionsActivity.this, MainActivity.class);
-//            startActivity(switchActivityIntent);
-//        }
-//    }
 
     private void switchToCreateTransaction() {
         Intent switchActivityIntent = new Intent(TransactionsActivity.this, CreateTransactionActivity.class);

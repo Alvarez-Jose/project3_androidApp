@@ -4,6 +4,7 @@ import static com.example.project3_androidapp.util.Constants.URL_BASE;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.db.AppDatabase;
+import com.example.project3_androidapp.util.Constants;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,9 +37,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        automaticLogin();
+
+        mSharedPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        automaticLogin();
+
         idValue = -1;
         isSuccessful = false;
+
 
         username = findViewById(R.id.editTextUsername);
         password = findViewById(R.id.editTextTextPassword);
@@ -50,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 enteredUsername = username.getText().toString();
                 enteredPassword = password.getText().toString();
 
+
                 String url = URL_BASE + "/retrieve_user_p/?u=" + enteredUsername + "&p=" + enteredPassword;
                 // use the api in order to find the account on the database.
 
@@ -61,9 +69,9 @@ public class LoginActivity extends AppCompatActivity {
 //                    System.out.println(idValue);
                     if(idValue != -1) {
                         // login success saves the user to persistent login
-//                        SharedPreferences.Editor editor = mSharedPrefs.edit();
-//                        editor.putInt(Constants.USER_ID_KEY, idValue);
-//                        editor.apply();
+                        SharedPreferences.Editor editor = mSharedPrefs.edit();
+                        editor.putInt(Constants.USER_ID_KEY, idValue);
+                        editor.apply();
 
                         Toast.makeText(getApplicationContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
                         switchToTransactions();
@@ -101,12 +109,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(switchActivityIntent);
     }
 
-//    private void automaticLogin() {
-//        if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
-//            Intent intentMain = new Intent(LoginActivity.this,
-//                    TransactionsActivity.class);
-//            System.out.println("AUTO LOGIN");
-//            LoginActivity.this.startActivity(intentMain);
-//        }
-//    }
+    private void automaticLogin() {
+        if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
+            Intent intentMain = new Intent(LoginActivity.this,
+                    LoadingActivity.class);
+            System.out.println("AUTO LOGIN");
+            LoginActivity.this.startActivity(intentMain);
+        }
+    }
 }
