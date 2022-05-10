@@ -77,7 +77,7 @@ public class TransactionsActivity extends AppCompatActivity {
                 switchToCreateTransaction();
             }
 
-            if(v == backButton){
+            if (v == backButton) {
                 logOut();
             }
 

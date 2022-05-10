@@ -58,7 +58,7 @@ public class FriendsProfileActivity extends AppCompatActivity {
                 newFriend();
             }
 
-            if(v == backButton){
+            if (v == backButton) {
                 switchToMain();
             }
 
@@ -69,7 +69,7 @@ public class FriendsProfileActivity extends AppCompatActivity {
     }
 
     private void checkLogin() {
-        if(idValue == -1){
+        if (idValue == -1) {
             Intent switchActivityIntent = new Intent(FriendsProfileActivity.this, MainActivity.class);
             startActivity(switchActivityIntent);
         }

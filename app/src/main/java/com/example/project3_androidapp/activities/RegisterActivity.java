@@ -77,10 +77,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                 queue.add(usersRequest);
                 // need to make sure the form is filled out properly
-                if(userNameText.contains(existingUsers) || userNameText.isEmpty() || userPasswordText.isEmpty()){
-                    if(userNameText.isEmpty()) {
+                if (userNameText.contains(existingUsers) || userNameText.isEmpty() || userPasswordText.isEmpty()) {
+                    if (userNameText.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Username is empty.", Toast.LENGTH_LONG).show();
-                    } else if (userPasswordText.isEmpty()){
+                    } else if (userPasswordText.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Password is empty.", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Username taken.", Toast.LENGTH_LONG).show();
@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
         toMainButton.setOnClickListener(handler);
     }
 
-    private void getExistingUsers(){
+    private void getExistingUsers() {
 
     }
 
@@ -134,14 +134,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void getNewId(){
+    private void getNewId() {
         // getting the user ID since it needs to be inserted manually.
-        for(UserEntity u: database.userDao().getAllUsers()) {
+        for (UserEntity u : database.userDao().getAllUsers()) {
             max = u.getUserId();
             if (max > userId)
                 userId = ++max;
         }
     }
+
     public void logout(SharedPreferences sp) {
         if (sp.getInt(Constants.USER_ID_KEY, -1) != -1) {
             SharedPreferences.Editor editor = sp.edit();

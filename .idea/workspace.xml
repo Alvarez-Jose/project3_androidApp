@@ -12,12 +12,28 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="801c8adf-b426-4e2f-ae04-7fb9981e489a" name="Default Changelist" comment="recycler view in transactions now working">
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifest/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifest/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/packaged_manifests/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/packaged_manifests/debug/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+    <list default="true" id="801c8adf-b426-4e2f-ae04-7fb9981e489a" name="Default Changelist" comment="pushing to get these functionalities working.">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/AddCardsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/AddCardsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/CreateTransactionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/CreateTransactionActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/EditProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/EditProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/FriendsProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/FriendsProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/LoadingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/LoadingActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/ProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/ProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/RegisterActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/TransactionsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/activities/TransactionsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/adapters/TransactionResultsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/adapters/TransactionResultsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/apis/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/apis/SearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/AppDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/CardEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/CardEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/CardListEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/CardListEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/TransactionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/TransactionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/TransactionListEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/TransactionListEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/UserListEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/db/UserListEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/models/APIValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/models/APIValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/models/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/models/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/util/StringAPIRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/project3_androidapp/util/StringAPIRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +87,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="navigation" />
+        <entry key="$PROJECT_DIR$" value="activities" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -413,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652220003726</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="pushing to get these functionalities working.">
+      <created>1652220231886</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1652220231886</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -462,6 +485,7 @@
     <MESSAGE value="trying to figure out what to fix in loading activity, didn't save some prograss I made" />
     <MESSAGE value="dao all set up properly, will take some time to set itself up when first launched but now I am fixing the recycler views" />
     <MESSAGE value="recycler view in transactions now working" />
-    <option name="LAST_COMMIT_MESSAGE" value="recycler view in transactions now working" />
+    <MESSAGE value="pushing to get these functionalities working." />
+    <option name="LAST_COMMIT_MESSAGE" value="pushing to get these functionalities working." />
   </component>
 </project>

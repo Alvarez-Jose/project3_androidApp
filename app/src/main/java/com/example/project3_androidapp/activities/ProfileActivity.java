@@ -72,11 +72,11 @@ public class ProfileActivity extends AppCompatActivity {
                 switchToEdit();
             }
 
-            if(v == backButton){
+            if (v == backButton) {
                 goBack();
             }
 
-            if(v == addCardButton){
+            if (v == addCardButton) {
                 switchToCards();
             }
         };
@@ -101,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void checkLogin() {
-        if(idValue == -1){
+        if (idValue == -1) {
             Intent switchActivityIntent = new Intent(ProfileActivity.this, MainActivity.class);
             startActivity(switchActivityIntent);
         }

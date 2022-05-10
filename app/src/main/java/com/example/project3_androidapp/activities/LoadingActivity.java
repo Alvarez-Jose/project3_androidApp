@@ -41,7 +41,7 @@ public class LoadingActivity extends AppCompatActivity {
         switchToTransactions();
     }
 
-    public void setUpAll(){
+    public void setUpAll() {
         setUpUsers();
         setUpTransactions();
         setUpCards();
@@ -64,76 +64,78 @@ public class LoadingActivity extends AppCompatActivity {
             String obj, var;
             UserEntity t = new UserEntity();
 
-            for(int i = 0; i < str.length(); i++){
-                if(str.charAt(i) == '{'){
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) == '{') {
                     t = new UserEntity();
-                    while(str.charAt(i) != '}'){
-                        obj = str.substring(i+2, str.indexOf(':', i)-1);
+                    while (str.charAt(i) != '}') {
+                        obj = str.substring(i + 2, str.indexOf(':', i) - 1);
 
                         // get substring from end of ':' to ','
-                        if(obj.equals("user_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("user_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setUserId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("username")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("username")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setUsername(var);
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("password")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("password")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setPassword(var);
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("admin")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("admin")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setAdmin(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("card_list_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("card_list_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setCardListId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("user_list_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("user_list_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setUserListId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("bank")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("bank")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setBank(Double.parseDouble(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("transaction_list_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("transaction_list_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf('}', i));
                             t.setTransactionListId(Integer.parseInt(var));
-                            i = str.indexOf(',', i)-1;
+                            i = str.indexOf(',', i) - 1;
                         }
 
 //                        System.out.println(t + "\t-=-");
-                        if(i >= str.length() || i < 0)
+                        if (i >= str.length() || i < 0)
                             break;
                     }
                 }
 //                System.out.println(t);
                 // fill with item after import
-                if(t.getUserId() != null){
-                    if(!userDao.userExists(t.getUserId())) {
+                if (t.getUserId() != null) {
+                    if (!userDao.userExists(t.getUserId())) {
                         System.out.println("\t-=- added");
                         userDao.insertUser(t);
+                    } else {
+                        userDao.updateUser(t);
                     }
                 }
-                if(i >= str.length() || i < 0)
+                if (i >= str.length() || i < 0)
                     break;
             }
 
@@ -157,69 +159,71 @@ public class LoadingActivity extends AppCompatActivity {
             String obj, var;
             TransactionEntity t;
 
-            for(int i = 0; i < str.length(); i++){
+            for (int i = 0; i < str.length(); i++) {
                 t = new TransactionEntity();
-                if(str.charAt(i) == '{'){
-                    while(str.charAt(i) != '}'){
-                        obj = str.substring(i+2, str.indexOf(':', i)-1);
+                if (str.charAt(i) == '{') {
+                    while (str.charAt(i) != '}') {
+                        obj = str.substring(i + 2, str.indexOf(':', i) - 1);
 
 //                        System.out.println(obj);
                         // get substring from end of ':' to ','
-                        if(obj.equals("transaction_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("transaction_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setTransactionId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
 //                            System.out.println(var);
                         }
-                        if(obj.equals("amount")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("amount")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setAmount(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("currency")) {
-                            i = str.indexOf(':', i)+1;
-                            var = str.substring(i+1, str.indexOf(',', i)-1);
+                        if (obj.equals("currency")) {
+                            i = str.indexOf(':', i) + 1;
+                            var = str.substring(i + 1, str.indexOf(',', i) - 1);
                             t.setCurrency(var);
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("is_finalized")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("is_finalized")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setIsFinalized(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("sending_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("sending_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setSendingId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("receiving_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("receiving_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setReceivingId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
-                        if(obj.equals("description")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("description")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf('\"', i));
                             t.setDescription(var);
-                            i = str.indexOf(',', i)-1;
+                            i = str.indexOf(',', i) - 1;
                         }
-                        if(i >= str.length() || i < 0)
+                        if (i >= str.length() || i < 0)
                             break;
                     }
                 }
-                if(i >= str.length() || i < 0)
+                if (i >= str.length() || i < 0)
                     break;
 
 //                System.out.println(t.getTransactionId() + "\t-=-");
                 // fill with item after import
-                if(t.getTransactionId() != null)
-                    if(!transactionDao.transactionExists(t.getTransactionId())) {
+                if (t.getTransactionId() != null)
+                    if (!transactionDao.transactionExists(t.getTransactionId())) {
                         transactionDao.insertTransaction(t);
+                    } else {
+                        transactionDao.updateTransaction(t);
                     }
             }
         }, err -> {
@@ -245,62 +249,65 @@ public class LoadingActivity extends AppCompatActivity {
             String obj, var;
             CardEntity t;
 
-            for(int i = 0; i < str.length(); i++){
+            for (int i = 0; i < str.length(); i++) {
                 t = new CardEntity();
-                if(i >= str.length() || i < 0)
+                if (i >= str.length() || i < 0)
                     break;
-                if(str.charAt(i) == '{'){
-                    while(str.charAt(i) != '}'){
-                        obj = str.substring(i+2, str.indexOf(':', i)-1);
+                if (str.charAt(i) == '{') {
+                    while (str.charAt(i) != '}') {
+                        obj = str.substring(i + 2, str.indexOf(':', i) - 1);
 
                         // get substring from end of ':' to ','
-                        if(obj.equals("card_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("card_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setCardId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("card_num")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("card_num")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setCardNum(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("expiration")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("expiration")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setCardNum(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("cvv")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("cvv")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setCvv(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("holder_name")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("holder_name")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setHolderName(var);
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("zip")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("zip")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setZip(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("card_nickname")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("card_nickname")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf('}', i));
                             t.setCardNickname(var);
                             i = str.indexOf(',', i);
                         }
-                        if(i >= str.length() || i < 0)
+                        if (i >= str.length() || i < 0)
                             break;
                     }
                 }
                 // fill with item after import
-                if(t.getCardId() != null)
-                if(!cardDao.cardExists(t.getCardId())) {
+                if (t.getCardId() != null) {
+                    if (!cardDao.cardExists(t.getCardId())) {
 //                    System.out.println("\t-=- added");
-                    cardDao.insertCard(t);
+                        cardDao.insertCard(t);
+                    } else {
+                        cardDao.updateCard(t);
+                    }
                 }
-                if(i >= str.length() || i < 0)
+                if (i >= str.length() || i < 0)
                     break;
             }
         }, err -> {
@@ -325,42 +332,45 @@ public class LoadingActivity extends AppCompatActivity {
             String obj, var;
             UserListEntity t;
 
-            for(int i = 0; i < str.length(); i++){
+            for (int i = 0; i < str.length(); i++) {
                 t = new UserListEntity();
-                if(str.charAt(i) == '{'){
-                    while(str.charAt(i) != '}'){
-                        obj = str.substring(i+2, str.indexOf(':', i)-1);
+                if (str.charAt(i) == '{') {
+                    while (str.charAt(i) != '}') {
+                        obj = str.substring(i + 2, str.indexOf(':', i) - 1);
 
                         // get substring from end of ':' to ','
-                        if(obj.equals("owner_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("owner_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setOwnerId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("other_user_id")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("other_user_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setOtherUserId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("is_accepted")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("is_accepted")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf('}', i));
                             t.setOtherUserId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
 
-                        if(i >= str.length() || i < 0)
+                        if (i >= str.length() || i < 0)
                             break;
                     }
                 }
                 // fill with item after import
 //                System.out.println(t.getOwnerId() + "\t-=-");
-                if(t.getOwnerId() != null)
-                    if(!userListDao.userListExists(t.getOwnerId())) {
-    //                    System.out.println("\t-=- added");
+                if (t.getOwnerId() != null) {
+                    if (!userListDao.userListExists(t.getOwnerId())) {
+                        //System.out.println("\t-=- added");
                         userListDao.insertUserList(t);
+                    } else {
+                        userListDao.updateUserList(t);
                     }
-                if(i >= str.length() || i < 0)
+                }
+                if (i >= str.length() || i < 0)
                     break;
             }
         }, err -> {
@@ -385,42 +395,45 @@ public class LoadingActivity extends AppCompatActivity {
             String obj, var;
             TransactionListEntity t;
 
-            for(int i = 0; i < str.length(); i++){
+            for (int i = 0; i < str.length(); i++) {
                 t = new TransactionListEntity();
-                if(str.charAt(i) == '{'){
-                    while(str.charAt(i) != '}'){
-                        obj = str.substring(i+2, str.indexOf(':', i)-1);
+                if (str.charAt(i) == '{') {
+                    while (str.charAt(i) != '}') {
+                        obj = str.substring(i + 2, str.indexOf(':', i) - 1);
 
                         // get substring from end of ':' to ','
-                        if(obj.equals("transaction_list_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("transaction_list_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setTransactionListId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("user_id")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("user_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setUserId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("transaction_id")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("transaction_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf('}', i));
                             t.setTransactionId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
 
-                        if(i >= str.length() || i < 0)
+                        if (i >= str.length() || i < 0)
                             break;
                     }
                 }
                 // fill with item after import
 //                System.out.println(t.getTransactionListId() + "\t-=-");
-                if(t.getTransactionListId() != null)
-                if(!transactionListDao.transactionListExists(t.getTransactionListId())) {
+                if (t.getTransactionListId() != null) {
+                    if (!transactionListDao.transactionListExists(t.getTransactionListId())) {
 //                    System.out.println("\t-=- added");
-                    transactionListDao.insertTransactionList(t);
+                        transactionListDao.insertTransactionList(t);
+                    } else {
+                        transactionListDao.updateTransactionList(t);
+                    }
                 }
-                if(i >= str.length() || i < 0)
+                if (i >= str.length() || i < 0)
                     break;
             }
         }, err -> {
@@ -446,39 +459,42 @@ public class LoadingActivity extends AppCompatActivity {
             String obj, var;
             CardListEntity t;
 
-            for(int i = 0; i < str.length(); i++){
+            for (int i = 0; i < str.length(); i++) {
                 t = new CardListEntity();
-                if(str.charAt(i) == '{'){
-                    while(str.charAt(i) != '}'){
-                        obj = str.substring(i+2, str.indexOf(':', i)-1);
+                if (str.charAt(i) == '{') {
+                    while (str.charAt(i) != '}') {
+                        obj = str.substring(i + 2, str.indexOf(':', i) - 1);
 
                         // get substring from end of ':' to ','
-                        if(obj.equals("card_list_id")) {
-                            i = str.indexOf(':', i)+1;
+                        if (obj.equals("card_list_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
                             t.setCardListId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
-                        } else if(obj.equals("card_id")) {
-                            i = str.indexOf(':', i)+1;
+                        } else if (obj.equals("card_id")) {
+                            i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf('}', i));
                             t.setCardId(Integer.parseInt(var));
                             i = str.indexOf(',', i);
                         }
 
-                    if(i >= str.length() || i < 0)
-                        break;
+                        if (i >= str.length() || i < 0)
+                            break;
+                    }
                 }
-            }
                 // fill with item after import
 //                System.out.println(t.getCardListId() + "\t-=-");
-                if(t.getCardListId() != null)
-                if(!cardListDao.cardListExists(t.getCardListId()))                {
+                if (t.getCardListId() != null) {
+                    if (!cardListDao.cardListExists(t.getCardListId())) {
 //                    System.out.println("\t-=- added");
-                    cardListDao.insertCardList(t);
+                        cardListDao.insertCardList(t);
+                    } else {
+                        cardListDao.updateCardList(t);
+                    }
                 }
-            if(i >= str.length() || i < 0)
-                break;
-        }
+                if (i >= str.length() || i < 0)
+                    break;
+            }
         }, err -> {
             Toast.makeText(getApplicationContext(), "profile error", Toast.LENGTH_LONG).show();
             System.out.println("Error 6");

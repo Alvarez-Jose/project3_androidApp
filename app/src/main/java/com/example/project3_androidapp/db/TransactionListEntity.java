@@ -22,13 +22,11 @@ public class TransactionListEntity {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public TransactionListEntity() {
     }
 
     /**
-     *
      * @param transactionListId
      * @param userId
      * @param transactionId

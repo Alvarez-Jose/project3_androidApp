@@ -34,13 +34,11 @@ public class TransactionEntity {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public TransactionEntity() {
     }
 
     /**
-     *
      * @param amount
      * @param sendingId
      * @param description

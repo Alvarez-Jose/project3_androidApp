@@ -60,7 +60,7 @@ public class CreateTransactionActivity extends AppCompatActivity {
                 queue.add(stringRequest);
             }
 
-            if(v == backButton){
+            if (v == backButton) {
                 switchToMain();
             }
 
@@ -71,7 +71,7 @@ public class CreateTransactionActivity extends AppCompatActivity {
     }
 
     private void checkLogin() {
-        if(idValue == -1){
+        if (idValue == -1) {
             Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, MainActivity.class);
             startActivity(switchActivityIntent);
         }

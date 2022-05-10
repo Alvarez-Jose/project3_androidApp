@@ -72,7 +72,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void checkLogin() {
-        if(idValue == -1){
+        if (idValue == -1) {
             Intent switchActivityIntent = new Intent(EditProfileActivity.this, MainActivity.class);
             startActivity(switchActivityIntent);
         }

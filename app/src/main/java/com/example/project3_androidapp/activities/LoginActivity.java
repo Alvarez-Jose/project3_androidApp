@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     //Login success path
                     idValue = Integer.parseInt(response);
 //                    System.out.println(idValue);
-                    if(idValue != -1) {
+                    if (idValue != -1) {
                         // login success saves the user to persistent login
                         SharedPreferences.Editor editor = mSharedPrefs.edit();
                         editor.putInt(Constants.USER_ID_KEY, idValue);
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 queue.add(stringRequest);
             }
 
-            if(v == toMainButton){
+            if (v == toMainButton) {
                 switchToMain();
             }
 
