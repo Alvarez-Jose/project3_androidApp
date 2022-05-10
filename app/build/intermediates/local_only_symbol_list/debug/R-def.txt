@@ -34,6 +34,7 @@ id cvvEdit
 id cvvText
 id editAmount
 id editBankAmount
+id editButton
 id editNewCardCVV
 id editNewCardExp
 id editNewCardNumber
@@ -56,13 +57,13 @@ id password
 id passwordTextEnter
 id progressBar
 id recyclerViewFriendTransaction
-id recyclerViewTransactions
 id registerUser
 id sendAmountText
 id signUp
 id submitButton
 id submitLogin
 id textView
+id textView2
 id textView4
 id transactionText
 id userName
@@ -74,6 +75,7 @@ layout activity_add_cards
 layout activity_create_transaction
 layout activity_edit_profile
 layout activity_friends_profile
+layout activity_loading
 layout activity_login
 layout activity_main
 layout activity_profile

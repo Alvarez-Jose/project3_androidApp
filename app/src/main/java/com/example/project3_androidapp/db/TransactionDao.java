@@ -25,6 +25,9 @@ public interface TransactionDao {
     @Query("SELECT * FROM " + AppDatabase.TRANSACTION_TABLE + " ORDER BY transactionId DESC")
     List<TransactionEntity> getAllTransactions();
 
+    @Query("SELECT * FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE receivingId = :id  OR  sendingId = :id")
+    List<TransactionEntity> getAllTransactionsById(int id);
+
     @Query("DELETE FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE transactionId = :transactionId")
     void deleteTransaction(int transactionId);
 

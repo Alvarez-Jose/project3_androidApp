@@ -30,7 +30,7 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private Button backButton, toEditButton;
+    private Button backButton, toEditButton, addCardButton;
     private TextView username, bank;
     private static TransactionResultsAdapter transactionsAdapter;
     private static TransactionDao transactionDao;
@@ -49,21 +49,22 @@ public class ProfileActivity extends AppCompatActivity {
 
         System.out.println("profile");
         checkLogin();
-        setUp();
         // get user's shared preferences
 //        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 //        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
         transactionsAdapter = new TransactionResultsAdapter(this);
 
+        addCardButton = findViewById(R.id.addCard);
+        toEditButton = findViewById(R.id.editButton);
         backButton = findViewById(R.id.backButton);
         username = findViewById(R.id.userNameText);
         bank = findViewById(R.id.bankText);
 
         // set up the recycler view
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewTransactions);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(transactionsAdapter);
-        refreshList();
+//        RecyclerView recyclerView = findViewById(R.id.viewTransactions);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(ProfileActivity.this));
+//        recyclerView.setAdapter(transactionsAdapter);
+//        refreshList();
 
         View.OnClickListener handler = v -> {
 
@@ -75,70 +76,13 @@ public class ProfileActivity extends AppCompatActivity {
                 goBack();
             }
 
+            if(v == addCardButton){
+                switchToCards();
+            }
         };
 
         backButton.setOnClickListener(handler);
         toEditButton.setOnClickListener(handler);
-    }
-
-    private void setUp() {
-        String url = URL_BASE + "/retrieve_transactions_and/?uid=" + idValue;
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-            // Setup making into dao objects
-            //Toast.makeText(getApplicationContext(), "profile success!", Toast.LENGTH_LONG).show();
-            //System.out.println(response);
-            // loop all items in []
-            String str = response.toString();
-            String obj, val;
-            for(int i = 0; i < str.length(); i++){
-                if(str.charAt(i) == '{'){
-                    while(str.charAt(i) != '}'){
-                        obj = str.substring(i+2, str.indexOf(':', i)-1);
-
-                        System.out.println(obj);
-                        i = str.indexOf(':', i)+1;
-                            // get substring from end of ':' to ','
-                        TransactionEntity t = new TransactionEntity();
-                        if(obj.equals("transaction_id")) {
-                            val = str.substring(0, str.indexOf(','));
-                            t.setTransactionId(Integer.parseInt(val));
-                        } else if(obj.equals("amount")) {
-                            val = str.substring(0, str.indexOf(','));
-                            t.setAmount(Integer.parseInt(val));
-                        } else if(obj.equals("currency")) {
-                            val = str.substring(0, str.indexOf(','));
-                                t.setCurrency(val);
-                        } else if(obj.equals("is_finalized")) {
-                            val = str.substring(0, str.indexOf(','));
-                            t.setIsFinalized(Integer.parseInt(val));
-                        } else if(obj.equals("sending_id")) {
-                            val = str.substring(0, str.indexOf(','));
-                            t.setSendingId(Integer.parseInt(val));
-                        } else if(obj.equals("receiving_id")) {
-                            val = str.substring(0, str.indexOf(','));
-                            t.setReceivingId(Integer.parseInt(val));
-                        } else if(obj.equals("description")) {
-                            val = str.substring(0, str.indexOf(','));
-                            t.setDescription(val);
-                        }
-                        // fill with item after import
-                        transactionDao.insertTransaction(t);
-                        System.out.println(t);
-
-                        if(i >= str.length() || i < 0)
-                            break;
-                    }
-                }
-                if(i >= str.length() || i < 0)
-                    break;
-            }
-        }, err -> {
-            Toast.makeText(getApplicationContext(), "profile error", Toast.LENGTH_LONG).show();
-            System.out.println("Profile Err");
-        });
-        queue.add(stringRequest);
     }
 
     // get instance of database and return user DAO
@@ -163,16 +107,13 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void showCards(){
-
-    }
-
-    private void showFriends(){
-
-    }
-
     private void switchToEdit() {
         Intent switchActivityIntent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+        startActivity(switchActivityIntent);
+    }
+
+    private void switchToCards() {
+        Intent switchActivityIntent = new Intent(ProfileActivity.this, AddCardsActivity.class);
         startActivity(switchActivityIntent);
     }
 

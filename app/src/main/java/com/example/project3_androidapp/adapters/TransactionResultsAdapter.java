@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.activities.TransactionsActivity;
+import com.example.project3_androidapp.db.TransactionDao;
 import com.example.project3_androidapp.db.TransactionEntity;
 import com.example.project3_androidapp.models.Search;
 
@@ -31,18 +32,21 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     private List<TransactionEntity> searchResults = new ArrayList<>();
     private Context context;
     private View view;
+    private TransactionDao td;
     private Button acceptTransactionButton, declineTransactionButton;
 
     @NonNull
     @Override
     public SearchResultHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.transaction_item, parent, false);
+//        context = parent.getContext();
+
 
         acceptTransactionButton = parent.findViewById(R.id.userNameText);
         declineTransactionButton = parent.findViewById(R.id.bankText);
 
-        return new SearchResultHolder(itemView);
+        return new SearchResultHolder(view);
 //        return null;
     }
 
@@ -50,36 +54,32 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         this.context = context;
     }
 
-    public TransactionResultsAdapter() {
-
-    }
-
     @Override
     public void onBindViewHolder(@NonNull SearchResultHolder holder, int position) {
         TransactionEntity results = searchResults.get(position);
 
 
-        if (results.getSendingId() != null) {
+//        if (results.getSendingId() != null) {
             holder.sendingIdText.setText(results.getSendingId());
-        }
-        if (results.getReceivingId() != null) {
+//        }
+//        if (results.getReceivingId() != null) {
             holder.receivingIdText.setText(results.getReceivingId());
-        }
-        if (results.getAmount() != null) {
+//        }
+//        if (results.getAmount() != null) {
             holder.amountText.setText(results.getAmount());
-        }
-        if (results.getIsFinalized() != null) {
-            holder.isFinalizedText.setText(results.getIsFinalized());
-        }
+//        }
+//        if (results.getIsFinalized() != null) {
+//            holder.isFinalizedText.setText(results.getIsFinalized());
+//        }
 
         View.OnClickListener handler = v -> {
 
             if (v == acceptTransactionButton) {
-                transactionUpdate(1);
+//                transactionUpdate(1);
             }
 
             if(v == declineTransactionButton){
-                transactionUpdate(0);
+//                transactionUpdate(0);
             }
 
         };
@@ -118,14 +118,14 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         private TextView sendingIdText;
         private TextView receivingIdText;
         private TextView amountText;
-        private TextView isFinalizedText;
+//        private TextView isFinalizedText;
 
         public SearchResultHolder(@NonNull View itemView) {
             super(itemView);
 
-//            sendingIdText = itemView.findViewById(R.id.movie_item_title);
-//            receivingIdText = itemView.findViewById(R.id.movie_releaseDate);
-//            amountText = itemView.findViewById(R.id.movie_poster);
+            sendingIdText = itemView.findViewById(R.id.userNameText);
+            receivingIdText = itemView.findViewById(R.id.RecievingUserText);
+            amountText = itemView.findViewById(R.id.amountText);
 //            isFinalizedText = itemView.findViewById(R.id.movie_poster);
         }
     }

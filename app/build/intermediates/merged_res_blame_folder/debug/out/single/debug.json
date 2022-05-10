@@ -4,6 +4,10 @@
         "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_loading.xml.flat",
+        "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\layout\\activity_loading.xml"
+    },
+    {
         "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
@@ -76,12 +80,12 @@
         "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_add_cards.xml.flat",
-        "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\layout\\activity_add_cards.xml"
-    },
-    {
         "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_add_cards.xml.flat",
+        "source": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\src\\main\\res\\layout\\activity_add_cards.xml"
     },
     {
         "merged": "C:\\Users\\smhal\\Downloads\\project3_androidApp\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",

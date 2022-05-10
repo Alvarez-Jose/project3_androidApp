@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void switchToTransactions() {
-        Intent switchActivityIntent = new Intent(LoginActivity.this, TransactionsActivity.class);
+        Intent switchActivityIntent = new Intent(LoginActivity.this, LoadingActivity.class);
         startActivity(switchActivityIntent);
     }
 

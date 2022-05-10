@@ -2779,6 +2779,7 @@ id easeOut
 id east
 id editAmount
 id editBankAmount
+id editButton
 id editNewCardCVV
 id editNewCardExp
 id editNewCardNumber
@@ -2972,7 +2973,6 @@ id radio
 id ratio
 id rectangles
 id recyclerViewFriendTransaction
-id recyclerViewTransactions
 id registerUser
 id reverseSawtooth
 id right
@@ -3073,6 +3073,7 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView2
 id textView4
 id text_input_end_icon
 id text_input_error_icon
@@ -3219,6 +3220,7 @@ layout activity_add_cards
 layout activity_create_transaction
 layout activity_edit_profile
 layout activity_friends_profile
+layout activity_loading
 layout activity_login
 layout activity_main
 layout activity_profile
