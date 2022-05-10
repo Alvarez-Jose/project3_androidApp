@@ -61,14 +61,14 @@ public class TransactionsActivity extends AppCompatActivity {
         mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 
-        text.setText(transactionDao.getAllTransactionsById(idValue).toString());
+//        text.setText(transactionDao.getAllTransactionsById(idValue).toString());
 //        text.setText(transactionDao.getAllTransactions().get(0).getAmount());
 
-//        transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this);
+        transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this);
 
-//        RecyclerView recyclerView = transactions;
-//        recyclerView.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this));
-//        recyclerView.setAdapter(transactionAdapter);
+        RecyclerView recyclerView = transactions;
+        recyclerView.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this));
+        recyclerView.setAdapter(transactionAdapter);
 
         refreshList();
 
