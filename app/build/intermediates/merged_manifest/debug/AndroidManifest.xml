@@ -51,7 +51,7 @@
             android:name="com.example.project3_androidapp.activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.project3_androidapp.activities.registerActivity"
+            android:name="com.example.project3_androidapp.activities.RegisterActivity"
             android:exported="false" />
         <activity
             android:name="com.example.project3_androidapp.activities.MainActivity"

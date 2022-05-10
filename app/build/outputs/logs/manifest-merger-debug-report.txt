@@ -227,7 +227,7 @@ ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidMani
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:35:13-37
 	android:name
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:34:13-53
-activity#com.example.project3_androidapp.activities.registerActivity
+activity#com.example.project3_androidapp.activities.RegisterActivity
 ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:36:9-38:40
 	android:exported
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:38:13-37

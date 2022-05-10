@@ -96,7 +96,7 @@
 52-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:35:13-37
 53        <activity
 53-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:36:9-38:40
-54            android:name="com.example.project3_androidapp.activities.registerActivity"
+54            android:name="com.example.project3_androidapp.activities.RegisterActivity"
 54-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:37:13-56
 55            android:exported="false" />
 55-->C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:38:13-37
