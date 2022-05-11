@@ -38,6 +38,11 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         this.context = context;
     }
 
+    public TransactionResultsAdapter(Context context, List<TransactionEntity> list) {
+        this.context = context;
+        searchResults = list;
+    }
+
     public TransactionResultsAdapter(List<TransactionEntity> list) {
         searchResults = list;
     }
@@ -60,7 +65,7 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     @Override
     public void onBindViewHolder(@NonNull SearchResultHolder holder, int position) {
         TransactionEntity results = searchResults.get(position);
-        System.out.println(results.getSendingId());
+        System.out.println("onBindViewHolder - "+results.getSendingId());
 
         holder.sendingText.setText("From:");
         holder.recievingText.setText("To:");

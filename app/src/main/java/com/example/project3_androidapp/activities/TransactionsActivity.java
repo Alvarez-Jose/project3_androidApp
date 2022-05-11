@@ -61,17 +61,20 @@ public class TransactionsActivity extends AppCompatActivity {
         mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 
+        System.out.println("id = "+idValue);
+
 //        text.setText(transactionDao.getAllTransactionsById(idValue).toString());
 //        text.setText(transactionDao.getAllTransactions().get(0).getAmount());
 
-        transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this);
-        transactionAdapter.setResults(transactionDao.getTransactionById(idValue));
+        transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this, transactionDao.getAllTransactionsById(idValue));
+//        transactionAdapter.setResults(transactionDao.getAllTransactionsById(idValue));
+
+        refreshList();
 
         RecyclerView recyclerView = transactions;
         recyclerView.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this));
         recyclerView.setAdapter(transactionAdapter);
 
-        refreshList();
 
         View.OnClickListener handler = v -> {
 
@@ -80,6 +83,7 @@ public class TransactionsActivity extends AppCompatActivity {
             }
 
             if (v == backButton) {
+
                 logOut();
             }
             
@@ -121,6 +125,15 @@ public class TransactionsActivity extends AppCompatActivity {
     }
 
     private void logOut() {
+        if (mPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
+            SharedPreferences.Editor editor = mPrefs.edit();
+            editor.putInt(Constants.USER_ID_KEY, -1);
+            editor.apply();
+        } // to remove from automatic login
+
+        Toast.makeText(this, "Logout Successful", Toast.LENGTH_SHORT).show();
+
+        // force user to come back and login again
         Intent switchActivityIntent = new Intent(TransactionsActivity.this, MainActivity.class);
         startActivity(switchActivityIntent);
     }

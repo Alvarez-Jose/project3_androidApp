@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
                     //Login success path
                     idValue = Integer.parseInt(response);
+//                    System.out.println(response);
 //                    System.out.println(idValue);
                     if (idValue != -1) {
                         // login success saves the user to persistent login

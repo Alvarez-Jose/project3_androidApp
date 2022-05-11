@@ -129,7 +129,7 @@ public class LoadingActivity extends AppCompatActivity {
                 // fill with item after import
                 if (t.getUserId() != null) {
                     if (!userDao.userExists(t.getUserId())) {
-                        System.out.println("\t-=- added");
+//                        System.out.println("\t-=- added");
                         userDao.insertUser(t);
                     } else {
                         userDao.updateUser(t);
