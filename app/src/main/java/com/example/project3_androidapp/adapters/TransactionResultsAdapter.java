@@ -21,8 +21,11 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.activities.TransactionsActivity;
+import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.TransactionDao;
 import com.example.project3_androidapp.db.TransactionEntity;
+import com.example.project3_androidapp.db.UserDao;
+import com.example.project3_androidapp.db.UserEntity;
 import com.example.project3_androidapp.models.Search;
 
 import java.util.ArrayList;
@@ -31,7 +34,8 @@ import java.util.List;
 public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionResultsAdapter.SearchResultHolder> {
     private List<TransactionEntity> searchResults = new ArrayList<>();
     private Context context;
-    private TransactionDao td;
+    private UserDao userDao;
+    AppDatabase appDatabase;
     private Button acceptTransactionButton, declineTransactionButton;
 
     public TransactionResultsAdapter(Context context) {
@@ -53,10 +57,11 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.transaction_item, parent, false);
 //        context = parent.getContext();
+        appDatabase = AppDatabase.getInstance(parent.getContext());
+        userDao = appDatabase.userDao();
 
-
-        acceptTransactionButton = parent.findViewById(R.id.userNameText);
-        declineTransactionButton = parent.findViewById(R.id.bankText);
+        acceptTransactionButton = parent.findViewById(R.id.buttonAccept);
+        declineTransactionButton = parent.findViewById(R.id.buttonDecline);
 
         return (new SearchResultHolder(view));
 //        return null;
@@ -65,21 +70,30 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     @Override
     public void onBindViewHolder(@NonNull SearchResultHolder holder, int position) {
         TransactionEntity results = searchResults.get(position);
-        System.out.println("onBindViewHolder - "+results.getSendingId());
+//        System.out.println("onBindViewHolder - "+results.getSendingId());
 
         holder.sendingText.setText("From:");
         holder.recievingText.setText("To:");
 
-        if (results.getSendingId() != null) {
-            holder.sendingIdText.setText(String.valueOf(results.getSendingId()));
+        UserEntity sending = userDao.getUserById(results.getSendingId());
+        System.out.println(sending);
+        UserEntity recieving = userDao.getUserById(results.getReceivingId());
+        System.out.println(recieving);
+
+
+        if (sending != null) {
+            holder.sendingIdText.setText(sending.getUsername());
+        } else {
+            holder.sendingIdText.setText(results.getSendingId());
         }
-        TextView recieveText = holder.receivingIdText;
-        if (results.getReceivingId() != null) {
-            recieveText.setText(String.valueOf(results.getReceivingId()));
+        if (recieving != null) {
+            holder.receivingIdText.setText(recieving.getUsername());
+        } else {
+            holder.receivingIdText.setText(results.getReceivingId());
         }
         TextView amountText = holder.amountText;
         if (results.getAmount() != null) {
-            amountText.setText(String.valueOf(results.getAmount()));
+            amountText.setText("$ " + (results.getAmount()));
         }
 //        if (results.getIsFinalized() != null) {
 //            holder.isFinalizedText.setText(results.getIsFinalized());

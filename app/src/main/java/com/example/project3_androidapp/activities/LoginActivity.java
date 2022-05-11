@@ -73,6 +73,8 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = mSharedPrefs.edit();
                         editor.putInt(Constants.USER_ID_KEY, idValue);
                         editor.apply();
+                        editor.putString(Constants.USER_NAME_KEY, enteredUsername);
+                        editor.apply();
 
                         Toast.makeText(getApplicationContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
                         switchToTransactions();

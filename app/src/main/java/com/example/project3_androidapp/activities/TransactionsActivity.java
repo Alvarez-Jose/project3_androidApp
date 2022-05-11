@@ -2,6 +2,7 @@ package com.example.project3_androidapp.activities;
 
 import static com.example.project3_androidapp.activities.LoginActivity.idValue;
 import static com.example.project3_androidapp.util.Constants.URL_BASE;
+import static com.example.project3_androidapp.util.Constants.USER_NAME_KEY;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,13 +62,13 @@ public class TransactionsActivity extends AppCompatActivity {
         mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 
-        System.out.println("id = "+idValue);
+//        System.out.println("id = "+idValue);
 
 //        text.setText(transactionDao.getAllTransactionsById(idValue).toString());
 //        text.setText(transactionDao.getAllTransactions().get(0).getAmount());
 
         transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this);
-        transactionAdapter.setResults(transactionDao.getAllTransactionsById(idValue));
+        transactionAdapter.setResults(transactionDao.getAllTransactionsByName(mPrefs.getString(USER_NAME_KEY, "")));
 
         refreshList();
 

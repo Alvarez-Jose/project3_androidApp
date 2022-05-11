@@ -28,6 +28,9 @@ public interface TransactionDao {
     @Query("SELECT * FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE receivingId = :id  OR  sendingId = :id")
     List<TransactionEntity> getAllTransactionsById(int id);
 
+    @Query("SELECT * FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE receivingId = (Select userId FROM "+AppDatabase.USER_TABLE+" where username = :name)")
+    List<TransactionEntity> getAllTransactionsByName(String name);
+
     @Query("DELETE FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE transactionId = :transactionId")
     void deleteTransaction(int transactionId);
 

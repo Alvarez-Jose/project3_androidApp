@@ -73,7 +73,7 @@ public class CreateTransactionActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Transaction sent!", Toast.LENGTH_LONG).show();
 
                     TransactionEntity newTransaction = new TransactionEntity();
-                    newTransaction.setTransactionId(tdb.getHighestId());
+                    newTransaction.setTransactionId(tdb.getHighestId()+1);
                     newTransaction.setCurrency("$");
                     newTransaction.setSendingId(idValue);
                     newTransaction.setReceivingId(userValue);
@@ -82,6 +82,7 @@ public class CreateTransactionActivity extends AppCompatActivity {
                     newTransaction.setIsFinalized(0);
 
                     tdb.insertTransaction(newTransaction);
+                    back();
                 }, err -> {
                     Toast.makeText(getApplicationContext(), "Error with Transaction.", Toast.LENGTH_LONG).show();
                     back();
@@ -89,7 +90,6 @@ public class CreateTransactionActivity extends AppCompatActivity {
                 queue.add(stringRequest);
                 // in order to make sure the transaction is sent, reload the data back into the dao
 
-                reloadToTransaction();
             }
 
             if (v == backButton) {
@@ -129,18 +129,8 @@ public class CreateTransactionActivity extends AppCompatActivity {
         tdb = database.transactionDao();
     }
 
-    private void reloadToTransaction() {
-        Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, LoadingActivity.class);
-        startActivity(switchActivityIntent);
-    }
-
-    public void reload() {
-        Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, CreateTransactionActivity.class);
-        startActivity(switchActivityIntent);
-    }
-
     private void back() {
-        Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, TransactionsActivity.class);
+        Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, LoadingActivity.class);
         startActivity(switchActivityIntent);
     }
 
