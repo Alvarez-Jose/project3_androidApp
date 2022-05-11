@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project3_androidApp">
         <activity
+            android:name=".activities.FindUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.LoadingActivity"
             android:exported="false" />
         <activity

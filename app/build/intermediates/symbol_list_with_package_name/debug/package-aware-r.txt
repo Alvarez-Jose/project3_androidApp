@@ -2701,7 +2701,6 @@ id cancel_button
 id cardExperationEdit
 id cardExpirationText
 id cardNumberEdit
-id cardZip
 id carryVelocity
 id center
 id center_horizontal
@@ -2740,7 +2739,6 @@ id currentState
 id custom
 id customPanel
 id cut
-id cvv
 id cvvEdit
 id cvvText
 id dark
@@ -2780,11 +2778,10 @@ id east
 id editAmount
 id editBankAmount
 id editButton
-id editNewCardCVV
-id editNewCardExp
-id editNewCardNumber
-id editNewCardZip
 id editOtherUser
+id editProfileButton
+id editTextPassword
+id editTextPersonName
 id editTextTextPassword
 id editTextUsername
 id edit_query
@@ -2797,7 +2794,6 @@ id enterAlways
 id enterAlwaysCollapsed
 id exampleText
 id exitUntilCollapsed
-id exp
 id expand_activities_button
 id expanded_menu
 id fade
@@ -2805,6 +2801,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id findUserButton
 id fitToContents
 id fixed
 id flip
@@ -2933,8 +2930,9 @@ id navigation_header_container
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
-id newCardNumber
+id newPassword
 id newTransactionButton
+id newUsername
 id noScroll
 id noState
 id none
@@ -2991,6 +2989,8 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
+id searchButton
+id searchText
 id search_badge
 id search_bar
 id search_button
@@ -3068,6 +3068,7 @@ id test_radiobutton_app_button_tint
 id text
 id text2
 id textEnd
+id textId
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
@@ -3087,6 +3088,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id toUserProfile
 id toggle
 id top
 id topPanel
@@ -3105,9 +3107,12 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id userID
 id userName
 id userNameEnter
+id userNameResult
 id userNameText
+id userSearchRecyclerView
 id vertical_only
 id viewTransactions
 id view_offset_helper
@@ -3219,6 +3224,7 @@ layout abc_tooltip
 layout activity_add_cards
 layout activity_create_transaction
 layout activity_edit_profile
+layout activity_find_user
 layout activity_friends_profile
 layout activity_loading
 layout activity_login
@@ -3323,6 +3329,7 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout transaction_item
+layout user_item
 menu example_menu
 menu example_menu2
 mipmap ic_launcher

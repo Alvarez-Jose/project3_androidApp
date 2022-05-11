@@ -51,7 +51,7 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     public void setUpUsers() {
-        System.out.println("-=-\tretrieve_users\t-=-");
+//        System.out.println("-=-\tretrieve_users\t-=-");
         String url = URL_BASE + "/retrieve_users";
 
         RequestQueue queue = Volley.newRequestQueue(LoadingActivity.this);
@@ -145,7 +145,7 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     public void setUpTransactions() {
-        System.out.println("-=-\tretrieve_transactions\t-=-");
+//        System.out.println("-=-\tretrieve_transactions\t-=-");
         String url = URL_BASE + "/retrieve_transactions";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -234,8 +234,7 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     public void setUpCards() {
-        System.out.println("-=-\tretrieve_cards\t-=-");
-        //TODO fix string values to match response
+//        System.out.println("-=-\tretrieve_cards\t-=-");
         String url = URL_BASE + "/retrieve_cards";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -318,7 +317,7 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     public void setUpUserLists() {
-        System.out.println("-=-\tretrieve_user_lists\t-=-");
+//        System.out.println("-=-\tretrieve_user_lists\t-=-");
         String url = URL_BASE + "/retrieve_user_lists";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -382,7 +381,7 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     public void setUpTransactionLists() {
-        System.out.println("-=-\tretrieve_transaction_lists\t-=-");
+//        System.out.println("-=-\tretrieve_transaction_lists\t-=-");
         String url = URL_BASE + "/retrieve_transaction_lists";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -444,8 +443,7 @@ public class LoadingActivity extends AppCompatActivity {
     }
 
     public void setUpCardLists() {
-        System.out.println("-=-\tretrieve_card_lists\t-=-");
-        //TODO fix string values to match response
+//        System.out.println("-=-\tretrieve_card_lists\t-=-");
         String url = URL_BASE + "/retrieve_card_lists";
 
         RequestQueue queue = Volley.newRequestQueue(this);

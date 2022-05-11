@@ -34,7 +34,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class TransactionsActivity extends AppCompatActivity {
 
-    private Button transactionButton, backButton;
+    private Button transactionButton, backButton, editButton, findButton;
     private RecyclerView transactions;
     private static int idValue;
 
@@ -54,6 +54,8 @@ public class TransactionsActivity extends AppCompatActivity {
         backButton = findViewById(R.id.backButtonTransaction);
         transactionButton = findViewById(R.id.newTransactionButton);
         transactions = findViewById(R.id.viewTransactions);
+        findButton = findViewById(R.id.findUserButton);
+        editButton = findViewById(R.id.editProfileButton);
 
         // get user's shared preferences
         mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -80,11 +82,22 @@ public class TransactionsActivity extends AppCompatActivity {
             if (v == backButton) {
                 logOut();
             }
+            
+            if (v == findButton) {
+                toSearchUser();
+            }
+            
+            if (v == editButton) {
+                toEditProfile();
+            }
 
         };
 
         backButton.setOnClickListener(handler);
         transactionButton.setOnClickListener(handler);
+        findButton.setOnClickListener(handler);
+        editButton.setOnClickListener(handler);
+                
     }
 
     // get instance of database and return user DAO
@@ -112,4 +125,13 @@ public class TransactionsActivity extends AppCompatActivity {
         startActivity(switchActivityIntent);
     }
 
+    private void toSearchUser() {
+        Intent switchActivityIntent = new Intent(TransactionsActivity.this, FindUserActivity.class);
+        startActivity(switchActivityIntent);
+    }
+
+    private void toEditProfile() {
+        Intent switchActivityIntent = new Intent(TransactionsActivity.this, EditProfileActivity.class);
+        startActivity(switchActivityIntent);
+    }
 }

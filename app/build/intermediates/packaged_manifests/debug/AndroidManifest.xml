@@ -27,6 +27,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.Project3_androidApp" >
         <activity
+            android:name="com.example.project3_androidapp.activities.FindUserActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.project3_androidapp.activities.LoadingActivity"
             android:exported="false" />
         <activity
