@@ -177,7 +177,7 @@ public class LoadingActivity extends AppCompatActivity {
                         if (obj.equals("amount")) {
                             i = str.indexOf(':', i) + 1;
                             var = str.substring(i, str.indexOf(',', i));
-                            t.setAmount(Integer.parseInt(var));
+                            t.setAmount(Double.parseDouble(var));
                             i = str.indexOf(',', i);
                         }
                         if (obj.equals("currency")) {
@@ -219,10 +219,13 @@ public class LoadingActivity extends AppCompatActivity {
 
 //                System.out.println(t.getTransactionId() + "\t-=-");
                 // fill with item after import
+                System.out.println(t.getTransactionId());
+                System.out.println(t.getTransactionId()!=null);
                 if (t.getTransactionId() != null)
                     if (!transactionDao.transactionExists(t.getTransactionId())) {
                         transactionDao.insertTransaction(t);
                     } else {
+                        System.out.println("addedTransaction");
                         transactionDao.updateTransaction(t);
                     }
             }

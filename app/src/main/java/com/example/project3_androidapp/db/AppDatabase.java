@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {UserEntity.class, UserListEntity.class, CardEntity.class, CardListEntity.class, TransactionEntity.class, TransactionListEntity.class}, version = 2, exportSchema = false)
+@Database(entities = {UserEntity.class, UserListEntity.class, CardEntity.class, CardListEntity.class, TransactionEntity.class, TransactionListEntity.class}, version = 3, exportSchema = false)
 @TypeConverters(ArrayListConverter.class)
 
 public abstract class AppDatabase extends RoomDatabase {

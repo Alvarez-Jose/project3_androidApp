@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.TransactionDao;
+import com.example.project3_androidapp.db.TransactionEntity;
 import com.example.project3_androidapp.util.Constants;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -59,31 +60,36 @@ public class CreateTransactionActivity extends AppCompatActivity {
                 userValue = getInt(userId);
                 amountValue = getDouble(transactionAmount);
 
-                System.out.println("Submit - - >" + userValue);
-                System.out.println("Submit - - >" + amountValue);
+//                System.out.println("Submit - - >" + userValue);
+//                System.out.println("Submit - - >" + amountValue);
 //                userValue = Integer.parseInt(userId.toString());
-                String url = URL_BASE + "/create_transaction/?tid=" + (tdb.getHighestId() + 1) + "&amt=" + amountValue + "&cur=$&fin=0&sid=" + idValue + "&rid=" + userValue + "&desc=fromAndroid"; // TODO change url to add necessary fields
-                AtomicBoolean success = new AtomicBoolean(false);
+                // i added 13 to the highest id since the app presumes no missing entries and the database has those.
+                String url = URL_BASE + "/new_transaction/?amt=" + amountValue + "&cur=$&fin=0&sid=" + idValue + "&rid=" + userValue + "&desc=fromAndroid"; // TODO change url to add necessary fields
 
 
                 RequestQueue queue = Volley.newRequestQueue(this);
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
 //                    System.out.println("Create - - >" + response);
                     Toast.makeText(getApplicationContext(), "Transaction sent!", Toast.LENGTH_LONG).show();
-                    if (!response.contains("sorry, something went wrong with your request.")) {
-                        success.set(true);
-                    } else {
-                        success.set(false);
-                    }
+
+                    TransactionEntity newTransaction = new TransactionEntity();
+                    newTransaction.setTransactionId(tdb.getHighestId());
+                    newTransaction.setCurrency("$");
+                    newTransaction.setSendingId(idValue);
+                    newTransaction.setReceivingId(userValue);
+                    newTransaction.setDescription("fromAndroid");
+                    newTransaction.setAmount(amountValue);
+                    newTransaction.setIsFinalized(0);
+
+                    tdb.insertTransaction(newTransaction);
                 }, err -> {
-                    Toast.makeText(getApplicationContext(), "Error logging in.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Error with Transaction.", Toast.LENGTH_LONG).show();
                     back();
                 });
                 queue.add(stringRequest);
                 // in order to make sure the transaction is sent, reload the data back into the dao
-                if (success.get()) {
-                    reloadToTransaction();
-                } else reload();
+
+                reloadToTransaction();
             }
 
             if (v == backButton) {

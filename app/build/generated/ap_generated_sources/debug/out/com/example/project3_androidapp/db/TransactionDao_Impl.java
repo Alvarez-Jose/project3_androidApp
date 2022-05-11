@@ -11,6 +11,7 @@ import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
 import java.lang.Boolean;
 import java.lang.Class;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -49,7 +50,7 @@ public final class TransactionDao_Impl implements TransactionDao {
         if (value.getAmount() == null) {
           stmt.bindNull(2);
         } else {
-          stmt.bindLong(2, value.getAmount());
+          stmt.bindDouble(2, value.getAmount());
         }
         if (value.getCurrency() == null) {
           stmt.bindNull(3);
@@ -109,7 +110,7 @@ public final class TransactionDao_Impl implements TransactionDao {
         if (value.getAmount() == null) {
           stmt.bindNull(2);
         } else {
-          stmt.bindLong(2, value.getAmount());
+          stmt.bindDouble(2, value.getAmount());
         }
         if (value.getCurrency() == null) {
           stmt.bindNull(3);
@@ -231,11 +232,11 @@ public final class TransactionDao_Impl implements TransactionDao {
           _tmpTransactionId = _cursor.getInt(_cursorIndexOfTransactionId);
         }
         _item.setTransactionId(_tmpTransactionId);
-        final Integer _tmpAmount;
+        final Double _tmpAmount;
         if (_cursor.isNull(_cursorIndexOfAmount)) {
           _tmpAmount = null;
         } else {
-          _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
+          _tmpAmount = _cursor.getDouble(_cursorIndexOfAmount);
         }
         _item.setAmount(_tmpAmount);
         final String _tmpCurrency;
@@ -307,11 +308,11 @@ public final class TransactionDao_Impl implements TransactionDao {
           _tmpTransactionId = _cursor.getInt(_cursorIndexOfTransactionId);
         }
         _item.setTransactionId(_tmpTransactionId);
-        final Integer _tmpAmount;
+        final Double _tmpAmount;
         if (_cursor.isNull(_cursorIndexOfAmount)) {
           _tmpAmount = null;
         } else {
-          _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
+          _tmpAmount = _cursor.getDouble(_cursorIndexOfAmount);
         }
         _item.setAmount(_tmpAmount);
         final String _tmpCurrency;
@@ -387,11 +388,11 @@ public final class TransactionDao_Impl implements TransactionDao {
           _tmpTransactionId = _cursor.getInt(_cursorIndexOfTransactionId);
         }
         _item.setTransactionId(_tmpTransactionId);
-        final Integer _tmpAmount;
+        final Double _tmpAmount;
         if (_cursor.isNull(_cursorIndexOfAmount)) {
           _tmpAmount = null;
         } else {
-          _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
+          _tmpAmount = _cursor.getDouble(_cursorIndexOfAmount);
         }
         _item.setAmount(_tmpAmount);
         final String _tmpCurrency;

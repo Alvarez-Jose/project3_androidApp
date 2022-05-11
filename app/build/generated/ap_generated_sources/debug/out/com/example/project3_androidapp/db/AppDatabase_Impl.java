@@ -44,17 +44,17 @@ public final class AppDatabase_Impl extends AppDatabase {
 
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(2) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(3) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `UserEntity` (`userId` INTEGER, `username` TEXT, `password` TEXT, `admin` INTEGER, `cardListId` INTEGER, `userListId` INTEGER, `bank` REAL, `transactionListId` INTEGER, PRIMARY KEY(`userId`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `UserListEntity` (`ownerId` INTEGER, `otherUserId` INTEGER, `isAccepted` INTEGER, PRIMARY KEY(`ownerId`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `CardEntity` (`cardId` INTEGER, `cardNum` INTEGER, `expiration` INTEGER, `cvv` INTEGER, `holderName` TEXT, `zip` INTEGER, `cardNickname` TEXT, PRIMARY KEY(`cardId`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `CardListEntity` (`cardListId` INTEGER, `cardId` INTEGER, PRIMARY KEY(`cardListId`))");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `TransactionEntity` (`transactionId` INTEGER, `amount` INTEGER, `currency` TEXT, `isFinalized` INTEGER, `sendingId` INTEGER, `receivingId` INTEGER, `description` TEXT, PRIMARY KEY(`transactionId`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `TransactionEntity` (`transactionId` INTEGER, `amount` REAL, `currency` TEXT, `isFinalized` INTEGER, `sendingId` INTEGER, `receivingId` INTEGER, `description` TEXT, PRIMARY KEY(`transactionId`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `TransactionListEntity` (`transactionListId` INTEGER, `userId` INTEGER, `transactionId` INTEGER, PRIMARY KEY(`transactionListId`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8f5b35657639d621e9d68c7f7941c3b8')");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cb7b83d1de5bc9efa9c1e72af54df3b9')");
       }
 
       @Override
@@ -165,7 +165,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         final HashMap<String, TableInfo.Column> _columnsTransactionEntity = new HashMap<String, TableInfo.Column>(7);
         _columnsTransactionEntity.put("transactionId", new TableInfo.Column("transactionId", "INTEGER", false, 1, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsTransactionEntity.put("amount", new TableInfo.Column("amount", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsTransactionEntity.put("amount", new TableInfo.Column("amount", "REAL", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTransactionEntity.put("currency", new TableInfo.Column("currency", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTransactionEntity.put("isFinalized", new TableInfo.Column("isFinalized", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsTransactionEntity.put("sendingId", new TableInfo.Column("sendingId", "INTEGER", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -195,7 +195,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "8f5b35657639d621e9d68c7f7941c3b8", "006a4d6a5d5f7006167a7753fba71473");
+    }, "cb7b83d1de5bc9efa9c1e72af54df3b9", "881293f08eceb27cf47be40dfe31adb9");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)

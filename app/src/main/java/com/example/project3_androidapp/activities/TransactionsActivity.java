@@ -66,8 +66,8 @@ public class TransactionsActivity extends AppCompatActivity {
 //        text.setText(transactionDao.getAllTransactionsById(idValue).toString());
 //        text.setText(transactionDao.getAllTransactions().get(0).getAmount());
 
-        transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this, transactionDao.getAllTransactionsById(idValue));
-//        transactionAdapter.setResults(transactionDao.getAllTransactionsById(idValue));
+        transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this);
+        transactionAdapter.setResults(transactionDao.getAllTransactionsById(idValue));
 
         refreshList();
 
@@ -83,7 +83,6 @@ public class TransactionsActivity extends AppCompatActivity {
             }
 
             if (v == backButton) {
-
                 logOut();
             }
             
@@ -114,7 +113,7 @@ public class TransactionsActivity extends AppCompatActivity {
     public void refreshList() {
         if (transactionsList != null && transactionDao != null && transactionAdapter != null) {
             transactionsList.clear();
-            transactionsList = transactionDao.getTransactionById(idValue);
+            transactionsList = transactionDao.getAllTransactionsById(idValue);
             transactionAdapter.setResults(transactionsList);
         }
     }
