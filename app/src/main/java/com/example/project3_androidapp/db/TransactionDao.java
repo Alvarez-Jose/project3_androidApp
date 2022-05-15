@@ -20,10 +20,13 @@ public interface TransactionDao {
     void delete(TransactionEntity... transact);
 
     @Query("SELECT * FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE transactionId = :transactionId")
-    TransactionEntity getTransactionById(int transactionId);
+    List<TransactionEntity> getTransactionById(int transactionId);
 
     @Query("SELECT * FROM " + AppDatabase.TRANSACTION_TABLE + " ORDER BY transactionId DESC")
     List<TransactionEntity> getAllTransactions();
+
+    @Query("SELECT * FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE receivingId = :id  OR  sendingId = :id")
+    List<TransactionEntity> getAllTransactionsById(int id);
 
     @Query("DELETE FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE transactionId = :transactionId")
     void deleteTransaction(int transactionId);

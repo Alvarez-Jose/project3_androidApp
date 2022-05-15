@@ -16,6 +16,9 @@ public class UserListEntity {
     @SerializedName("other_user_id")
     @Expose
     private Integer otherUserId;
+    @SerializedName("is_accepted")
+    @Expose
+    private Integer isAccepted;
 
     /**
      * No args constructor for use in serialization
@@ -27,12 +30,14 @@ public class UserListEntity {
     /**
      *
      * @param ownerId
+     * @param isAccepted
      * @param otherUserId
      */
-    public UserListEntity(Integer ownerId, Integer otherUserId) {
+    public UserListEntity(Integer ownerId, Integer otherUserId, Integer isAccepted) {
         super();
         this.ownerId = ownerId;
         this.otherUserId = otherUserId;
+        this.isAccepted = isAccepted;
     }
 
     public Integer getOwnerId() {
@@ -58,6 +63,19 @@ public class UserListEntity {
 
     public UserListEntity withOtherUserId(Integer otherUserId) {
         this.otherUserId = otherUserId;
+        return this;
+    }
+
+    public Integer getIsAccepted() {
+        return isAccepted;
+    }
+
+    public void setIsAccepted(Integer isAccepted) {
+        this.isAccepted = isAccepted;
+    }
+
+    public UserListEntity withIsAccepted(Integer isAccepted) {
+        this.isAccepted = isAccepted;
         return this;
     }
 

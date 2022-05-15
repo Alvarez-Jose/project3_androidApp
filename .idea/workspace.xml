@@ -12,7 +12,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="109196bf-7998-4d9a-8c2c-c57310e99e73" name="Default Changelist" comment="created outline format and code for all new activities." />
+    <list default="true" id="801c8adf-b426-4e2f-ae04-7fb9981e489a" name="Default Changelist" comment="recycler view in transactions now working">
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifest/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifest/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/packaged_manifests/debug/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/packaged_manifests/debug/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,15 +62,16 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="navigationResourceFile" />
+        <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="login" />
+        <entry key="$PROJECT_DIR$" value="navigation" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -107,11 +114,14 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.project3_androidapp" />
     </key>
+    <key name="android.template.1252913595">
+      <recent name="com.example.project3_androidapp.activities" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.project3_androidapp.adapts" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Android App.app_secondary">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="project3_androidApp.app" />
       <option name="DEPLOY" value="true" />
@@ -236,7 +246,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="109196bf-7998-4d9a-8c2c-c57310e99e73" name="Default Changelist" comment="" />
+      <changelist id="801c8adf-b426-4e2f-ae04-7fb9981e489a" name="Default Changelist" comment="starting new branch" />
       <created>1649983737639</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -333,7 +343,77 @@
       <option name="project" value="LOCAL" />
       <updated>1651167029832</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update to see if unversioned files fix the error">
+      <created>1651177726993</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1651177726993</updated>
+    </task>
+    <task id="LOCAL-00015" summary="starting new branch">
+      <created>1651179359519</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1651179359519</updated>
+    </task>
+    <task id="LOCAL-00016" summary="created activity models">
+      <created>1651525027547</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1651525027547</updated>
+    </task>
+    <task id="LOCAL-00017" summary="getting login working with new api call and keep the user logged in when app is closed.">
+      <created>1651530577138</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1651530577138</updated>
+    </task>
+    <task id="LOCAL-00018" summary="getting transactions working">
+      <created>1651697907901</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1651697907901</updated>
+    </task>
+    <task id="LOCAL-00019" summary="login pretty much working">
+      <created>1651706103282</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1651706103282</updated>
+    </task>
+    <task id="LOCAL-00020" summary="trying to get profile recyclerview working">
+      <created>1651776230269</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1651776230269</updated>
+    </task>
+    <task id="LOCAL-00021" summary="trying to figure out what to fix in loading activity, didn't save some prograss I made">
+      <created>1652204191939</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1652204191939</updated>
+    </task>
+    <task id="LOCAL-00022" summary="dao all set up properly, will take some time to set itself up when first launched but now I am fixing the recycler views">
+      <created>1652207785548</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1652207785548</updated>
+    </task>
+    <task id="LOCAL-00023" summary="recycler view in transactions now working">
+      <created>1652220003726</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1652220003726</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,6 +452,16 @@
     <MESSAGE value="got it to do api calls, will add to the rest of the pages." />
     <MESSAGE value="added files for other activities but main, login and register are either fully functional or just need the layout files." />
     <MESSAGE value="created outline format and code for all new activities." />
-    <option name="LAST_COMMIT_MESSAGE" value="created outline format and code for all new activities." />
+    <MESSAGE value="update to see if unversioned files fix the error" />
+    <MESSAGE value="starting new branch" />
+    <MESSAGE value="created activity models" />
+    <MESSAGE value="getting login working with new api call and keep the user logged in when app is closed." />
+    <MESSAGE value="getting transactions working" />
+    <MESSAGE value="login pretty much working" />
+    <MESSAGE value="trying to get profile recyclerview working" />
+    <MESSAGE value="trying to figure out what to fix in loading activity, didn't save some prograss I made" />
+    <MESSAGE value="dao all set up properly, will take some time to set itself up when first launched but now I am fixing the recycler views" />
+    <MESSAGE value="recycler view in transactions now working" />
+    <option name="LAST_COMMIT_MESSAGE" value="recycler view in transactions now working" />
   </component>
 </project>

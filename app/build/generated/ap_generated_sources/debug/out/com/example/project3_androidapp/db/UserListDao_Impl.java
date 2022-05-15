@@ -36,7 +36,7 @@ public final class UserListDao_Impl implements UserListDao {
     this.__insertionAdapterOfUserListEntity = new EntityInsertionAdapter<UserListEntity>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR ABORT INTO `UserListEntity` (`ownerId`,`otherUserId`) VALUES (?,?)";
+        return "INSERT OR ABORT INTO `UserListEntity` (`ownerId`,`otherUserId`,`isAccepted`) VALUES (?,?,?)";
       }
 
       @Override
@@ -50,6 +50,11 @@ public final class UserListDao_Impl implements UserListDao {
           stmt.bindNull(2);
         } else {
           stmt.bindLong(2, value.getOtherUserId());
+        }
+        if (value.getIsAccepted() == null) {
+          stmt.bindNull(3);
+        } else {
+          stmt.bindLong(3, value.getIsAccepted());
         }
       }
     };
@@ -71,7 +76,7 @@ public final class UserListDao_Impl implements UserListDao {
     this.__updateAdapterOfUserListEntity = new EntityDeletionOrUpdateAdapter<UserListEntity>(__db) {
       @Override
       public String createQuery() {
-        return "UPDATE OR ABORT `UserListEntity` SET `ownerId` = ?,`otherUserId` = ? WHERE `ownerId` = ?";
+        return "UPDATE OR ABORT `UserListEntity` SET `ownerId` = ?,`otherUserId` = ?,`isAccepted` = ? WHERE `ownerId` = ?";
       }
 
       @Override
@@ -86,10 +91,15 @@ public final class UserListDao_Impl implements UserListDao {
         } else {
           stmt.bindLong(2, value.getOtherUserId());
         }
-        if (value.getOwnerId() == null) {
+        if (value.getIsAccepted() == null) {
           stmt.bindNull(3);
         } else {
-          stmt.bindLong(3, value.getOwnerId());
+          stmt.bindLong(3, value.getIsAccepted());
+        }
+        if (value.getOwnerId() == null) {
+          stmt.bindNull(4);
+        } else {
+          stmt.bindLong(4, value.getOwnerId());
         }
       }
     };
@@ -165,6 +175,7 @@ public final class UserListDao_Impl implements UserListDao {
     try {
       final int _cursorIndexOfOwnerId = CursorUtil.getColumnIndexOrThrow(_cursor, "ownerId");
       final int _cursorIndexOfOtherUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "otherUserId");
+      final int _cursorIndexOfIsAccepted = CursorUtil.getColumnIndexOrThrow(_cursor, "isAccepted");
       final UserListEntity _result;
       if(_cursor.moveToFirst()) {
         _result = new UserListEntity();
@@ -182,6 +193,13 @@ public final class UserListDao_Impl implements UserListDao {
           _tmpOtherUserId = _cursor.getInt(_cursorIndexOfOtherUserId);
         }
         _result.setOtherUserId(_tmpOtherUserId);
+        final Integer _tmpIsAccepted;
+        if (_cursor.isNull(_cursorIndexOfIsAccepted)) {
+          _tmpIsAccepted = null;
+        } else {
+          _tmpIsAccepted = _cursor.getInt(_cursorIndexOfIsAccepted);
+        }
+        _result.setIsAccepted(_tmpIsAccepted);
       } else {
         _result = null;
       }
@@ -201,6 +219,7 @@ public final class UserListDao_Impl implements UserListDao {
     try {
       final int _cursorIndexOfOwnerId = CursorUtil.getColumnIndexOrThrow(_cursor, "ownerId");
       final int _cursorIndexOfOtherUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "otherUserId");
+      final int _cursorIndexOfIsAccepted = CursorUtil.getColumnIndexOrThrow(_cursor, "isAccepted");
       final List<UserListEntity> _result = new ArrayList<UserListEntity>(_cursor.getCount());
       while(_cursor.moveToNext()) {
         final UserListEntity _item;
@@ -219,6 +238,13 @@ public final class UserListDao_Impl implements UserListDao {
           _tmpOtherUserId = _cursor.getInt(_cursorIndexOfOtherUserId);
         }
         _item.setOtherUserId(_tmpOtherUserId);
+        final Integer _tmpIsAccepted;
+        if (_cursor.isNull(_cursorIndexOfIsAccepted)) {
+          _tmpIsAccepted = null;
+        } else {
+          _tmpIsAccepted = _cursor.getInt(_cursorIndexOfIsAccepted);
+        }
+        _item.setIsAccepted(_tmpIsAccepted);
         _result.add(_item);
       }
       return _result;

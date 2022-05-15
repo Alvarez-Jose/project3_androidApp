@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
+INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
+INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
+INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
 MERGED from [androidx.navigation:navigation-ui:2.3.5] C:\Users\smhal\.gradle\caches\transforms-3\c65494eb6e975180011cd8d1f6e04c3d\transformed\navigation-ui-2.3.5\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\smhal\.gradle\caches\transforms-3\eac9e08fa28d6671a6f932ada5a5a9c7\transformed\material-1.5.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\smhal\.gradle\caches\transforms-3\2c899494aa059aa353c8693e5bb9c70d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:2:1-11:12
@@ -88,25 +88,25 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\smhal\.gradle\caches\transform
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\smhal\.gradle\caches\transforms-3\00cc0f5b3215ee1f60046e4e5c8104d7\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\smhal\.gradle\caches\transforms-3\1addb8aa695ae2d100ec75645c6fad62\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\smhal\.gradle\caches\transforms-3\d7296c6dedbbb08f9873ad76ceb2dda8\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
-INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
+INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
+INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
+INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
 	package
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:3:5-46
 		INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
 		INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-29:12
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:1-50:12
 		INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:5:5-27:19
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:5:5-48:19
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\smhal\.gradle\caches\transforms-3\eac9e08fa28d6671a6f932ada5a5a9c7\transformed\material-1.5.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\smhal\.gradle\caches\transforms-3\eac9e08fa28d6671a6f932ada5a5a9c7\transformed\material-1.5.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\smhal\.gradle\caches\transforms-3\2c899494aa059aa353c8693e5bb9c70d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:9:5-20
@@ -179,34 +179,76 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\smhal\.gradle\cach
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:11:9-57
-activity#com.example.project3_androidapp.LoginActivity
+activity#com.example.project3_androidapp.activities.LoadingActivity
 ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:12:9-14:40
 	android:exported
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:14:13-37
 	android:name
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:13:13-42
-activity#com.example.project3_androidapp.registerActivity
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:13:13-55
+activity#com.example.project3_androidapp.activities.FriendsProfileActivity
 ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:15:9-17:40
 	android:exported
 		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:17:13-37
 	android:name
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:16:13-45
-activity#com.example.project3_androidapp.MainActivity
-ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:18:9-26:20
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:16:13-62
+activity#com.example.project3_androidapp.activities.AddCardsActivity
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:18:9-20:40
 	android:exported
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:20:13-36
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:20:13-37
 	android:name
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:19:13-41
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:19:13-56
+activity#com.example.project3_androidapp.activities.EditProfileActivity
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:21:9-23:40
+	android:exported
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:23:13-37
+	android:name
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:22:13-59
+activity#com.example.project3_androidapp.activities.CreateTransactionActivity
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:24:9-26:40
+	android:exported
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:25:13-65
+activity#com.example.project3_androidapp.activities.TransactionsActivity
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:27:9-29:40
+	android:exported
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:28:13-60
+activity#com.example.project3_androidapp.activities.ProfileActivity
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:30:9-32:40
+	android:exported
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:31:13-55
+activity#com.example.project3_androidapp.activities.LoginActivity
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:33:9-35:40
+	android:exported
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:34:13-53
+activity#com.example.project3_androidapp.activities.RegisterActivity
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:36:9-38:40
+	android:exported
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:38:13-37
+	android:name
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:37:13-56
+activity#com.example.project3_androidapp.activities.MainActivity
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:39:9-47:20
+	android:exported
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:41:13-36
+	android:name
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:40:13-52
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:21:13-25:29
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:42:13-46:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:22:17-69
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:43:17-69
 	android:name
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:22:25-66
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:43:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:24:17-77
+ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:45:17-77
 	android:name
-		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:24:27-74
+		ADDED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml:45:27-74
 uses-sdk
 INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\smhal\Downloads\project3_androidApp\app\src\main\AndroidManifest.xml

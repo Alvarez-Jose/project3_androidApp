@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
   <TextView
       android:id="@+id/exampleText"
@@ -14,20 +14,89 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
+
+  <Button
+      android:id="@+id/submitLogin"
+      android:layout_width="380dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="12dp"
+      android:backgroundTint="#5DADE2"
+      android:text="Submit"
+      android:textSize="26sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.21"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.71" />
+
   <Button
       android:id="@+id/loginToMain"
       android:layout_width="380dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="12dp"
       android:backgroundTint="#5DADE2"
-      android:text="to main"
+      android:text="Back"
       android:textSize="26sp"
       android:textStyle="bold"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintHorizontal_bias="0.21"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.435" />
+      app:layout_constraintVertical_bias="0.828" />
 
+  <EditText
+      android:id="@+id/editTextUsername"
+      android:layout_width="300dp"
+      android:layout_height="50dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text=""
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.468"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.355" />
+
+  <EditText
+      android:id="@+id/editTextTextPassword"
+      android:layout_width="300dp"
+      android:layout_height="50dp"
+      android:ems="10"
+      android:inputType="textPassword"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.468"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.553" />
+
+  <TextView
+      android:id="@+id/passwordTextEnter"
+      android:layout_width="300dp"
+      android:layout_height="50dp"
+      android:layout_marginBottom="8dp"
+      android:text="Enter Password:"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.468"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.454" />
+
+  <TextView
+      android:id="@+id/userNameEnter"
+      android:layout_width="300dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="172dp"
+      android:text="Enter Username:"
+      app:layout_constraintBottom_toTopOf="@+id/editTextUsername"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.468"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.15" />
 </androidx.constraintlayout.widget.ConstraintLayout>

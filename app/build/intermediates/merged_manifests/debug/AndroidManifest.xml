@@ -27,13 +27,34 @@
         android:testOnly="true"
         android:theme="@style/Theme.Project3_androidApp" >
         <activity
-            android:name="com.example.project3_androidapp.LoginActivity"
+            android:name="com.example.project3_androidapp.activities.LoadingActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.project3_androidapp.registerActivity"
+            android:name="com.example.project3_androidapp.activities.FriendsProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.project3_androidapp.MainActivity"
+            android:name="com.example.project3_androidapp.activities.AddCardsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.CreateTransactionActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.TransactionsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.project3_androidapp.activities.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
