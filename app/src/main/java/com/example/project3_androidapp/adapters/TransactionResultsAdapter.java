@@ -94,6 +94,7 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
 
             if (v == holder.acceptB) {
                 System.out.println("acceptTransactionButton");
+
                 transactionUpdate(true, searchResults.get(position)); // update transaction to show accepted
             }
 
@@ -109,13 +110,11 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     }
 
     public void transactionUpdate(boolean accept, TransactionEntity transaction) {
-
-        int offset = 0;
         System.out.println("update");
 
         if (accept) {
             // first update the transaction as done and then update both users' bank.
-            String url = URL_BASE + "/accept_transaction/?tid=" + transaction.getTransactionId() + offset
+            String url = URL_BASE + "/accept_transaction/?tid=" + transaction.getTransactionId()
                     + "&amt=" + transaction.getAmount()
                     + "&cur=" + transaction.getCurrency()
                     + "&fin=1&sid=" + transaction.getSendingId()
@@ -133,15 +132,14 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
 
             queue.add(stringRequest);
         } else {
-            String url = URL_BASE + "/delete_transaction/?tid=" + transaction.getTransactionId() + offset;
+            String url = URL_BASE + "/delete_transaction/?tid=" + transaction.getTransactionId();
             RequestQueue queue = Volley.newRequestQueue(context);
             System.out.println(url);
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
                 Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
                 System.out.println("success!");
-                AppDatabase appDatabase = AppDatabase.getInstance(this.context);
-                appDatabase.transactionDao().deleteTransaction(transaction.getTransactionId());
+                AppDatabase.getInstance(context).transactionDao().deleteTransaction(transaction.getTransactionId());
             }, err -> {
                 Toast.makeText(context, "failure to decline", Toast.LENGTH_LONG).show();
             });

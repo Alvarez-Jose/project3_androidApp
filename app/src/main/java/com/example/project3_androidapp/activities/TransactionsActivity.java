@@ -36,7 +36,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class TransactionsActivity extends AppCompatActivity {
 
-    private Button transactionButton, backButton, editButton, findButton;
+    private Button transactionButton, backButton, editButton, findButton, refresh;
     private RecyclerView transactions;
     private static int idValue;
 
@@ -53,6 +53,7 @@ public class TransactionsActivity extends AppCompatActivity {
 //        System.out.println("-=-\tTransactions\t-=-");
         getDatabase();
 
+        refresh = findViewById(R.id.refreshButton);
         backButton = findViewById(R.id.backButtonTransaction);
         transactionButton = findViewById(R.id.newTransactionButton);
         transactions = findViewById(R.id.viewTransactions);
@@ -96,12 +97,17 @@ public class TransactionsActivity extends AppCompatActivity {
                 toEditProfile();
             }
 
+            if (v == refresh) {
+                reload();
+            }
+
         };
 
         backButton.setOnClickListener(handler);
         transactionButton.setOnClickListener(handler);
         findButton.setOnClickListener(handler);
         editButton.setOnClickListener(handler);
+        refresh.setOnClickListener(handler);
                 
     }
 
@@ -146,6 +152,11 @@ public class TransactionsActivity extends AppCompatActivity {
 
     private void toEditProfile() {
         Intent switchActivityIntent = new Intent(TransactionsActivity.this, EditProfileActivity.class);
+        startActivity(switchActivityIntent);
+    }
+
+    private void reload() {
+        Intent switchActivityIntent = new Intent(TransactionsActivity.this, LoadingActivity.class);
         startActivity(switchActivityIntent);
     }
 }
