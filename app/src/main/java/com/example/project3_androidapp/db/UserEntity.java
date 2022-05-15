@@ -38,14 +38,12 @@ public class UserEntity {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     @Ignore
     public UserEntity() {
     }
 
     /**
-     *
      * @param password
      * @param bank
      * @param transactionListId

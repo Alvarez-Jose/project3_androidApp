@@ -38,7 +38,7 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         this.context = context;
     }
 
-    public TransactionResultsAdapter(List<TransactionEntity> list){
+    public TransactionResultsAdapter(List<TransactionEntity> list) {
         searchResults = list;
     }
 
@@ -84,11 +84,11 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         View.OnClickListener handler = v -> {
 
             if (v == acceptTransactionButton) {
-//                transactionUpdate(1);
+                transactionUpdate(true); // update transaction to show accepted
             }
 
-            if(v == declineTransactionButton){
-//                transactionUpdate(0);
+            if (v == declineTransactionButton) {
+                transactionUpdate(false); // delete transaction from db
             }
 
         };
@@ -97,17 +97,30 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         declineTransactionButton.setOnClickListener(handler);
     }
 
-    public void transactionUpdate(int i) {
-        String url = URL_BASE + "/retrieve_user/?user=&pass";
+    public void transactionUpdate(boolean accept) {
+        if (accept) {
+            String url = URL_BASE + "/";
 
-                RequestQueue queue = Volley.newRequestQueue(context);
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-                    Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
-                    //Login success path
-                }, err -> {
-                    Toast.makeText(context, "failure", Toast.LENGTH_LONG).show();
-                });
-                queue.add(stringRequest);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
+                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
+                //Login success path
+            }, err -> {
+                Toast.makeText(context, "failure to accept", Toast.LENGTH_LONG).show();
+            });
+            queue.add(stringRequest);
+        } else {
+            String url = URL_BASE + "/";
+
+            RequestQueue queue = Volley.newRequestQueue(context);
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
+                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
+                //Login success path
+            }, err -> {
+                Toast.makeText(context, "failure to decline", Toast.LENGTH_LONG).show();
+            });
+            queue.add(stringRequest);
+        }
     }
 
     @Override
@@ -124,7 +137,7 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     }
 
     class SearchResultHolder extends RecyclerView.ViewHolder {
-        public TextView sendingIdText, receivingIdText, amountText, sendingText,recievingText;
+        public TextView sendingIdText, receivingIdText, amountText, sendingText, recievingText;
         public Button acceptB, declineB;
 //        private TextView isFinalizedText;
 

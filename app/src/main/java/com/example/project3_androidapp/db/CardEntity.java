@@ -34,13 +34,11 @@ public class CardEntity {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public CardEntity() {
     }
 
     /**
-     *
      * @param zip
      * @param cardNum
      * @param cvv

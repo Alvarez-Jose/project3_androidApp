@@ -14,7 +14,7 @@ import java.net.URL;
 public class StringAPIRequest {
     private String url = Constants.URL_BASE;
 
-    public StringAPIRequest(String basePath){
+    public StringAPIRequest(String basePath) {
         url += basePath;
     }
 
@@ -22,12 +22,12 @@ public class StringAPIRequest {
 
     }
 
-    public void createRequest(String params){
+    public void createRequest(String params) {
         url += params;
 
     }
 
-    public void sendRequest(){
+    public void sendRequest() {
         // true if request sent
         try {
             URL u = new URL(url);
@@ -37,8 +37,10 @@ public class StringAPIRequest {
             String s = "";
             System.out.println(br);
 
-        } catch (MalformedURLException murle) { murle.printStackTrace();
-        } catch (IOException ioe) { ioe.printStackTrace();
+        } catch (MalformedURLException murle) {
+            murle.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }

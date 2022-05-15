@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.db.AppDatabase;
+import com.example.project3_androidapp.db.UserDao;
 import com.example.project3_androidapp.db.UserEntity;
 import com.example.project3_androidapp.util.Constants;
 
@@ -27,8 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
     private Button toMainButton;
     private EditText userName, userEmail, userPassword, userRepeatPass;
     private String userNameText = "", userEmailText = "", userPasswordText = "", userRepeatPassText = "", existingUsers = "";
-    private int userId = 0, max;
+    private int userId = 0, max = -1;
     private AppDatabase database;
+    private UserDao userDao;
 
     SharedPreferences mSharedPrefs;
 
@@ -43,8 +45,9 @@ public class RegisterActivity extends AppCompatActivity {
             logout(mSharedPrefs);
 
         getUserDatabase();
-        toMainButton = findViewById(R.id.registerUser);
+        userDao = database.userDao();
 
+        toMainButton = findViewById(R.id.registerUser);
         userName = findViewById(R.id.fullname);
         userEmail = findViewById(R.id.email);
         userPassword = findViewById(R.id.password);
@@ -60,7 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
                 userNameText = userName.getText().toString();
                 userEmailText = userEmail.getText().toString();
                 userPasswordText = userPassword.getText().toString();
-                getNewId(); // will probably be useless but keeping for now.
+//                getNewId(); // will probably be useless but keeping for now.
+
                 RequestQueue queue = Volley.newRequestQueue(this); // used to access api
                 String url = URL_BASE + "/retrieve_users_and";
 
@@ -69,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 StringRequest usersRequest = new StringRequest(Request.Method.GET, url, response -> {
                     // maybe a confirmation message
-                    existingUsers = response;
+                    existingUsers = response.replaceAll("&#34;", "\"");
                     System.out.println(existingUsers);
                 }, e -> {
                     Toast.makeText(getApplicationContext(), "Error connecting to database", Toast.LENGTH_LONG).show();
@@ -77,10 +81,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                 queue.add(usersRequest);
                 // need to make sure the form is filled out properly
-                if(userNameText.contains(existingUsers) || userNameText.isEmpty() || userPasswordText.isEmpty()){
-                    if(userNameText.isEmpty()) {
+                if (userNameText.contains( ("\"username\":" + existingUsers + "\"") )|| userNameText.isEmpty() || userPasswordText.isEmpty()) {
+                    if (userNameText.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Username is empty.", Toast.LENGTH_LONG).show();
-                    } else if (userPasswordText.isEmpty()){
+                    } else if (userPasswordText.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Password is empty.", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Username taken.", Toast.LENGTH_LONG).show();
@@ -98,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Intent intentMain = new Intent(RegisterActivity.this,
                             MainActivity.class);
 
-                    url = URL_BASE + "/create_user/?username=" + userNameText + "&password=" + userPasswordText + "&admin=0&cardListId=" + userId + "&userListId=" + userId + "&transactionListId=" + userId + "";
+                    url = URL_BASE + "/create_user/?username=" + userNameText + "&password=" + userPasswordText + "&admin=0&cardListId=" + userDao.getHighestId() + "&userListId=" + userDao.getHighestId() + "&transactionListId=" + userDao.getHighestId() + "";
                     //?username=new&password=new&admin=0&cardListId=0&userListId=0&transactionListId=0
 
                     StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
@@ -123,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
         toMainButton.setOnClickListener(handler);
     }
 
-    private void getExistingUsers(){
+    private void getExistingUsers() {
 
     }
 
@@ -134,14 +138,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void getNewId(){
+    private void getNewId() {
         // getting the user ID since it needs to be inserted manually.
-        for(UserEntity u: database.userDao().getAllUsers()) {
+        for (UserEntity u : database.userDao().getAllUsers()) {
             max = u.getUserId();
             if (max > userId)
                 userId = ++max;
         }
     }
+
     public void logout(SharedPreferences sp) {
         if (sp.getInt(Constants.USER_ID_KEY, -1) != -1) {
             SharedPreferences.Editor editor = sp.edit();

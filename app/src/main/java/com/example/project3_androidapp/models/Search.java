@@ -136,6 +136,6 @@ public class Search implements Parcelable {
     }
 
     public int describeContents() {
-        return  0;
+        return 0;
     }
 }

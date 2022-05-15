@@ -30,4 +30,10 @@ public interface UserDao {
 
     @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE userId = :userId)")
     Boolean userExists(int userId);
+
+    @Query("SELECT MAX(userId) FROM " + AppDatabase.USER_TABLE)
+    int getHighestId();
+
+//    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE username = :uname")
+//    TransactionEntity getUserByName(String uname);
 }

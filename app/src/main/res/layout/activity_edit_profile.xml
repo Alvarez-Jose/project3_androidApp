@@ -45,57 +45,31 @@
         app:layout_constraintVertical_bias="0.185" />
 
     <EditText
-        android:id="@+id/editNewCardNumber"
+        android:id="@+id/editTextUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="numberSigned"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.31" />
 
     <EditText
-        android:id="@+id/editNewCardExp"
-        android:layout_width="95dp"
-        android:layout_height="44dp"
-        android:ems="10"
-        android:inputType="numberSigned"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.319"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
-
-    <EditText
-        android:id="@+id/editNewCardCVV"
-        android:layout_width="93dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:inputType="numberSigned"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.698"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.432" />
-
-    <EditText
-        android:id="@+id/editNewCardZip"
+        android:id="@+id/newPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="numberSigned"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintVertical_bias="0.459" />
 
     <TextView
         android:id="@+id/bank"
@@ -119,48 +93,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/newCardNumber"
+        android:id="@+id/newUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card Number:"
-        app:layout_constraintBottom_toTopOf="@+id/editNewCardNumber"
+        android:text="New Username:"
+        app:layout_constraintBottom_toTopOf="@+id/editTextUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editBankAmount" />
 
     <TextView
-        android:id="@+id/exp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:text="expiration: (mm/yy)"
-        app:layout_constraintBottom_toTopOf="@+id/editNewCardExp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNewCardNumber"
-        app:layout_constraintVertical_bias="0.838" />
-
-    <TextView
-        android:id="@+id/cvv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:text="cvv:"
-        app:layout_constraintBottom_toTopOf="@+id/editNewCardCVV"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNewCardNumber"
-        app:layout_constraintVertical_bias="0.509" />
-
-    <TextView
-        android:id="@+id/cardZip"
+        android:id="@+id/editTextPassword"
         android:layout_width="74dp"
         android:layout_height="21dp"
-        android:layout_marginBottom="12dp"
-        android:text="Zip:"
-        app:layout_constraintBottom_toTopOf="@+id/editNewCardZip"
+        android:text="New Password:"
+        app:layout_constraintBottom_toTopOf="@+id/newPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNewCardCVV"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

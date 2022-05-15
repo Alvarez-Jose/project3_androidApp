@@ -19,13 +19,11 @@ public class CardListEntity {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public CardListEntity() {
     }
 
     /**
-     *
      * @param cardId
      * @param cardListId
      */

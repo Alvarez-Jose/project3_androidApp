@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 @Database(entities = {UserEntity.class, UserListEntity.class, CardEntity.class, CardListEntity.class, TransactionEntity.class, TransactionListEntity.class}, version = 2, exportSchema = false)
 @TypeConverters(ArrayListConverter.class)
 
-public abstract class AppDatabase extends RoomDatabase{
+public abstract class AppDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "AppDatabase.db";
     public static final String USER_TABLE = "UserEntity";
@@ -23,10 +23,15 @@ public abstract class AppDatabase extends RoomDatabase{
     private static AppDatabase instance;
 
     public abstract UserDao userDao();
+
     public abstract UserListDao userListDao();
+
     public abstract CardDao cardDao();
+
     public abstract CardListDao cardListDao();
+
     public abstract TransactionDao transactionDao();
+
     public abstract TransactionListDao transactionListDao();
 
     public static synchronized AppDatabase getInstance(Context context) {

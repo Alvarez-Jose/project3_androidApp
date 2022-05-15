@@ -22,13 +22,11 @@ public class UserListEntity {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public UserListEntity() {
     }
 
     /**
-     *
      * @param ownerId
      * @param isAccepted
      * @param otherUserId

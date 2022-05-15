@@ -57,7 +57,7 @@ public class AddCardsActivity extends AppCompatActivity {
                 switchToMain();
             }
 
-            if(v == backButton){
+            if (v == backButton) {
                 switchToMain();
             }
 
@@ -68,7 +68,7 @@ public class AddCardsActivity extends AppCompatActivity {
     }
 
     private void checkLogin() {
-        if(idValue == -1){
+        if (idValue == -1) {
             Intent switchActivityIntent = new Intent(AddCardsActivity.this, MainActivity.class);
             startActivity(switchActivityIntent);
         }

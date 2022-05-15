@@ -466,6 +466,26 @@ public final class TransactionDao_Impl implements TransactionDao {
     }
   }
 
+  @Override
+  public int getHighestId() {
+    final String _sql = "SELECT MAX(transactionId) FROM TransactionEntity";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _result;
+      if(_cursor.moveToFirst()) {
+        _result = _cursor.getInt(0);
+      } else {
+        _result = 0;
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
   public static List<Class<?>> getRequiredConverters() {
     return Collections.emptyList();
   }

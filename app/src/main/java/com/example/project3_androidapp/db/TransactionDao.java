@@ -33,4 +33,7 @@ public interface TransactionDao {
 
     @Query("SELECT EXISTS(SELECT * FROM " + AppDatabase.TRANSACTION_TABLE + " WHERE transactionId = :transactionId)")
     Boolean transactionExists(int transactionId);
+
+    @Query("SELECT MAX(transactionId) FROM " + AppDatabase.TRANSACTION_TABLE)
+    int getHighestId();
 }
