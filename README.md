@@ -20,10 +20,17 @@
 &nbsp;&nbsp;&nbsp; Here is an example response from the API in JSON format: 
 
 ```
-{
- test: test,
- test: test
-}
+[
+  {
+    "card_id":1,
+    "card_num":1,
+    "expiration":1,
+    "cvv":1,
+    "holder_name":"test tester",
+    "zip":1,
+    "card_nickname":"test"
+  }
+]
 ```
 
 ### Useful Information:<br>
