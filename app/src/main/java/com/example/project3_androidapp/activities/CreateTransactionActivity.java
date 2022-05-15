@@ -54,6 +54,7 @@ public class CreateTransactionActivity extends AppCompatActivity {
         transactionAmount = findViewById(R.id.editAmount);
 
 
+        int offset = 35;
         View.OnClickListener handler = v -> {
 
             if (v == submitButton) {
@@ -66,14 +67,14 @@ public class CreateTransactionActivity extends AppCompatActivity {
                 // i added 13 to the highest id since the app presumes no missing entries and the database has those.
                 String url = URL_BASE + "/new_transaction/?amt=" + amountValue + "&cur=$&fin=0&sid=" + idValue + "&rid=" + userValue + "&desc=fromAndroid"; // TODO change url to add necessary fields
 
-
+                System.out.println("ct- "+url);
                 RequestQueue queue = Volley.newRequestQueue(this);
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
 //                    System.out.println("Create - - >" + response);
                     Toast.makeText(getApplicationContext(), "Transaction sent!", Toast.LENGTH_LONG).show();
 
                     TransactionEntity newTransaction = new TransactionEntity();
-                    newTransaction.setTransactionId(tdb.getHighestId()+1);
+                    newTransaction.setTransactionId(tdb.getHighestId()+offset);
                     newTransaction.setCurrency("$");
                     newTransaction.setSendingId(idValue);
                     newTransaction.setReceivingId(userValue);

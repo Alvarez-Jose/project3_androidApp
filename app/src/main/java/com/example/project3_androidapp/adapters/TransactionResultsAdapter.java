@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,37 +17,23 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.project3_androidapp.R;
-import com.example.project3_androidapp.activities.TransactionsActivity;
 import com.example.project3_androidapp.db.AppDatabase;
-import com.example.project3_androidapp.db.TransactionDao;
 import com.example.project3_androidapp.db.TransactionEntity;
 import com.example.project3_androidapp.db.UserDao;
 import com.example.project3_androidapp.db.UserEntity;
-import com.example.project3_androidapp.models.Search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionResultsAdapter.SearchResultHolder> {
     private List<TransactionEntity> searchResults = new ArrayList<>();
     private Context context;
-    private UserDao userDao;
-    AppDatabase appDatabase;
     private Button acceptTransactionButton, declineTransactionButton;
 
     public TransactionResultsAdapter(Context context) {
         this.context = context;
-    }
-
-    public TransactionResultsAdapter(Context context, List<TransactionEntity> list) {
-        this.context = context;
-        searchResults = list;
-    }
-
-    public TransactionResultsAdapter(List<TransactionEntity> list) {
-        searchResults = list;
     }
 
     @NonNull
@@ -56,9 +41,6 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     public SearchResultHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.transaction_item, parent, false);
-//        context = parent.getContext();
-        appDatabase = AppDatabase.getInstance(parent.getContext());
-        userDao = appDatabase.userDao();
 
         acceptTransactionButton = parent.findViewById(R.id.buttonAccept);
         declineTransactionButton = parent.findViewById(R.id.buttonDecline);
@@ -69,45 +51,60 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
 
     @Override
     public void onBindViewHolder(@NonNull SearchResultHolder holder, int position) {
-        TransactionEntity results = searchResults.get(position);
+//        TransactionEntity results = searchResults.get(position);
 //        System.out.println("onBindViewHolder - "+results.getSendingId());
+
+        acceptTransactionButton = holder.acceptB;
+        declineTransactionButton = holder.declineB;
+
+        System.out.println(position + " --- " + searchResults.get(position).getIsFinalized());
+        if(searchResults.get(position).getIsFinalized() == 1){
+            acceptTransactionButton.setEnabled(false);
+            declineTransactionButton.setEnabled(false);
+        } else {
+            acceptTransactionButton.setEnabled(true);
+            declineTransactionButton.setEnabled(true);
+        }
 
         holder.sendingText.setText("From:");
         holder.recievingText.setText("To:");
-
-        UserEntity sending = userDao.getUserById(results.getSendingId());
-        System.out.println(sending);
-        UserEntity recieving = userDao.getUserById(results.getReceivingId());
-        System.out.println(recieving);
-
-
-        if (sending != null) {
-            holder.sendingIdText.setText(sending.getUsername());
-        } else {
-            holder.sendingIdText.setText(results.getSendingId());
+//        System.out.println("results = " + searchResults.get(position));
+//
+//        System.out.println("S = " + searchResults.get(position).getSendingId());
+//        System.out.println("R = " + searchResults.get(position).getReceivingId());
+        if (searchResults.get(position).getSendingId() != null) {
+            holder.sendingIdText.setText(searchResults.get(position).getSendingId().toString());
         }
-        if (recieving != null) {
-            holder.receivingIdText.setText(recieving.getUsername());
-        } else {
-            holder.receivingIdText.setText(results.getReceivingId());
+
+        if (searchResults.get(position).getReceivingId() != null) {
+            holder.receivingIdText.setText(searchResults.get(position).getReceivingId().toString());
         }
+
         TextView amountText = holder.amountText;
-        if (results.getAmount() != null) {
-            amountText.setText("$ " + (results.getAmount()));
+        if (searchResults.get(position).getAmount() != null) {
+            amountText.setText("$ " + (searchResults.get(position).getAmount()));
         }
 //        if (results.getIsFinalized() != null) {
 //            holder.isFinalizedText.setText(results.getIsFinalized());
 //        }
         acceptTransactionButton = holder.acceptB;
         declineTransactionButton = holder.declineB;
+
+//        if (searchResults.get(position).getIsFinalized() != 0) {
+//            acceptTransactionButton.setEnabled(false);
+//        } else {
+//            acceptTransactionButton.setEnabled(true);
+//        }
+
+
         View.OnClickListener handler = v -> {
 
             if (v == acceptTransactionButton) {
-                transactionUpdate(true); // update transaction to show accepted
+                transactionUpdate(true, searchResults.get(position)); // update transaction to show accepted
             }
 
             if (v == declineTransactionButton) {
-                transactionUpdate(false); // delete transaction from db
+                transactionUpdate(false, searchResults.get(position)); // delete transaction from db
             }
 
         };
@@ -116,30 +113,52 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
         declineTransactionButton.setOnClickListener(handler);
     }
 
-    public void transactionUpdate(boolean accept) {
-        if (accept) {
-            String url = URL_BASE + "/";
+    public void transactionUpdate(boolean accept, TransactionEntity transaction) {
 
+        AtomicReference<String> str = new AtomicReference<>("");
+        int offset = 0;
+        System.out.println("update");
+
+        if (accept) {
+            // first update the transaction as done and then update both users' bank.
+            str.set( str + "update_transaction - ");
+            String url = URL_BASE + "/accept_transaction/?tid=" + transaction.getTransactionId()+offset
+                    + "&amt=" + transaction.getAmount()
+                    + "&cur=" + transaction.getCurrency()
+                    + "&fin=1&sid=" + transaction.getSendingId()
+                    + "&rid=" + transaction.getReceivingId();
             RequestQueue queue = Volley.newRequestQueue(context);
+            System.out.println(url);
+
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
-                //Login success path
+                str.set( str + "success ");
+//                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
+                transaction.setIsFinalized(1);
             }, err -> {
                 Toast.makeText(context, "failure to accept", Toast.LENGTH_LONG).show();
+                str.set( str + "failure ");
             });
+
             queue.add(stringRequest);
         } else {
-            String url = URL_BASE + "/";
-
+            str.set( str + "delete_transaction - ");
+            String url = URL_BASE + "/delete_transaction/?tid=" + transaction.getTransactionId()+offset;
             RequestQueue queue = Volley.newRequestQueue(context);
+            System.out.println(url);
+
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
-                //Login success path
+                str.set( str + "success ");
+//                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
+                AppDatabase appDatabase = AppDatabase.getInstance(this.context);
+                appDatabase.transactionDao().deleteTransaction(transaction.getTransactionId());
             }, err -> {
                 Toast.makeText(context, "failure to decline", Toast.LENGTH_LONG).show();
+                str.set( str + "failure ");
             });
+
             queue.add(stringRequest);
         }
+        System.out.println("transaction " + str);
     }
 
     @Override

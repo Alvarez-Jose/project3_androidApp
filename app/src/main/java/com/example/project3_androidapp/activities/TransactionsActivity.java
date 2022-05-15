@@ -2,6 +2,7 @@ package com.example.project3_androidapp.activities;
 
 import static com.example.project3_androidapp.activities.LoginActivity.idValue;
 import static com.example.project3_androidapp.util.Constants.URL_BASE;
+import static com.example.project3_androidapp.util.Constants.USER_ID_KEY;
 import static com.example.project3_androidapp.util.Constants.USER_NAME_KEY;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,9 +69,9 @@ public class TransactionsActivity extends AppCompatActivity {
 //        text.setText(transactionDao.getAllTransactions().get(0).getAmount());
 
         transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this);
-        transactionAdapter.setResults(transactionDao.getAllTransactionsByName(mPrefs.getString(USER_NAME_KEY, "")));
+        transactionAdapter.setResults(transactionDao.getAllTransactionsById(mPrefs.getInt(USER_ID_KEY, 0)));
 
-        refreshList();
+//        refreshList();
 
         RecyclerView recyclerView = transactions;
         recyclerView.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this));

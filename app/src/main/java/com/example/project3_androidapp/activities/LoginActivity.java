@@ -114,10 +114,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void automaticLogin() {
         if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
-            Intent intentMain = new Intent(LoginActivity.this,
-                    LoadingActivity.class);
             System.out.println("AUTO LOGIN");
-            LoginActivity.this.startActivity(intentMain);
+            switchToTransactions();
         }
     }
 }

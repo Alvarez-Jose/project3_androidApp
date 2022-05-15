@@ -61,6 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             if (v == submitButton) {
                 editProfile();
+                switchToMain();
             }
 
             if(v == backButton){
@@ -104,7 +105,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void switchToMain() {
-        Intent switchActivityIntent = new Intent(EditProfileActivity.this, TransactionsActivity.class);
+        Intent switchActivityIntent = new Intent(EditProfileActivity.this, LoadingActivity.class);
         startActivity(switchActivityIntent);
     }
 }
