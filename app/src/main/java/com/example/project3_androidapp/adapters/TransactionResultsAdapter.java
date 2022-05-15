@@ -54,20 +54,13 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
 //        TransactionEntity results = searchResults.get(position);
 //        System.out.println("onBindViewHolder - "+results.getSendingId());
 
-        acceptTransactionButton = holder.acceptB;
-        declineTransactionButton = holder.declineB;
+//        acceptTransactionButton = holder.acceptB;
+//        declineTransactionButton = holder.declineB;
 
-        System.out.println(position + " --- " + searchResults.get(position).getIsFinalized());
-        if(searchResults.get(position).getIsFinalized() == 1){
-            acceptTransactionButton.setEnabled(false);
-            declineTransactionButton.setEnabled(false);
-        } else {
-            acceptTransactionButton.setEnabled(true);
-            declineTransactionButton.setEnabled(true);
-        }
+//        System.out.println(position + " --- " + searchResults.get(position).getIsFinalized());
 
-        holder.sendingText.setText("From:");
-        holder.recievingText.setText("To:");
+        holder.sendingText.setText("From:\t");
+        holder.recievingText.setText("To:\t");
 //        System.out.println("results = " + searchResults.get(position));
 //
 //        System.out.println("S = " + searchResults.get(position).getSendingId());
@@ -87,42 +80,42 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
 //        if (results.getIsFinalized() != null) {
 //            holder.isFinalizedText.setText(results.getIsFinalized());
 //        }
-        acceptTransactionButton = holder.acceptB;
-        declineTransactionButton = holder.declineB;
 
-//        if (searchResults.get(position).getIsFinalized() != 0) {
-//            acceptTransactionButton.setEnabled(false);
-//        } else {
-//            acceptTransactionButton.setEnabled(true);
-//        }
+        if (searchResults.get(position).getIsFinalized() == 1) {
+            holder.acceptB.setEnabled(false);
+            holder.declineB.setEnabled(false);
+        } else {
+            holder.acceptB.setEnabled(true);
+            holder.declineB.setEnabled(true);
+        }
 
 
         View.OnClickListener handler = v -> {
 
-            if (v == acceptTransactionButton) {
+            if (v == holder.acceptB) {
+                System.out.println("acceptTransactionButton");
                 transactionUpdate(true, searchResults.get(position)); // update transaction to show accepted
             }
 
-            if (v == declineTransactionButton) {
+            if (v == holder.declineB) {
+                System.out.println("declineTransactionButton");
                 transactionUpdate(false, searchResults.get(position)); // delete transaction from db
             }
 
         };
 
-        acceptTransactionButton.setOnClickListener(handler);
-        declineTransactionButton.setOnClickListener(handler);
+        holder.acceptB.setOnClickListener(handler);
+        holder.declineB.setOnClickListener(handler);
     }
 
     public void transactionUpdate(boolean accept, TransactionEntity transaction) {
 
-        AtomicReference<String> str = new AtomicReference<>("");
         int offset = 0;
         System.out.println("update");
 
         if (accept) {
             // first update the transaction as done and then update both users' bank.
-            str.set( str + "update_transaction - ");
-            String url = URL_BASE + "/accept_transaction/?tid=" + transaction.getTransactionId()+offset
+            String url = URL_BASE + "/accept_transaction/?tid=" + transaction.getTransactionId() + offset
                     + "&amt=" + transaction.getAmount()
                     + "&cur=" + transaction.getCurrency()
                     + "&fin=1&sid=" + transaction.getSendingId()
@@ -131,34 +124,31 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
             System.out.println(url);
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-                str.set( str + "success ");
 //                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
+                System.out.println("success!");
                 transaction.setIsFinalized(1);
             }, err -> {
                 Toast.makeText(context, "failure to accept", Toast.LENGTH_LONG).show();
-                str.set( str + "failure ");
             });
 
             queue.add(stringRequest);
         } else {
-            str.set( str + "delete_transaction - ");
-            String url = URL_BASE + "/delete_transaction/?tid=" + transaction.getTransactionId()+offset;
+            String url = URL_BASE + "/delete_transaction/?tid=" + transaction.getTransactionId() + offset;
             RequestQueue queue = Volley.newRequestQueue(context);
             System.out.println(url);
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-                str.set( str + "success ");
-//                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
+                System.out.println("success!");
                 AppDatabase appDatabase = AppDatabase.getInstance(this.context);
                 appDatabase.transactionDao().deleteTransaction(transaction.getTransactionId());
             }, err -> {
                 Toast.makeText(context, "failure to decline", Toast.LENGTH_LONG).show();
-                str.set( str + "failure ");
             });
 
             queue.add(stringRequest);
         }
-        System.out.println("transaction " + str);
+
     }
 
     @Override
