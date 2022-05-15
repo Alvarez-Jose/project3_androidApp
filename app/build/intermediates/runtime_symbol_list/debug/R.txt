@@ -2970,6 +2970,7 @@ int id radio 0x7f080185
 int id ratio 0x7f080186
 int id rectangles 0x7f080187
 int id recyclerViewFriendTransaction 0x7f080188
+int id refreshButton 0x7f08022c
 int id registerUser 0x7f080189
 int id reverseSawtooth 0x7f08018a
 int id right 0x7f08018b
