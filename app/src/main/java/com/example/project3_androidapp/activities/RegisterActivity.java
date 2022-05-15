@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                 StringRequest usersRequest = new StringRequest(Request.Method.GET, url, response -> {
                     // maybe a confirmation message
                     existingUsers = response.replaceAll("&#34;", "\"");
-                    System.out.println(existingUsers);
+//                    System.out.println(existingUsers);
                 }, e -> {
                     Toast.makeText(getApplicationContext(), "Error connecting to database", Toast.LENGTH_LONG).show();
                 });

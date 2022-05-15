@@ -15,7 +15,7 @@ public class TransactionEntity {
     private Integer transactionId;
     @SerializedName("amount")
     @Expose
-    private Integer amount;
+    private Double amount;
     @SerializedName("currency")
     @Expose
     private String currency;
@@ -47,7 +47,7 @@ public class TransactionEntity {
      * @param isFinalized
      * @param receivingId
      */
-    public TransactionEntity(Integer transactionId, Integer amount, String currency, Integer isFinalized, Integer sendingId, Integer receivingId, String description) {
+    public TransactionEntity(Integer transactionId, Double amount, String currency, Integer isFinalized, Integer sendingId, Integer receivingId, String description) {
         super();
         this.transactionId = transactionId;
         this.amount = amount;
@@ -71,15 +71,15 @@ public class TransactionEntity {
         return this;
     }
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-    public TransactionEntity withAmount(Integer amount) {
+    public TransactionEntity withAmount(Double amount) {
         this.amount = amount;
         return this;
     }

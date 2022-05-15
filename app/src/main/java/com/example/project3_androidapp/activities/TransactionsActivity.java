@@ -2,6 +2,8 @@ package com.example.project3_androidapp.activities;
 
 import static com.example.project3_androidapp.activities.LoginActivity.idValue;
 import static com.example.project3_androidapp.util.Constants.URL_BASE;
+import static com.example.project3_androidapp.util.Constants.USER_ID_KEY;
+import static com.example.project3_androidapp.util.Constants.USER_NAME_KEY;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,17 +63,20 @@ public class TransactionsActivity extends AppCompatActivity {
         mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 
+//        System.out.println("id = "+idValue);
+
 //        text.setText(transactionDao.getAllTransactionsById(idValue).toString());
 //        text.setText(transactionDao.getAllTransactions().get(0).getAmount());
 
         transactionAdapter = new TransactionResultsAdapter(TransactionsActivity.this);
-        transactionAdapter.setResults(transactionDao.getTransactionById(idValue));
+        transactionAdapter.setResults(transactionDao.getAllTransactionsById(mPrefs.getInt(USER_ID_KEY, 0)));
+
+//        refreshList();
 
         RecyclerView recyclerView = transactions;
         recyclerView.setLayoutManager(new LinearLayoutManager(TransactionsActivity.this));
         recyclerView.setAdapter(transactionAdapter);
 
-        refreshList();
 
         View.OnClickListener handler = v -> {
 
@@ -110,7 +115,7 @@ public class TransactionsActivity extends AppCompatActivity {
     public void refreshList() {
         if (transactionsList != null && transactionDao != null && transactionAdapter != null) {
             transactionsList.clear();
-            transactionsList = transactionDao.getTransactionById(idValue);
+            transactionsList = transactionDao.getAllTransactionsById(idValue);
             transactionAdapter.setResults(transactionsList);
         }
     }
@@ -121,6 +126,15 @@ public class TransactionsActivity extends AppCompatActivity {
     }
 
     private void logOut() {
+        if (mPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
+            SharedPreferences.Editor editor = mPrefs.edit();
+            editor.putInt(Constants.USER_ID_KEY, -1);
+            editor.apply();
+        } // to remove from automatic login
+
+        Toast.makeText(this, "Logout Successful", Toast.LENGTH_SHORT).show();
+
+        // force user to come back and login again
         Intent switchActivityIntent = new Intent(TransactionsActivity.this, MainActivity.class);
         startActivity(switchActivityIntent);
     }

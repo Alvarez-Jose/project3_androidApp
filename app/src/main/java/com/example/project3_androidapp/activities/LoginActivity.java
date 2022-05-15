@@ -66,11 +66,14 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_LONG).show();
                     //Login success path
                     idValue = Integer.parseInt(response);
+//                    System.out.println(response);
 //                    System.out.println(idValue);
                     if (idValue != -1) {
                         // login success saves the user to persistent login
                         SharedPreferences.Editor editor = mSharedPrefs.edit();
                         editor.putInt(Constants.USER_ID_KEY, idValue);
+                        editor.apply();
+                        editor.putString(Constants.USER_NAME_KEY, enteredUsername);
                         editor.apply();
 
                         Toast.makeText(getApplicationContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
@@ -111,10 +114,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void automaticLogin() {
         if (mSharedPrefs.getInt(Constants.USER_ID_KEY, -1) != -1) {
-            Intent intentMain = new Intent(LoginActivity.this,
-                    LoadingActivity.class);
             System.out.println("AUTO LOGIN");
-            LoginActivity.this.startActivity(intentMain);
+            switchToTransactions();
         }
     }
 }

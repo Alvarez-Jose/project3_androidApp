@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.TransactionDao;
+import com.example.project3_androidapp.db.TransactionEntity;
 import com.example.project3_androidapp.util.Constants;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -53,37 +54,45 @@ public class CreateTransactionActivity extends AppCompatActivity {
         transactionAmount = findViewById(R.id.editAmount);
 
 
+        int offset = 35;
         View.OnClickListener handler = v -> {
 
             if (v == submitButton) {
                 userValue = getInt(userId);
                 amountValue = getDouble(transactionAmount);
 
-                System.out.println("Submit - - >" + userValue);
-                System.out.println("Submit - - >" + amountValue);
+//                System.out.println("Submit - - >" + userValue);
+//                System.out.println("Submit - - >" + amountValue);
 //                userValue = Integer.parseInt(userId.toString());
-                String url = URL_BASE + "/create_transaction/?tid=" + (tdb.getHighestId() + 1) + "&amt=" + amountValue + "&cur=$&fin=0&sid=" + idValue + "&rid=" + userValue + "&desc=fromAndroid"; // TODO change url to add necessary fields
-                AtomicBoolean success = new AtomicBoolean(false);
+                // i added 13 to the highest id since the app presumes no missing entries and the database has those.
+                String url = URL_BASE + "/new_transaction/?amt=" + amountValue + "&cur=$&fin=0&sid=" + idValue + "&rid=" + userValue + "&desc=fromAndroid"; // TODO change url to add necessary fields
 
-
+                System.out.println("ct- "+url);
                 RequestQueue queue = Volley.newRequestQueue(this);
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
 //                    System.out.println("Create - - >" + response);
+
+                    TransactionEntity newTransaction = new TransactionEntity();
+                    newTransaction.setTransactionId(tdb.getHighestId()+offset);
+                    newTransaction.setCurrency("$");
+                    newTransaction.setSendingId(idValue);
+                    newTransaction.setReceivingId(userValue);
+                    newTransaction.setDescription("fromAndroid");
+                    newTransaction.setAmount(amountValue);
+                    newTransaction.setIsFinalized(0);
+
+                    tdb.insertTransaction(newTransaction);
+
                     Toast.makeText(getApplicationContext(), "Transaction sent!", Toast.LENGTH_LONG).show();
-                    if (!response.contains("sorry, something went wrong with your request.")) {
-                        success.set(true);
-                    } else {
-                        success.set(false);
-                    }
+
+                    back();
                 }, err -> {
-                    Toast.makeText(getApplicationContext(), "Error logging in.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Error with Transaction.", Toast.LENGTH_LONG).show();
                     back();
                 });
                 queue.add(stringRequest);
                 // in order to make sure the transaction is sent, reload the data back into the dao
-                if (success.get()) {
-                    reloadToTransaction();
-                } else reload();
+
             }
 
             if (v == backButton) {
@@ -123,18 +132,8 @@ public class CreateTransactionActivity extends AppCompatActivity {
         tdb = database.transactionDao();
     }
 
-    private void reloadToTransaction() {
-        Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, LoadingActivity.class);
-        startActivity(switchActivityIntent);
-    }
-
-    public void reload() {
-        Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, CreateTransactionActivity.class);
-        startActivity(switchActivityIntent);
-    }
-
     private void back() {
-        Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, TransactionsActivity.class);
+        Intent switchActivityIntent = new Intent(CreateTransactionActivity.this, LoadingActivity.class);
         startActivity(switchActivityIntent);
     }
 

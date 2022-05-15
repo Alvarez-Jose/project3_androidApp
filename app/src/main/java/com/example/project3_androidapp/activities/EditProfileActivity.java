@@ -19,7 +19,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.R;
+import com.example.project3_androidapp.db.AppDatabase;
+import com.example.project3_androidapp.db.UserDao;
 import com.example.project3_androidapp.util.Constants;
+import com.google.firebase.firestore.auth.User;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -29,6 +32,9 @@ public class EditProfileActivity extends AppCompatActivity {
     private String nameText, passText;
     private Double bankAmt, addedValue;
     private int idValue;
+
+    AppDatabase appDatabase;
+    UserDao userDao;
 
     private SharedPreferences mPrefs;
 
@@ -41,6 +47,8 @@ public class EditProfileActivity extends AppCompatActivity {
         mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
 
+        getDatabase();
+
         // items in activity
         username = findViewById(R.id.userName);
         submitButton = findViewById(R.id.submitButton);
@@ -48,11 +56,13 @@ public class EditProfileActivity extends AppCompatActivity {
         newName = findViewById(R.id.editTextUsername);
         newPass = findViewById(R.id.newPassword);
         newBank = findViewById(R.id.editBankAmount);
+        newName.setText(userDao.getUserById(idValue).getUsername());
 
         View.OnClickListener handler = v -> {
 
             if (v == submitButton) {
                 editProfile();
+                switchToMain();
             }
 
             if(v == backButton){
@@ -90,8 +100,13 @@ public class EditProfileActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    private void getDatabase() {
+        appDatabase = AppDatabase.getInstance(getApplicationContext());
+        userDao = appDatabase.userDao();
+    }
+
     private void switchToMain() {
-        Intent switchActivityIntent = new Intent(EditProfileActivity.this, TransactionsActivity.class);
+        Intent switchActivityIntent = new Intent(EditProfileActivity.this, LoadingActivity.class);
         startActivity(switchActivityIntent);
     }
 }

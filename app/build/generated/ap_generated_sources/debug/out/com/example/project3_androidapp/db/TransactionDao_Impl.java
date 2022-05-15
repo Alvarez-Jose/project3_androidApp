@@ -11,6 +11,7 @@ import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
 import java.lang.Boolean;
 import java.lang.Class;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -49,7 +50,7 @@ public final class TransactionDao_Impl implements TransactionDao {
         if (value.getAmount() == null) {
           stmt.bindNull(2);
         } else {
-          stmt.bindLong(2, value.getAmount());
+          stmt.bindDouble(2, value.getAmount());
         }
         if (value.getCurrency() == null) {
           stmt.bindNull(3);
@@ -109,7 +110,7 @@ public final class TransactionDao_Impl implements TransactionDao {
         if (value.getAmount() == null) {
           stmt.bindNull(2);
         } else {
-          stmt.bindLong(2, value.getAmount());
+          stmt.bindDouble(2, value.getAmount());
         }
         if (value.getCurrency() == null) {
           stmt.bindNull(3);
@@ -231,11 +232,11 @@ public final class TransactionDao_Impl implements TransactionDao {
           _tmpTransactionId = _cursor.getInt(_cursorIndexOfTransactionId);
         }
         _item.setTransactionId(_tmpTransactionId);
-        final Integer _tmpAmount;
+        final Double _tmpAmount;
         if (_cursor.isNull(_cursorIndexOfAmount)) {
           _tmpAmount = null;
         } else {
-          _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
+          _tmpAmount = _cursor.getDouble(_cursorIndexOfAmount);
         }
         _item.setAmount(_tmpAmount);
         final String _tmpCurrency;
@@ -307,11 +308,11 @@ public final class TransactionDao_Impl implements TransactionDao {
           _tmpTransactionId = _cursor.getInt(_cursorIndexOfTransactionId);
         }
         _item.setTransactionId(_tmpTransactionId);
-        final Integer _tmpAmount;
+        final Double _tmpAmount;
         if (_cursor.isNull(_cursorIndexOfAmount)) {
           _tmpAmount = null;
         } else {
-          _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
+          _tmpAmount = _cursor.getDouble(_cursorIndexOfAmount);
         }
         _item.setAmount(_tmpAmount);
         final String _tmpCurrency;
@@ -387,11 +388,93 @@ public final class TransactionDao_Impl implements TransactionDao {
           _tmpTransactionId = _cursor.getInt(_cursorIndexOfTransactionId);
         }
         _item.setTransactionId(_tmpTransactionId);
-        final Integer _tmpAmount;
+        final Double _tmpAmount;
         if (_cursor.isNull(_cursorIndexOfAmount)) {
           _tmpAmount = null;
         } else {
-          _tmpAmount = _cursor.getInt(_cursorIndexOfAmount);
+          _tmpAmount = _cursor.getDouble(_cursorIndexOfAmount);
+        }
+        _item.setAmount(_tmpAmount);
+        final String _tmpCurrency;
+        if (_cursor.isNull(_cursorIndexOfCurrency)) {
+          _tmpCurrency = null;
+        } else {
+          _tmpCurrency = _cursor.getString(_cursorIndexOfCurrency);
+        }
+        _item.setCurrency(_tmpCurrency);
+        final Integer _tmpIsFinalized;
+        if (_cursor.isNull(_cursorIndexOfIsFinalized)) {
+          _tmpIsFinalized = null;
+        } else {
+          _tmpIsFinalized = _cursor.getInt(_cursorIndexOfIsFinalized);
+        }
+        _item.setIsFinalized(_tmpIsFinalized);
+        final Integer _tmpSendingId;
+        if (_cursor.isNull(_cursorIndexOfSendingId)) {
+          _tmpSendingId = null;
+        } else {
+          _tmpSendingId = _cursor.getInt(_cursorIndexOfSendingId);
+        }
+        _item.setSendingId(_tmpSendingId);
+        final Integer _tmpReceivingId;
+        if (_cursor.isNull(_cursorIndexOfReceivingId)) {
+          _tmpReceivingId = null;
+        } else {
+          _tmpReceivingId = _cursor.getInt(_cursorIndexOfReceivingId);
+        }
+        _item.setReceivingId(_tmpReceivingId);
+        final String _tmpDescription;
+        if (_cursor.isNull(_cursorIndexOfDescription)) {
+          _tmpDescription = null;
+        } else {
+          _tmpDescription = _cursor.getString(_cursorIndexOfDescription);
+        }
+        _item.setDescription(_tmpDescription);
+        _result.add(_item);
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
+  @Override
+  public List<TransactionEntity> getAllTransactionsByName(final String name) {
+    final String _sql = "SELECT * FROM TransactionEntity WHERE receivingId = (Select userId FROM UserEntity where username = ?)";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (name == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, name);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfTransactionId = CursorUtil.getColumnIndexOrThrow(_cursor, "transactionId");
+      final int _cursorIndexOfAmount = CursorUtil.getColumnIndexOrThrow(_cursor, "amount");
+      final int _cursorIndexOfCurrency = CursorUtil.getColumnIndexOrThrow(_cursor, "currency");
+      final int _cursorIndexOfIsFinalized = CursorUtil.getColumnIndexOrThrow(_cursor, "isFinalized");
+      final int _cursorIndexOfSendingId = CursorUtil.getColumnIndexOrThrow(_cursor, "sendingId");
+      final int _cursorIndexOfReceivingId = CursorUtil.getColumnIndexOrThrow(_cursor, "receivingId");
+      final int _cursorIndexOfDescription = CursorUtil.getColumnIndexOrThrow(_cursor, "description");
+      final List<TransactionEntity> _result = new ArrayList<TransactionEntity>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final TransactionEntity _item;
+        _item = new TransactionEntity();
+        final Integer _tmpTransactionId;
+        if (_cursor.isNull(_cursorIndexOfTransactionId)) {
+          _tmpTransactionId = null;
+        } else {
+          _tmpTransactionId = _cursor.getInt(_cursorIndexOfTransactionId);
+        }
+        _item.setTransactionId(_tmpTransactionId);
+        final Double _tmpAmount;
+        if (_cursor.isNull(_cursorIndexOfAmount)) {
+          _tmpAmount = null;
+        } else {
+          _tmpAmount = _cursor.getDouble(_cursorIndexOfAmount);
         }
         _item.setAmount(_tmpAmount);
         final String _tmpCurrency;

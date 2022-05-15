@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,28 +17,23 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.project3_androidapp.R;
-import com.example.project3_androidapp.activities.TransactionsActivity;
-import com.example.project3_androidapp.db.TransactionDao;
+import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.TransactionEntity;
-import com.example.project3_androidapp.models.Search;
+import com.example.project3_androidapp.db.UserDao;
+import com.example.project3_androidapp.db.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionResultsAdapter.SearchResultHolder> {
     private List<TransactionEntity> searchResults = new ArrayList<>();
     private Context context;
-    private TransactionDao td;
     private Button acceptTransactionButton, declineTransactionButton;
 
     public TransactionResultsAdapter(Context context) {
         this.context = context;
-    }
-
-    public TransactionResultsAdapter(List<TransactionEntity> list) {
-        searchResults = list;
     }
 
     @NonNull
@@ -47,11 +41,9 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
     public SearchResultHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.transaction_item, parent, false);
-//        context = parent.getContext();
 
-
-        acceptTransactionButton = parent.findViewById(R.id.userNameText);
-        declineTransactionButton = parent.findViewById(R.id.bankText);
+        acceptTransactionButton = parent.findViewById(R.id.buttonAccept);
+        declineTransactionButton = parent.findViewById(R.id.buttonDecline);
 
         return (new SearchResultHolder(view));
 //        return null;
@@ -59,68 +51,104 @@ public class TransactionResultsAdapter extends RecyclerView.Adapter<TransactionR
 
     @Override
     public void onBindViewHolder(@NonNull SearchResultHolder holder, int position) {
-        TransactionEntity results = searchResults.get(position);
-        System.out.println(results.getSendingId());
+//        TransactionEntity results = searchResults.get(position);
+//        System.out.println("onBindViewHolder - "+results.getSendingId());
 
-        holder.sendingText.setText("From:");
-        holder.recievingText.setText("To:");
+//        acceptTransactionButton = holder.acceptB;
+//        declineTransactionButton = holder.declineB;
 
-        if (results.getSendingId() != null) {
-            holder.sendingIdText.setText(String.valueOf(results.getSendingId()));
+//        System.out.println(position + " --- " + searchResults.get(position).getIsFinalized());
+
+        holder.sendingText.setText("From:\t");
+        holder.recievingText.setText("To:\t");
+//        System.out.println("results = " + searchResults.get(position));
+//
+//        System.out.println("S = " + searchResults.get(position).getSendingId());
+//        System.out.println("R = " + searchResults.get(position).getReceivingId());
+        if (searchResults.get(position).getSendingId() != null) {
+            holder.sendingIdText.setText(searchResults.get(position).getSendingId().toString());
         }
-        TextView recieveText = holder.receivingIdText;
-        if (results.getReceivingId() != null) {
-            recieveText.setText(String.valueOf(results.getReceivingId()));
+
+        if (searchResults.get(position).getReceivingId() != null) {
+            holder.receivingIdText.setText(searchResults.get(position).getReceivingId().toString());
         }
+
         TextView amountText = holder.amountText;
-        if (results.getAmount() != null) {
-            amountText.setText(String.valueOf(results.getAmount()));
+        if (searchResults.get(position).getAmount() != null) {
+            amountText.setText("$ " + (searchResults.get(position).getAmount()));
         }
 //        if (results.getIsFinalized() != null) {
 //            holder.isFinalizedText.setText(results.getIsFinalized());
 //        }
-        acceptTransactionButton = holder.acceptB;
-        declineTransactionButton = holder.declineB;
+
+        if (searchResults.get(position).getIsFinalized() == 1) {
+            holder.acceptB.setEnabled(false);
+            holder.declineB.setEnabled(false);
+        } else {
+            holder.acceptB.setEnabled(true);
+            holder.declineB.setEnabled(true);
+        }
+
+
         View.OnClickListener handler = v -> {
 
-            if (v == acceptTransactionButton) {
-                transactionUpdate(true); // update transaction to show accepted
+            if (v == holder.acceptB) {
+                System.out.println("acceptTransactionButton");
+                transactionUpdate(true, searchResults.get(position)); // update transaction to show accepted
             }
 
-            if (v == declineTransactionButton) {
-                transactionUpdate(false); // delete transaction from db
+            if (v == holder.declineB) {
+                System.out.println("declineTransactionButton");
+                transactionUpdate(false, searchResults.get(position)); // delete transaction from db
             }
 
         };
 
-        acceptTransactionButton.setOnClickListener(handler);
-        declineTransactionButton.setOnClickListener(handler);
+        holder.acceptB.setOnClickListener(handler);
+        holder.declineB.setOnClickListener(handler);
     }
 
-    public void transactionUpdate(boolean accept) {
-        if (accept) {
-            String url = URL_BASE + "/";
+    public void transactionUpdate(boolean accept, TransactionEntity transaction) {
 
+        int offset = 0;
+        System.out.println("update");
+
+        if (accept) {
+            // first update the transaction as done and then update both users' bank.
+            String url = URL_BASE + "/accept_transaction/?tid=" + transaction.getTransactionId() + offset
+                    + "&amt=" + transaction.getAmount()
+                    + "&cur=" + transaction.getCurrency()
+                    + "&fin=1&sid=" + transaction.getSendingId()
+                    + "&rid=" + transaction.getReceivingId();
             RequestQueue queue = Volley.newRequestQueue(context);
+            System.out.println(url);
+
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
-                //Login success path
+//                Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
+                System.out.println("success!");
+                transaction.setIsFinalized(1);
             }, err -> {
                 Toast.makeText(context, "failure to accept", Toast.LENGTH_LONG).show();
             });
+
             queue.add(stringRequest);
         } else {
-            String url = URL_BASE + "/";
-
+            String url = URL_BASE + "/delete_transaction/?tid=" + transaction.getTransactionId() + offset;
             RequestQueue queue = Volley.newRequestQueue(context);
+            System.out.println(url);
+
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
                 Toast.makeText(context, "success!", Toast.LENGTH_LONG).show();
-                //Login success path
+                System.out.println("success!");
+                AppDatabase appDatabase = AppDatabase.getInstance(this.context);
+                appDatabase.transactionDao().deleteTransaction(transaction.getTransactionId());
             }, err -> {
                 Toast.makeText(context, "failure to decline", Toast.LENGTH_LONG).show();
             });
+
             queue.add(stringRequest);
         }
+
     }
 
     @Override

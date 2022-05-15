@@ -21,9 +21,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project3_androidapp.R;
 import com.example.project3_androidapp.adapters.TransactionResultsAdapter;
+import com.example.project3_androidapp.adapters.UserListResultsAdapter;
+import com.example.project3_androidapp.adapters.UserResultsAdapter;
 import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.TransactionDao;
 import com.example.project3_androidapp.db.TransactionEntity;
+import com.example.project3_androidapp.db.UserDao;
+import com.example.project3_androidapp.db.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +36,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Button backButton, toEditButton, addCardButton;
     private TextView username, bank;
-    private static TransactionResultsAdapter transactionsAdapter;
-    private static TransactionDao transactionDao;
-    private static List<TransactionEntity> transactions = new ArrayList<>();
+    private UserResultsAdapter userAdapter;
+    private UserDao userDao;
+    AppDatabase appDatabase;
+    private List<UserEntity> users = new ArrayList<>();
 
     private SharedPreferences mPrefs;
 
@@ -52,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
         // get user's shared preferences
 //        mPrefs = this.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 //        idValue = mPrefs.getInt(Constants.USER_ID_KEY, -1);
-        transactionsAdapter = new TransactionResultsAdapter(this);
+        userAdapter = new UserResultsAdapter(this);
 
         addCardButton = findViewById(R.id.addCard);
         toEditButton = findViewById(R.id.editButton);
@@ -88,15 +93,15 @@ public class ProfileActivity extends AppCompatActivity {
     // get instance of database and return user DAO
     private void getDatabase() {
         AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
-        transactionDao = db.transactionDao();
+        userDao = db.userDao();
     }
 
     // refresh the user list
-    public static void refreshList() {
-        if (transactions != null && transactionDao != null && transactionsAdapter != null) {
-            transactions.clear();
-            transactions = transactionDao.getTransactionById(idValue);
-            transactionsAdapter.setResults(transactions);
+    public void refreshList() {
+        if (users != null && userDao != null && userAdapter != null) {
+            users.clear();
+            users = userDao.getAllUsers();
+            userAdapter.setResults(users);
         }
     }
 
