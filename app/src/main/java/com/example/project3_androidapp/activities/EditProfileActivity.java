@@ -56,6 +56,7 @@ public class EditProfileActivity extends AppCompatActivity {
         newName = findViewById(R.id.editTextUsername);
         newPass = findViewById(R.id.newPassword);
         newBank = findViewById(R.id.editBankAmount);
+        newName.setText(userDao.getUserById(idValue).getUsername());
 
         View.OnClickListener handler = v -> {
 

@@ -71,7 +71,6 @@ public class CreateTransactionActivity extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(this);
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
 //                    System.out.println("Create - - >" + response);
-                    Toast.makeText(getApplicationContext(), "Transaction sent!", Toast.LENGTH_LONG).show();
 
                     TransactionEntity newTransaction = new TransactionEntity();
                     newTransaction.setTransactionId(tdb.getHighestId()+offset);
@@ -83,6 +82,9 @@ public class CreateTransactionActivity extends AppCompatActivity {
                     newTransaction.setIsFinalized(0);
 
                     tdb.insertTransaction(newTransaction);
+
+                    Toast.makeText(getApplicationContext(), "Transaction sent!", Toast.LENGTH_LONG).show();
+
                     back();
                 }, err -> {
                     Toast.makeText(getApplicationContext(), "Error with Transaction.", Toast.LENGTH_LONG).show();
