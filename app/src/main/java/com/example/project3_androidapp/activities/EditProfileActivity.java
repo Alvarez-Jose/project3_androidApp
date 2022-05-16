@@ -65,7 +65,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 switchToMain();
             }
 
-            if(v == backButton){
+            if (v == backButton) {
                 switchToMain();
             }
 
@@ -75,7 +75,7 @@ public class EditProfileActivity extends AppCompatActivity {
         submitButton.setOnClickListener(handler);
     }
 
-    private void editProfile(){
+    private void editProfile() {
         String enteredUsername = newName.getText().toString();
         String enteredPassword = newPass.getText().toString();
         double enteredBank = Double.parseDouble(newBank.getText().toString());

@@ -2971,7 +2971,9 @@ id radio
 id ratio
 id rectangles
 id recyclerViewFriendTransaction
+id refreshButton
 id registerUser
+id returnButton
 id reverseSawtooth
 id right
 id rightToLeft

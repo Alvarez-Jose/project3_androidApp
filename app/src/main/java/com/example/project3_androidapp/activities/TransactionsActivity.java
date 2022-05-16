@@ -88,11 +88,11 @@ public class TransactionsActivity extends AppCompatActivity {
             if (v == backButton) {
                 logOut();
             }
-            
+
             if (v == findButton) {
                 toSearchUser();
             }
-            
+
             if (v == editButton) {
                 toEditProfile();
             }
@@ -108,7 +108,7 @@ public class TransactionsActivity extends AppCompatActivity {
         findButton.setOnClickListener(handler);
         editButton.setOnClickListener(handler);
         refresh.setOnClickListener(handler);
-                
+
     }
 
     // get instance of database and return user DAO

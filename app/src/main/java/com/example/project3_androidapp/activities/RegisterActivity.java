@@ -81,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 queue.add(usersRequest);
                 // need to make sure the form is filled out properly
-                if (userNameText.contains( ("\"username\":" + existingUsers + "\"") )|| userNameText.isEmpty() || userPasswordText.isEmpty()) {
+                if (userNameText.contains(("\"username\":" + existingUsers + "\"")) || userNameText.isEmpty() || userPasswordText.isEmpty()) {
                     if (userNameText.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Username is empty.", Toast.LENGTH_LONG).show();
                     } else if (userPasswordText.isEmpty()) {
