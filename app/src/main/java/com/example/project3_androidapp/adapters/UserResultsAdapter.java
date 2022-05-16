@@ -24,7 +24,6 @@ public class UserResultsAdapter extends RecyclerView.Adapter<UserResultsAdapter.
     private List<UserEntity> searchResults = new ArrayList<>();
     private Context context;
     private Button userProfileButton;
-    TextView uNameSet, uNameResult, uIdSet, uIdResult;
 
     @NonNull
     @Override
@@ -41,32 +40,35 @@ public class UserResultsAdapter extends RecyclerView.Adapter<UserResultsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull SearchResultHolder holder, int position) {
-        UserEntity results = searchResults.get(position);
+//        UserEntity results = searchResults.get(position);
+//
+//        System.out.println(results.getUsername() + " - " + results.getUserId());
+//        userProfileButton = holder.profileButton;
 
-        userProfileButton = holder.profileButton;
-        uNameSet = holder.userNameSet;
-        uNameResult = holder.userNameResult;
-        uIdSet = holder.userIdSet;
-        uIdResult = holder.userIdResult;
+        holder.userNameSet.setText("username: ");
+        holder.userIdSet.setText("ID: ");
 
-        uNameSet.setText("username: ");
-        uIdSet.setText("ID: ");
-
-        if (results.getUsername() != null) {
-            uNameResult.setText("ID: ");
+        if (searchResults.get(position).getUsername()  != null) {
+            holder.userNameResult.setText(searchResults.get(position).getUsername());
+        } else {
+            holder.userNameResult.setText("Error f");
         }
-        if (results.getUserId() != null) {
-            uIdResult.setText("ID: ");
+        if (searchResults.get(position).getUserId().toString() != null) {
+            holder.userIdResult.setText(searchResults.get(position).getUserId().toString());
+        } else {
+            holder.userIdResult.setText("Error f");
         }
 
         View.OnClickListener handler = v -> {
 
-            if (v == userProfileButton) {
+            if (v == holder.profileButton) {
                 toUserProfile();
             }
 
 
         };
+
+        holder.profileButton.setOnClickListener(handler);
     }
 
     private void toUserProfile() {
@@ -89,8 +91,9 @@ public class UserResultsAdapter extends RecyclerView.Adapter<UserResultsAdapter.
     }
 
     class SearchResultHolder extends RecyclerView.ViewHolder {
-        TextView userNameSet, userNameResult, userIdSet, userIdResult;
-        Button profileButton;
+        public TextView userNameSet, userNameResult, userIdSet, userIdResult;
+        public Button profileButton;
+
         public SearchResultHolder(@NonNull View itemView) {
             super(itemView);
             userNameSet = itemView.findViewById(R.id.userNameText);

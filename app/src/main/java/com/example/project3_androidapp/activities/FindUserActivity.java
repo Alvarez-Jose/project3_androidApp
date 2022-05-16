@@ -23,21 +23,22 @@ import com.example.project3_androidapp.adapters.UserResultsAdapter;
 import com.example.project3_androidapp.db.AppDatabase;
 import com.example.project3_androidapp.db.TransactionEntity;
 import com.example.project3_androidapp.db.UserDao;
+import com.example.project3_androidapp.db.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FindUserActivity extends AppCompatActivity {
 
-    RecyclerView users;
-    private String usernameText;
-    Button searchButton;
-    TextView userSearch;
+    private RecyclerView users;
+    private Button searchButton, backButton;
+    private TextView userSearch;
+    private String usernameText = "";
 
-    UserResultsAdapter searchResults;
-    UserDao userDao;
-    AppDatabase db;
-    private List<TransactionEntity> searchUserList = new ArrayList<>();
+    private UserResultsAdapter searchResults;
+    private UserDao userDao;
+    private AppDatabase db;
+    private List<UserEntity> searchUserList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class FindUserActivity extends AppCompatActivity {
 
         getDatabase();
 
+        backButton = findViewById(R.id.returnButton);
         userSearch = findViewById(R.id.editTextPersonName);
         searchButton = findViewById(R.id.searchButton);
         users = findViewById(R.id.userSearchRecyclerView);
@@ -57,18 +59,24 @@ public class FindUserActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(FindUserActivity.this));
         recyclerView.setAdapter(searchResults);
 
-//        refreshList();
-//
-//        View.OnClickListener handler = v -> {
-//
-//            if (v == searchButton) {
-//                findUser();
-//            }
-//
-//
-//        };
 
-//        searchButton.setOnClickListener(handler);
+        View.OnClickListener handler = v -> {
+
+            if (v == searchButton) {
+                usernameText = userSearch.getText().toString();
+                searchResults.setResults(userDao.getUsersByName(usernameText));
+                recyclerView.setAdapter(searchResults);
+                searchResults.setResults(searchUserList);
+//                searchUserList = (userDao.getUsersByName(usernameText));
+                refreshList();
+            }
+
+            if (v == backButton) {
+                back();
+            }
+        };
+
+        searchButton.setOnClickListener(handler);
     }
 
     // get instance of database and return user DAO
@@ -78,29 +86,17 @@ public class FindUserActivity extends AppCompatActivity {
     }
 
     // refresh the user list
-    public void refreshList(String username) {
-//        if (searchUserList != null && userDao != null && searchResults != null) {
+    public void refreshList() {
+//        System.out.println(usernameText);
+
+        if (searchUserList != null && userDao != null && searchResults != null) {
 //            searchUserList.clear();
-//            searchUserList = userDao.getUserByName(username);
-//            searchResults.setResults(searchUserList);
-//        }
+//            searchUserList = (userDao.getUsersByName(usernameText));
+            System.out.println("list ->" + searchUserList);
+            searchResults.setResults(searchUserList);
+        }
     }
 
-    public void findUser(String username){
-        String usernameText = userSearch.getText().toString();
-
-        String url = URL_BASE + "/retrieve_user/?userId=" + usernameText;
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
-
-        }, err -> {
-            Toast.makeText(getApplicationContext(), "Error sending request.", Toast.LENGTH_SHORT).show();
-            back();
-        });
-        queue.add(stringRequest);
-        refreshList(username);
-    }
 
     private void back() {
         Intent switchActivityIntent = new Intent(FindUserActivity.this, TransactionsActivity.class);

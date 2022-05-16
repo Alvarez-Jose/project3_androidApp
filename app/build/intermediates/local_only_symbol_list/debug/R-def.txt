@@ -55,7 +55,9 @@ id password
 id passwordTextEnter
 id progressBar
 id recyclerViewFriendTransaction
+id refreshButton
 id registerUser
+id returnButton
 id searchButton
 id searchText
 id sendAmountText

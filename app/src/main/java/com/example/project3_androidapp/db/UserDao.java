@@ -34,6 +34,7 @@ public interface UserDao {
     @Query("SELECT MAX(userId) FROM " + AppDatabase.USER_TABLE)
     int getHighestId();
 
-//    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE username = :uname")
-//    TransactionEntity getUserByName(String uname);
+    @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE username = :u")
+    List<UserEntity> getUsersByName(String u);
+
 }

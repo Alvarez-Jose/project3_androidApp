@@ -2972,6 +2972,7 @@ int id rectangles 0x7f080187
 int id recyclerViewFriendTransaction 0x7f080188
 int id refreshButton 0x7f08022c
 int id registerUser 0x7f080189
+int id returnButton 0x7f08022d
 int id reverseSawtooth 0x7f08018a
 int id right 0x7f08018b
 int id rightToLeft 0x7f08018c

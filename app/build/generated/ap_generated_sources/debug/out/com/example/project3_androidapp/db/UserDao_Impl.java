@@ -417,6 +417,88 @@ public final class UserDao_Impl implements UserDao {
     }
   }
 
+  @Override
+  public List<UserEntity> getUsersByName(final String u) {
+    final String _sql = "SELECT * FROM UserEntity WHERE username = ?";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
+    int _argIndex = 1;
+    if (u == null) {
+      _statement.bindNull(_argIndex);
+    } else {
+      _statement.bindString(_argIndex, u);
+    }
+    __db.assertNotSuspendingTransaction();
+    final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+    try {
+      final int _cursorIndexOfUserId = CursorUtil.getColumnIndexOrThrow(_cursor, "userId");
+      final int _cursorIndexOfUsername = CursorUtil.getColumnIndexOrThrow(_cursor, "username");
+      final int _cursorIndexOfPassword = CursorUtil.getColumnIndexOrThrow(_cursor, "password");
+      final int _cursorIndexOfAdmin = CursorUtil.getColumnIndexOrThrow(_cursor, "admin");
+      final int _cursorIndexOfCardListId = CursorUtil.getColumnIndexOrThrow(_cursor, "cardListId");
+      final int _cursorIndexOfUserListId = CursorUtil.getColumnIndexOrThrow(_cursor, "userListId");
+      final int _cursorIndexOfBank = CursorUtil.getColumnIndexOrThrow(_cursor, "bank");
+      final int _cursorIndexOfTransactionListId = CursorUtil.getColumnIndexOrThrow(_cursor, "transactionListId");
+      final List<UserEntity> _result = new ArrayList<UserEntity>(_cursor.getCount());
+      while(_cursor.moveToNext()) {
+        final UserEntity _item;
+        final Integer _tmpUserId;
+        if (_cursor.isNull(_cursorIndexOfUserId)) {
+          _tmpUserId = null;
+        } else {
+          _tmpUserId = _cursor.getInt(_cursorIndexOfUserId);
+        }
+        final String _tmpUsername;
+        if (_cursor.isNull(_cursorIndexOfUsername)) {
+          _tmpUsername = null;
+        } else {
+          _tmpUsername = _cursor.getString(_cursorIndexOfUsername);
+        }
+        final String _tmpPassword;
+        if (_cursor.isNull(_cursorIndexOfPassword)) {
+          _tmpPassword = null;
+        } else {
+          _tmpPassword = _cursor.getString(_cursorIndexOfPassword);
+        }
+        final Integer _tmpAdmin;
+        if (_cursor.isNull(_cursorIndexOfAdmin)) {
+          _tmpAdmin = null;
+        } else {
+          _tmpAdmin = _cursor.getInt(_cursorIndexOfAdmin);
+        }
+        final Integer _tmpCardListId;
+        if (_cursor.isNull(_cursorIndexOfCardListId)) {
+          _tmpCardListId = null;
+        } else {
+          _tmpCardListId = _cursor.getInt(_cursorIndexOfCardListId);
+        }
+        final Integer _tmpUserListId;
+        if (_cursor.isNull(_cursorIndexOfUserListId)) {
+          _tmpUserListId = null;
+        } else {
+          _tmpUserListId = _cursor.getInt(_cursorIndexOfUserListId);
+        }
+        final Double _tmpBank;
+        if (_cursor.isNull(_cursorIndexOfBank)) {
+          _tmpBank = null;
+        } else {
+          _tmpBank = _cursor.getDouble(_cursorIndexOfBank);
+        }
+        final Integer _tmpTransactionListId;
+        if (_cursor.isNull(_cursorIndexOfTransactionListId)) {
+          _tmpTransactionListId = null;
+        } else {
+          _tmpTransactionListId = _cursor.getInt(_cursorIndexOfTransactionListId);
+        }
+        _item = new UserEntity(_tmpUserId,_tmpUsername,_tmpPassword,_tmpAdmin,_tmpCardListId,_tmpUserListId,_tmpBank,_tmpTransactionListId);
+        _result.add(_item);
+      }
+      return _result;
+    } finally {
+      _cursor.close();
+      _statement.release();
+    }
+  }
+
   public static List<Class<?>> getRequiredConverters() {
     return Collections.emptyList();
   }
