@@ -418,14 +418,14 @@ public final class UserDao_Impl implements UserDao {
   }
 
   @Override
-  public List<UserEntity> getUsersByName(final String u) {
-    final String _sql = "SELECT * FROM UserEntity WHERE username = ?";
+  public List<UserEntity> getUsersByName(final String user) {
+    final String _sql = "SELECT * FROM UserEntity WHERE username LIKE ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
-    if (u == null) {
+    if (user == null) {
       _statement.bindNull(_argIndex);
     } else {
-      _statement.bindString(_argIndex, u);
+      _statement.bindString(_argIndex, user);
     }
     __db.assertNotSuspendingTransaction();
     final Cursor _cursor = DBUtil.query(__db, _statement, false, null);

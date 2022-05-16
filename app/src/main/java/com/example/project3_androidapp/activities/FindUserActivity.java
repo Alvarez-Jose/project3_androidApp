@@ -38,14 +38,15 @@ public class FindUserActivity extends AppCompatActivity {
     private UserResultsAdapter searchResults;
     private UserDao userDao;
     private AppDatabase db;
-    private List<UserEntity> searchUserList = new ArrayList<>();
+    private List<UserEntity> searchUserList = new ArrayList<>(), searchResult = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_user);
 
-        getDatabase();
+        db = AppDatabase.getInstance(getApplicationContext());
+        userDao = db.userDao();
 
         backButton = findViewById(R.id.returnButton);
         userSearch = findViewById(R.id.editTextPersonName);
@@ -53,7 +54,9 @@ public class FindUserActivity extends AppCompatActivity {
         users = findViewById(R.id.userSearchRecyclerView);
 
         searchResults = new UserResultsAdapter(FindUserActivity.this);
-        searchResults.setResults(userDao.getAllUsers());
+        searchUserList = userDao.getAllUsers();
+
+        searchResults.setResults(searchUserList);
 
         RecyclerView recyclerView = users;
         recyclerView.setLayoutManager(new LinearLayoutManager(FindUserActivity.this));
@@ -63,11 +66,13 @@ public class FindUserActivity extends AppCompatActivity {
         View.OnClickListener handler = v -> {
 
             if (v == searchButton) {
+
                 usernameText = userSearch.getText().toString();
-                searchResults.setResults(userDao.getUsersByName(usernameText));
-                recyclerView.setAdapter(searchResults);
-                searchResults.setResults(searchUserList);
-//                searchUserList = (userDao.getUsersByName(usernameText));
+                searchResult.clear();
+                for (UserEntity u : searchUserList) {
+                    if(u.getUsername().contains(usernameText))
+                        searchResult.add(u);
+                }
                 refreshList();
             }
 
@@ -79,21 +84,16 @@ public class FindUserActivity extends AppCompatActivity {
         searchButton.setOnClickListener(handler);
     }
 
-    // get instance of database and return user DAO
-    private void getDatabase() {
-        db = AppDatabase.getInstance(getApplicationContext());
-        userDao = db.userDao();
-    }
-
     // refresh the user list
     public void refreshList() {
 //        System.out.println(usernameText);
 
         if (searchUserList != null && userDao != null && searchResults != null) {
+            usernameText = userSearch.getText().toString();
 //            searchUserList.clear();
-//            searchUserList = (userDao.getUsersByName(usernameText));
-            System.out.println("list ->" + searchUserList);
-            searchResults.setResults(searchUserList);
+            System.out.println("searchUserList ->" + searchResult);
+            searchResults.setResults(searchResult);
+
         }
     }
 
